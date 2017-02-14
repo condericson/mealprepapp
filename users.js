@@ -1,12 +1,8 @@
-$(document).ready(function() {
-
-
 const express = require('express');
-const app = express();
 const {BasicStrategy} = require('passport-http');
 const jsonParser = require('body-parser').json();
 
-const {User} = require('./userModel');
+const {User} = require('./models/userModel');
 
 const router = express.Router();
 
@@ -100,18 +96,3 @@ $('#js-login').submit(function(event){
 	console.log("Logging in...");
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-});
