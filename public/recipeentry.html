@@ -7,20 +7,27 @@
 <body>
 <h2>Enter your recipe!</h2>
 	<h3>Title</h3>
-	<input type="text" name="title">
+	<input type="text" name="title" id="title">
 	<h3>Cookware</h3>
-	<input type="text" name="cookware">
+	<input type="text" name="cookware" id="cookware">
 	<h3>Ingredients</h3>
 	<ul>
-		<li><input type="text" name="ingredient"></li>
-		<li><input type="text" name="ingredient"></li>
-		<li><input type="text" name="ingredient"></li>
-		<li><button>+</button></li>
+		<li><input type="text" name="ingredient" id="ingredient1"></li>
+		<li><input type="text" name="ingredient" id="ingredient2"></li>
+		<li><input type="text" name="ingredient" id="ingredient3"></li>
 	</ul>
+	<button id="addIngredient">+</button>
 	<h3>Cooking Instructions</h3>
-	<textarea name="paragraph_text" cols="50" rows="10"></textarea>
-	<button>Add Meal</button>
+	<textarea name="instructions" id="instructions" cols="50" rows="10"></textarea>
+	<button type="submit" id="js-recipe-submit">Add Recipe</button>
+
+
+
+
+
+
 
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+	<script type="text/javascript" src="./javascript/recipeentry.js"></script>	
 </body>
 </html>

@@ -10,7 +10,8 @@
     "mongoose": "^4.8.2",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
-    "passport-http": "^0.3.0"
+    "passport-http": "^0.3.0",
+    "toastr": "^2.1.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",

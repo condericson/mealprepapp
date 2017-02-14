@@ -19,6 +19,10 @@ app.use(morgan('common'));
 const recipeRouter = require('./recipes');
 app.use('/recipes', recipeRouter);
 
+app.get('/recipeentry', function(req, res) {
+  res.sendFile(__dirname + '/public/recipeentry.html');
+})
+
 
 
 
