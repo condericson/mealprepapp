@@ -14,21 +14,21 @@ const RecipeSchema = mongoose.Schema({
     type: String,
     default: ""
   },
-  utensils: {
+  cookware: {
     type: String,
     default: ""
   },
   userid: {
     type: String,
-    required: true
+    required: false
   },
   date: {
     type: Date,
-    required: Date.now
+    default: Date.now
   }
 });
 
-const Recipes = mongoose.model('recipes', UserSchema);
+const Recipes = mongoose.model('recipes', RecipeSchema);
 
 module.exports = {Recipes};
 
@@ -39,7 +39,7 @@ module.exports = {Recipes};
   'title': 'lasagna',
   'ingredients': ['pasta', 'tomato sauce', 'beef'],
   'instructions': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur nulla alias, iure aliquid ducimus ipsa illo? Reiciendis debitis officiis excepturi. Iusto porro voluptas reprehenderit aut consequatur distinctio neque, quisquam cum!'
-  'utensils': 'oven, stuff, pan',
+  'cookware': 'oven, stuff, pan',
   'userid': 'elrihjo823u42neiukdn283hf',
   'date': 2/14/2017
 }

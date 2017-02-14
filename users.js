@@ -1,12 +1,14 @@
 const express = require('express');
 const {BasicStrategy} = require('passport-http');
 const jsonParser = require('body-parser').json();
+const morgan = require('morgan');
 
 const {User} = require('./models/userModel');
 
 const router = express.Router();
 
 router.use(jsonParser);
+router.use(morgan('common'));
 
 //Creating user with username and password
 router.post('/', (req, res) => {
@@ -92,7 +94,7 @@ router.post('/', (req, res) => {
 
 
 //Logging in with existing username and password
-$('#js-login').submit(function(event){
+/*$('#js-login').submit(function(event){
 	console.log("Logging in...");
 
-})
+})*/

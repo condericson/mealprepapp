@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 
 mongoose.Promise = global.Promise;
 
@@ -12,8 +13,8 @@ const {Recipes} = require('./models/recipeModel');
 app.use(express.static('public'));
 app.use(morgan('common'));
 
-const usersRouter = require('./users');
-app.use('/users', usersRouter);
+/*const usersRouter = require('./users');*/
+/*app.use('/users', usersRouter);*/
 
 const recipeRouter = require('./recipes');
 app.use('/recipes', recipeRouter);
