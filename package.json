@@ -1,0 +1,33 @@
+{
+  "name": "meal_prep_app",
+  "version": "1.0.0",
+  "description": "app for organizing meal prep",
+  "main": "server.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.2",
+    "morgan": "^1.8.1",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.2.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/condericson/mealprepapp.git"
+  },
+  "author": "Connor Ericson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/condericson/mealprepapp/issues"
+  },
+  "homepage": "https://github.com/condericson/mealprepapp#readme"
+}
