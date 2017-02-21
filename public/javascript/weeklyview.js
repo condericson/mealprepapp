@@ -155,12 +155,35 @@ window.onclick = function(event) {
 //Drag and drop JS
 //NEED TO FIND A WAY TO ADD RECIPES TO DATABASE ON DROP!
 
-$( ".recipecontainer" ).draggable();
-$( ".recipes" ).droppable({
+$( ".recipecontainer" ).draggable({
+	helper: 'clone',
+ 	revert: 'invalid'
+});
+$( ".recipeByDay" ).droppable({
+	activeClass: "ui-state-default",
+  hoverClass: "ui-state-hover",
   drop: function( event, ui ) {
-    $('.recipecontainer').clone().appendTo($(this));
+  	var newClone = $(ui.helper).clone();
+  	newClone.css("position", "static");
+  	newClone.addClass('inDayColumn');
+    $(this).after(newClone);
   }
 });
+
+/*$(function() {
+    $(".draggable img").draggable({ 
+        revert: "invalid",
+        helper: "clone" 
+    });   
+    $("#droppable").droppable({
+        activeClass: "ui-state-default",
+        hoverClass: "ui-state-hover",
+        drop: function(event, ui) {
+            var newClone = $(ui.helper).clone();
+            $(this).after(newClone);
+        }
+	});
+});*/
 
 
 

@@ -317,6 +317,15 @@ nav {
   position: absolute;
 }
 
+.recipeByDay {
+  position: relative;
+}
+
+.inDayColumn {
+
+}
+
+
 .findarecipe {
   box-sizing: border-box;
   width: 50%;
