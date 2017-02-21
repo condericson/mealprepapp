@@ -13,16 +13,28 @@ const {Recipes} = require('./models/recipeModel');
 app.use(express.static('public'));
 app.use(morgan('common'));
 
-/*const usersRouter = require('./users');*/
-/*app.use('/users', usersRouter);*/
-
+//routers
 const recipeRouter = require('./recipes');
 app.use('/recipes', recipeRouter);
 
+const usersRouter = require('./users');
+app.use('/users', usersRouter);
+
+
+
+//get requests to open pages
 app.get('/recipeentry', function(req, res) {
   res.sendFile(__dirname + '/public/recipeentry.html');
 })
 
+app.get('/signup', function(req, res) {
+    res.sendFile(__dirname + '/public/signup.html');
+})
+
+app.get('/weeklyview', function(req, res) {
+  
+  res.sendFile(__dirname + '/public/weeklyview.html')
+})
 
 
 

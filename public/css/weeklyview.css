@@ -19,7 +19,7 @@ nav {
   width: 100%;
   height: 70px;
   background-color: #44A7FE;
-  
+  position: relative;
 }
 
 .title {
@@ -35,11 +35,64 @@ nav {
   float: right;
   font-family: Ubuntu;
   font-weight: bold;
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 .settings:hover {
   cursor: pointer;
 }
 
+.poweredBy {
+  position: absolute;
+  top: 10px;
+  right: 150px; 
+}
+
+/* Dropdown menu */
+.dropdown-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-button:hover, .dropdown-button:focus {
+    background-color: #3e8e41;
+}
+
+.dropdown-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1
+}
+
+.show {
+  display:block;
+}
+
+
+.settings {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
 
 /* Week styles */
 .col {
@@ -49,9 +102,9 @@ nav {
   font-family: Ubuntu;
 }
 
-.col:hover {
+/* .col:hover {
   cursor: pointer;
-}
+} */
 
 
 .weekday {
@@ -59,11 +112,6 @@ nav {
   margin: 5px 0px;
 }
 
-.norecipe {
- color: grey; 
- text-align: center;
- margin: 0;
-}
 
 /* .recipeentry {
   position: fixed;
@@ -143,10 +191,167 @@ nav {
 }
 
 /*  GO FULL WIDTH BELOW 480 PIXELS */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 900px) {
   .col {  margin: 0%; }
   .span_1_of_7, .span_2_of_7, .span_3_of_7, .span_4_of_7, .span_5_of_7, .span_6_of_7, .span_7_of_7 { 
     width: 100%;
     height: auto;
   }
 }
+
+
+
+/* modal code  */
+.binModal {
+  position: fixed;
+  box-sizing: border-box;
+  padding: 0 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  /* top: 0; */
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 55%;
+  background: rgba(0,0,0,0.8);
+  z-index: 1;
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+  overflow-y: auto;
+}
+
+.binModal:target {
+  opacity:1;
+  pointer-events: auto;
+}
+
+.close {
+  background: #606061;
+  color: #FFFFFF;
+  line-height: 25px;
+  position: absolute;
+  right: 12px;
+  text-align: center;
+  top: 10px;
+  width: 24px;
+  text-decoration: none;
+  font-weight: bold;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  -moz-box-shadow: 1px 1px 3px #000;
+  -webkit-box-shadow: 1px 1px 3px #000;
+  box-shadow: 1px 1px 3px #000;
+  z-index: 20;
+}
+
+.close:hover { 
+  background: #00d9ff; 
+  cursor: pointer; 
+}
+
+.menuModal {
+  position: fixed;
+  box-sizing: border-box;
+  padding: 0 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 5px;
+  top: 10%;
+  right: 25%;
+  /* bottom: 30%; */
+  left: 25%;
+  height: 700px;
+  width: 50%;
+  background: rgba(256,256,256,1);
+  z-index: 1;
+  opacity: 0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+  overflow-y: auto;
+}
+
+.menuModal:target {
+  opacity:1;
+  pointer-events: auto;
+}
+
+#js-recipe-submit {
+  margin-bottom: 15px;
+}
+
+.ingrediententry, #addIngredient {
+  background-color: white;
+  border: ;
+}
+
+
+
+
+
+.recipecontainer {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  display: inline-block;
+  margin: 30px;
+  cursor: pointer;
+}
+
+.recipeImage {
+  width: 100%;
+  height: 100%;
+  
+  border-radius: 100px;
+  border: 10px solid grey;
+}
+
+.recipeName {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+}
+
+.findarecipe {
+  box-sizing: border-box;
+  width: 50%;
+  margin: 10px 0px 10px 20px;
+}
+
+
+
+.hidden {
+  display: none;
+}
+
+/* Recipe info modal CSS */
+/* The Modal (background) */
+.recipeInfoModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.recipeInfo {
+    background-color: #fefefe;
+    margin: 10% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    position: relative;
+}
+
+

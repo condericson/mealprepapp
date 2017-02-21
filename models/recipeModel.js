@@ -25,6 +25,15 @@ const RecipeSchema = mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  day: {
+    type: String,
+    default: "",
+    required: true
+  },
+  image: {
+    type: String,
+    default: ""
   }
 });
 

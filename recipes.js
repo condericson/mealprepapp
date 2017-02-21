@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const {Recipes} = require('./models/recipeModel');
 
@@ -32,7 +32,8 @@ router.post('/', jsonParser, (req, res) => {
 		'title': req.body.title,
 		'ingredients': req.body.ingredients,
 		'instructions': req.body.instructions,
-		'cookware': req.body.cookware
+		'cookware': req.body.cookware,
+        'day': req.body.day
 	}, function(err, recipe){
 		if(err) {
 			res.status(500).json({"message":"Error with post"})
@@ -51,7 +52,8 @@ router.put('/:id', jsonParser, function(req, res) {
         title: req.body.title,
         cookware: req.body.cookware,
         instructions: req.body.instructions,
-        ingredients: req.body.ingredients
+        ingredients: req.body.ingredients,
+        day: req.body.day
       }
     },
     {

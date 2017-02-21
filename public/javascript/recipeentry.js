@@ -41,25 +41,4 @@ function addRecipe(recipe) {
 	});
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-});
+});//document.ready end

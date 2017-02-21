@@ -14,7 +14,7 @@ const UserSchema = mongoose.Schema({
   chefName: {type: String, default: ""}
 });
 
-/*UserSchema.methods.apiRepr = function() {
+UserSchema.methods.apiRepr = function() {
   return {
     username: this.username || '',
     chefName: this.lastName || ''
@@ -27,7 +27,7 @@ UserSchema.methods.validatePassword = function(password) {
 
 UserSchema.statics.hashPassword = function(password) {
   return bcrypt.hash(password, 10);
-}*/
+}
 
 const User = mongoose.model('User', UserSchema);
 
