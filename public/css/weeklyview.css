@@ -199,6 +199,21 @@ nav {
   }
 }
 
+.addRecipeLink {
+  text-decoration: none;
+}
+
+.addARecipeButton {
+  color: grey;
+  border: 5px solid grey;
+  font-size: 100px;
+  border-radius: 100px;
+  text-align: center;
+  width: 120px;
+  height: 120px;
+  margin: 30px auto;
+}
+
 
 
 /* modal code  */

@@ -33,7 +33,7 @@ const RecipeSchema = mongoose.Schema({
   },
   image: {
     type: String,
-    default: ""
+    default: "./public/images/platecover.png"
   }
 });
 

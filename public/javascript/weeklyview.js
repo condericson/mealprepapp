@@ -2,7 +2,10 @@
 $(document).ready(function() {
 
 var state = {
-	currentUser: ""
+	currentUser: "",
+	recipesInWeek: [],
+	recipesInSearchResults: [],
+	myRecipes: []
 }
 
 
@@ -30,6 +33,15 @@ $.ajax({
     }
 	});
 
+
+//event listener for assigning a day to recipeEntryModal
+$('.addARecipeButton').on('click', function(event) {
+	var	assignedDay = $(this).parent().siblings('.weekday').text();
+	assignedDay = assignedDay.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+    return letter.toUpperCase();
+  });
+  $('#assignedDay').text(assignedDay);
+})
 
 
 $('#js-recipe-submit').click(function(event) {
@@ -119,11 +131,16 @@ $('#yummlyApiRecipe').on('click', '.recipecontainer', function(event) {
 		"_app_key": '8d66fe539bd68dfea2ac78d0e6ef6b6f'
 	};
 	$.getJSON(url, yummlyApp, function(data) {
+		/*if(!data) {
+			$('#recipeInfo').html(
+			'<span class="close">&times;</span>' + 
+			'<p class="insideModalRecipeName">' + data.name + '</p>' +
+			);
+		}*/
 		console.log(data);
 		//Put recipe info into modal
 		var ingredientLines = data.ingredientLines;
 		var ingredients = '';
-
 		ingredientLines.forEach(function(value) {
 			ingredients += '<li class="ingredientItem">' + value + '</li>'
 		});
@@ -140,12 +157,12 @@ $('#yummlyApiRecipe').on('click', '.recipecontainer', function(event) {
 
 //Recipe info modal JS
 $('#recipeInfo').on('click', '.close', function(event) {
-	var modal = document.getElementById('recipeInfoModal');
-	modal.style.display = "none"
+	var modal = $('#recipeInfoModal');
+	modal.style.display = "none";
 })
 
 window.onclick = function(event) {
-  var modal = document.getElementById('recipeInfoModal'); 
+  var modal = $('#recipeInfoModal'); 
     if (event.target == modal) {
         modal.style.display = "none";
     }
@@ -167,23 +184,11 @@ $( ".recipeByDay" ).droppable({
   	newClone.css("position", "static");
   	newClone.addClass('inDayColumn');
     $(this).after(newClone);
+    addRecipe()
   }
 });
 
-/*$(function() {
-    $(".draggable img").draggable({ 
-        revert: "invalid",
-        helper: "clone" 
-    });   
-    $("#droppable").droppable({
-        activeClass: "ui-state-default",
-        hoverClass: "ui-state-hover",
-        drop: function(event, ui) {
-            var newClone = $(ui.helper).clone();
-            $(this).after(newClone);
-        }
-	});
-});*/
+
 
 
 

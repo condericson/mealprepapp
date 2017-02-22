@@ -38,33 +38,39 @@
 		<div class="col span_1_of_7">
 			<h3 class="weekday">Sunday</h3>
 			<div id="sunday" class="recipeByDay">
-				<p>Drag a recipe here to add it!</p>
+				
 			</div>
-			
+			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
 		</div>
 		<div class="col span_1_of_7">
 			<h3 class="weekday">Monday</h3>
 			<div id="monday" class="recipeByDay"></div>
+			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
 		</div>
 		<div class="col span_1_of_7">
 			<h3 class="weekday">Tuesday</h3>
 			<div id="tuesday" class="recipeByDay"></div>
+			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
 		</div>
 		<div class="col span_1_of_7">
 			<h3 class="weekday">Wednesday</h3>
 			<div id="wednesday" class="recipeByDay"></div>
+			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
 		</div>
 		<div class="col span_1_of_7">
 			<h3 class="weekday">Thursday</h3>
 			<div id="thursday" class="recipeByDay"></div>
+			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
 		</div>
 		<div class="col span_1_of_7">
 			<h3 class="weekday">Friday</h3>
 			<div id="friday" class="recipeByDay"></div>
+			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
 			</div>
 		<div class="col span_1_of_7">
 			<h3 class="weekday">Saturday</h3>
 			<div id="saturday" class="recipeByDay"></div>
+			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
 		</div>
 	</div>
 
@@ -74,7 +80,7 @@
 	<div id="recipeEntryModal" class="menuModal">
 		<div>
 			<a href="#close" title="Close" class="close">&times;</a>
-			<h2>Enter your recipe!</h2>
+			<h2>Enter your recipe for <span id="assignedDay"></span></h2>
 			<h3>Title</h3>
 			<input type="text" name="title" id="title">
 			<h3>Cookware</h3>
@@ -129,6 +135,7 @@
 				</div>
 			
 		</div>
+	</div>
 	</div>
 
 

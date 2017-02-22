@@ -28,14 +28,16 @@ app.get('/recipeentry', function(req, res) {
 })
 
 app.get('/signup', function(req, res) {
-    res.sendFile(__dirname + '/public/signup.html');
+  res.sendFile(__dirname + '/public/signup.html');
 })
 
 app.get('/weeklyview', function(req, res) {
-  
   res.sendFile(__dirname + '/public/weeklyview.html')
 })
 
+app.get('/public/images/platecover.png', function(req, res) {
+  res.sendFile(__dirname + '/public/images/platecover.png');
+})
 
 
 
