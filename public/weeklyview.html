@@ -35,16 +35,16 @@
 	</nav>
 
 	<div class="section group">
-		<div class="col span_1_of_7">
+		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Sunday</h3>
-			<div id="sunday" class="recipeByDay">
-				
-			</div>
+			<ul id="sunday">
+				Drop here!
+			</ul>
 			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
 		</div>
 		<div class="col span_1_of_7">
 			<h3 class="weekday">Monday</h3>
-			<div id="monday" class="recipeByDay"></div>
+			<div id="monday" class="recipeByDay">Drop here!</div>
 			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
 		</div>
 		<div class="col span_1_of_7">
@@ -109,32 +109,40 @@
 			<input type="text" name="search" id="yummlysearch">
 			<button type="submit">Find a Recipe</button>
 		</form>
-
-		<div class="recipecontainer" id="Creamy-caprese-pasta-333554">
-			<img class="recipeImage" src="http://lh3.ggpht.com/THkiqa99fALeMM_v5zUZq6CO_wLFW3rgq2pdQOjTgDgn0FxL2suI-9i7xRRtLhC2OkMhLp4eQwkYlQCRMZ3lve4=s90">
-			<p class="recipeName">Creamy Caprese Pasta</p>
-			<div class="idDiv">
-				<p class="hidden recipeId">Creamy-caprese-pasta-333554</p>
-			</div>
-		</div>
-			<!-- results will append here -->
+		<ul id="yummlyResults">
+				<li class="inBinModal">
+					<div class="recipecontainer" id="Creamy-caprese-pasta-333554">
+						<img class="recipeImage" src="http://lh3.ggpht.com/THkiqa99fALeMM_v5zUZq6CO_wLFW3rgq2pdQOjTgDgn0FxL2suI-9i7xRRtLhC2OkMhLp4eQwkYlQCRMZ3lve4=s90">
+						<p class="recipeName">Creamy Caprese Pasta</p>
+						<div class="idDiv">
+						<p class="hidden recipeId">Creamy-caprese-pasta-333554</p>
+						</div>
+					</div>
+				</li>
+				<!-- results will append here -->
+			</ul>
+		
 	</div>
+			
+	
 
 <!-- My recipes modal -->
 	<div id="myRecipeModal" class="binModal">
 		<div>
 			<a href="#close" title="Close" class="close">&times;</a>
 			<h2>Your recipes! Drag and drop then into the week, or click on one to edit it.</h2>
-			<div id="myRecipes">
-				<div class="recipecontainer" id="Creamy-caprese-pasta-333554" draggable="true">
-					<img class="recipeImage" src="http://lh3.ggpht.com/THkiqa99fALeMM_v5zUZq6CO_wLFW3rgq2pdQOjTgDgn0FxL2suI-9i7xRRtLhC2OkMhLp4eQwkYlQCRMZ3lve4=s90">
-					<p class="recipeName">Creamy Caprese Pasta</p>
-					<div class="idDiv">
-						<p class="hidden recipeId">Creamy-caprese-pasta-333554</p>
+			<ul id="myRecipes">
+				<li class="inBinModal">
+					<div class="recipecontainer " id="Creamy-caprese-pasta-333554" draggable="true">
+						<img class="recipeImage" src="http://lh3.ggpht.com/THkiqa99fALeMM_v5zUZq6CO_wLFW3rgq2pdQOjTgDgn0FxL2suI-9i7xRRtLhC2OkMhLp4eQwkYlQCRMZ3lve4=s90">
+						<p class="recipeName">Creamy Caprese Pasta</p>
+						<div class="idDiv">
+							<p class="hidden recipeId">Creamy-caprese-pasta-333554</p>
+						</div>
 					</div>
-				</div>
-			
-		</div>
+				</li>
+
+		</ul>
 	</div>
 	</div>
 

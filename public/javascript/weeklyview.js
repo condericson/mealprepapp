@@ -20,11 +20,17 @@ $.ajax({
      success: function(data){
        data.forEach(function(element) {
        	var assignedColumn = $('#' + element.day.toLowerCase());
-       	var html = '<div class="recipecontainer">';
+       	var html = '<li  class="inDayColumn"><div class="recipecontainer">';
        	if(element.image) {
 					html += '<img class="recipeImage" src="' + element.image + '">';
         }
-        html += '<p class="recipeName">' + element.title + '</p>' + '</div>';
+        if(element.title.length > 30) {
+        	var shortenedName = element.title.substring(0,30);
+        	html += '<p class="recipeName">' + shortenedName + '...</p>' + '</div>';
+        }
+        if(element.title.length <= 30) {
+        	html += '<p class="recipeName">' + element.title + '</p>' + '</div></li>';
+        }
         assignedColumn.append(html);
       });
     },
@@ -56,9 +62,13 @@ $('#js-recipe-submit').click(function(event) {
 		"title": $('#title').val(),
 		"cookware": $('#cookware').val(),
 		"ingredients": ingredients,
-		"instructions": $('#instructions').val()
+		"instructions": $('#instructions').val(),
+		"day": $('#assignedDay').text()
 	}	
+	var modal = $('#recipeEntryModal');
+	modal.style.display = "none";
 	addRecipe(recipe);
+	load();
 });
 
 $('#addIngredient').click(function(event) {
@@ -86,7 +96,7 @@ function addRecipe(recipe) {
 }
 
 
-//Yummly API code
+//Yummly API code with search
 $('#js-yummly-search').submit(function(event) {
 	event.preventDefault();
 	var searchTerm = $('#yummlysearch').val();
@@ -99,19 +109,29 @@ $('#js-yummly-search').submit(function(event) {
 		'requirePictures': 'true'
 	};
 	$.getJSON(url, yummlyApp, function(data) {
-		console.log(data);
 		var results = data.matches;
+		state.recipesInSearchResults = data.matches;
+		console.log(state.recipesInSearchResults);
 		results.forEach(function(object){
-			$('#yummlyApiRecipe').append(
-			'<div class="recipecontainer">' + 
-				'<img class="recipeImage" src="' + object.smallImageUrls[0] + '">' +
-				'<p class="recipeName">' + object.recipeName + '</p>' + 
-				'<div class="idDiv"><p class="hidden recipeId">' + object.id + '</p></div></div>' + 
-			'</div>'
+			$('#yummlyResults').append(
+				'<li class="inBinModal">' + 
+				'<div class="recipecontainer">' + 
+					'<img class="recipeImage" src="' + object.smallImageUrls[0] + '">' +
+					'<p class="recipeName">' + object.recipeName + '</p>' + 
+					'<div class="idDiv"><p class="hidden recipeId">' + object.id + '</p></div></div>' + 
+				'</div>' + 
+			'</li>'
 			);
-		});
-		
+			$("li", "#yummlyResults").draggable({
+				helper: 'clone',
+			 	revert: 'invalid'
+			});
+		});	
 	});
+
+
+
+
 });
 
 //Displays recipe information in modal 
@@ -156,13 +176,14 @@ $('#yummlyApiRecipe').on('click', '.recipecontainer', function(event) {
 
 
 //Recipe info modal JS
-$('#recipeInfo').on('click', '.close', function(event) {
+$('#recipeInfoModal').on('click', '.close', function(event) {
 	var modal = $('#recipeInfoModal');
-	modal.style.display = "none";
+	console.log(modal);
+	modal.hide();
 })
 
 window.onclick = function(event) {
-  var modal = $('#recipeInfoModal'); 
+  var modal = $('#recipeInfo'); 
     if (event.target == modal) {
         modal.style.display = "none";
     }
@@ -172,21 +193,76 @@ window.onclick = function(event) {
 //Drag and drop JS
 //NEED TO FIND A WAY TO ADD RECIPES TO DATABASE ON DROP!
 
-$( ".recipecontainer" ).draggable({
+$("li", "#yummlyResults").draggable({
 	helper: 'clone',
- 	revert: 'invalid'
+ 	revert: 'invalid',
+ 	containment: "document"
 });
-$( ".recipeByDay" ).droppable({
+
+$(".recipeByDay").find("ul").droppable({
 	activeClass: "ui-state-default",
-  hoverClass: "ui-state-hover",
-  drop: function( event, ui ) {
-  	var newClone = $(ui.helper).clone();
-  	newClone.css("position", "static");
-  	newClone.addClass('inDayColumn');
-    $(this).after(newClone);
-    addRecipe()
+	hoverClass: "ui-state-hover",
+	drop: function( event, ui ) {
+	  	var newClone = $(ui.helper).clone();
+	  	newClone.css("position", "static");
+	  	newClone.addClass('inDayColumn');
+	    $(this).append(newClone);
+	    console.log($(this));
+	    var id = ui.draggable.first().children(":first").find(".idDiv").find("p").text();
+	    var day = ui.draggable.parent().attr("id");
+	 		updateOnDrop(id, day);
+	    
+
+	    /*var currentRecipeId = 
+	    var recipe = {
+			"title": $('#title').val(),
+			"cookware": $('#cookware').val(),
+			"ingredients": ingredients,
+			"instructions": $('#instructions').val(),
+			"day": $('#assignedDay').text()
+			}
+			addRecipe(recipe);*/
   }
 });
+
+
+function updateOnDrop(id, day) {
+	var recipes = state.recipesInSearchResults;
+	var recipe;
+	recipes.forEach(function(element) {
+		if(id == element.id) {
+			recipe = element;
+			return;
+		}
+	});
+	recipe = {
+		"title": recipe.recipeName,
+		"cookware": "no cookware available",
+		"ingredients": recipe.ingredients,
+		"instructions": "no instructions available",
+		"day": day
+	};
+	$.ajax({
+     type: "POST",
+     dataType: "json",
+     crossdomain: true,
+     headers: {"Access-Control-Allow-Origin": "*"},
+     contentType: "application/json; charset=utf-8",
+     url: "/recipes",
+     data: JSON.stringify(recipe),
+     success: function(data){
+       console.log('success');
+     },
+     error: function(data) {
+     	console.log('error');
+     }
+	});
+};
+
+
+//Need to add get function for myRecipeModal
+
+
 
 
 
