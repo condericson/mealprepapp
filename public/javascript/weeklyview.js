@@ -22,9 +22,11 @@ $.ajax({
      contentType: "application/json; charset=utf-8",
      url: '/recipes',
      success: function(data){
-     	state.recipesInWeek = data;
+     	if($.cookie('meal-prep-app')){
+     		var user = $.cookie('meal-prep-app');
+     	}
+     	/*state.recipesInWeek = data;
        data.forEach(function(element) {
-       	/*if(state.currentUser == data.userid){*/
        		var assignedColumn = $('#' + element.day.toLowerCase());
 	       	var html = '<li  class="inDayColumn"><div class="recipecontainer">';
 	       	if(element.image) {
@@ -38,9 +40,8 @@ $.ajax({
 	        	html += '<p class="recipeName">' + element.title + '</p>' + '</div></li>';
 	        }
 	        assignedColumn.append(html);
-       	/*}*/
        	
-      });
+      });*/
     },
     error: function(data) {
     	console.log('error');
@@ -49,6 +50,26 @@ $.ajax({
 
 
 
+
+
+$('#logout').on('click', function(event) {
+	$.ajax({
+     type: "GET",
+     dataType: "json",
+     crossdomain: true,
+     headers: {"Access-Control-Allow-Origin": "*"},
+     contentType: "application/json; charset=utf-8",
+     url: '/users/logout',
+     success: function(data){
+      console.log('success');
+      console.log($.cookie(`meal-prep-app`));
+      window.location.href = 'index.html';
+     },
+     error: function(err) {
+     	console.log(err);
+     }
+	});
+})
 
 
 
@@ -66,6 +87,7 @@ $('.addARecipeButton').on('click', function(event) {
   });
   $('#assignedDay').text(assignedDay);
   $('#recipeEntryModal').removeClass('hidden');
+  $('#recipeEntryModal').parent().removeClass('hidden');
   $('#yummlyApiRecipe ,#recipeInfoModal ,#myRecipeModal').addClass('hidden');
   
 });
@@ -411,6 +433,9 @@ $('div').on('click', '.close', function(event) {
 	$(this).parent('div').addClass('hidden');
 });
 
+$('#entryclose').on('click', function(event) {
+	 $('.greybackground').addClass('hidden');
+});
 
 
 

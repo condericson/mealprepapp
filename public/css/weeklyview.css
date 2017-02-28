@@ -272,7 +272,7 @@ nav {
 }
 
 .close {
-  background: #606061;
+  background: #f7793b;
   color: #FFFFFF;
   line-height: 25px;
   position: absolute;
@@ -296,29 +296,31 @@ nav {
   cursor: pointer; 
 }
 
-.menuModal {
-  position: fixed;
-  box-sizing: border-box;
-  padding: 0 20px;
-  font-family: Arial, Helvetica, sans-serif;
-  border-radius: 5px;
-  top: 10%;
-  right: 25%;
-  /* bottom: 30%; */
-  left: 25%;
-  height: 700px;
-  width: 50%;
-  background: rgba(256,256,256,1);
-  z-index: 3;
-}
-
 #recipeEntryModal {
+  font-family: Arial, Helvetica, sans-serif;
+  position: fixed;
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  height: 700px;
+  width: 450px;
+  top: 10%;
+  background-color: white;
+  border: 1px solid #b75728;
+  padding: 0 10px;
+  border-radius: 5px;
   z-index: 4;
+  opacity: 1;
 }
 
-.menuModal:target {
-  opacity:1;
-  pointer-events: auto;
+.greybackground {
+  background-color: rgba(91, 91, 91, 0.7);
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
 }
 
 #js-recipe-submit {
@@ -327,7 +329,6 @@ nav {
 
 .ingrediententry, #addIngredient {
   background-color: white;
-  border: ;
 }
 
 
@@ -375,21 +376,24 @@ nav {
 }
 
 .inDayColumn {
-  height: 130px;
+  height: 190px;
+  margin-bottom: 10px;
+  /* padding-bottom: 50px; */
 }
 
 .inDayColumn > .recipecontainer {
   position: relative;
   height: 130px;
   overflow: hidden;
-  margin-bottom: 10px;
+
 }
 
 .inDayColumn > .recipecontainer > .recipeImage{
   position: absolute;
   height: auto;
+  min-height: 190px;
   width: 100%;
-  bottom: -10%;
+  bottom: -25%;
 }
 
 .inDayColumn > .recipecontainer > .recipeName{

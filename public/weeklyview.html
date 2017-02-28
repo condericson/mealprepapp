@@ -11,6 +11,7 @@
   src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 	<script type="text/javascript" src="./javascript/weeklyview.js"></script>
 	
 </head>
@@ -29,7 +30,7 @@
 				<a id="groceryListButton">Grocery list!</a>
 				<a id="findARecipeButton">Find a Recipe</a>
 				<a id="browseRecipesButton">My Recipes</a>
-				<a href="">Log out</a>
+				<a id="logout">Log out</a>
 
 			</div>
 
@@ -78,8 +79,9 @@
 
 	
 
-	<div id="recipeEntryModal" class="menuModal hidden">
-			<span title="Close" class="close">&times;</span>
+	<div class="greybackground hidden">
+		<div id="recipeEntryModal">
+			<span id="entryclose" title="Close" class="close">&times;</span>
 			<h2>Enter your recipe for <span id="assignedDay"></span></h2>
 			<h3>Title</h3>
 			<input type="text" name="title" id="title">
@@ -93,6 +95,7 @@
 			<h3>Cooking Instructions</h3>
 			<textarea name="instructions" id="instructions" cols="50" rows="10"></textarea>
 			<button type="submit" id="js-recipe-submit">Add Recipe</button>
+		</div>
 	</div>
 
 

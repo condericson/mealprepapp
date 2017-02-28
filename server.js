@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const session = require('client-sessions');
+const cookieParser = require('cookie-parser');
+
 
 mongoose.Promise = global.Promise;
 
@@ -13,12 +14,8 @@ const {Recipes} = require('./models/recipeModel');
 
 app.use(express.static('public'));
 app.use(morgan('common'));
-app.use(session({
-  cookieName: 'session',
-  secret: '321654987poi',
-  duration: 30*60*1000,
-  activeDuration: 5*60*1000
-}))
+app.use(cookieParser());
+
 
 //routers
 const recipeRouter = require('./recipes');
@@ -65,8 +62,6 @@ app.get('/public/images/platecover.png', function(req, res) {
     }
   });
 });*/
-
-
 
 
 let server;

@@ -3,11 +3,16 @@ const router = express.Router();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+const USER_COOKIE_NAME = 'meal-prep-app';
 
 const {User} = require('./models/userModel');
 
 const jsonParser = bodyParser.json();
 router.use(morgan('common'));
+router.use(cookieParser());
+
+
 
 router.get('/', (req,res) => {
   User.find(function(err, user) {
@@ -16,6 +21,11 @@ router.get('/', (req,res) => {
     }
     res.status(201).json(user);
   })
+});
+
+router.get('/logout', (req,res) => {
+  res.clearCookie("meal-prep-app");
+  res.status(201).json({"message":"logging out"})
 });
 
 router.post('/', jsonParser, (req, res) => {
@@ -39,9 +49,16 @@ router.post('/login', jsonParser, (req, res) => {
       res.status(500).json({"message":"Username or password not valid"})
     }
     if(user.password === req.body.password) {
-      res.status(201).json({"message":"Password accepted"})
+      /*console.log(user);
+      const cookie = req.cookies[USER_COOKIE_NAME];*/
+      /*if (cookie === undefined) {*/
+        console.log(user._id);
+        res.cookie(USER_COOKIE_NAME, user._id, {});
+        res.status(201).json({"message":"Password accepted"})  
+      /*}*/
     }    
   });
+  
 });
 
 
