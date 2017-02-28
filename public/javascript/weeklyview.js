@@ -1,5 +1,4 @@
 /*const moment = require('moment');*/
-$(document).ready(function() {
 
 var state = {
 	currentUser: "",
@@ -8,8 +7,13 @@ var state = {
 	myRecipes: []
 }
 
+$(document).ready(function() {
 
 
+
+
+
+//Fill weekly view on log in
 $.ajax({
      type: "GET",
      dataType: "json",
@@ -18,20 +22,24 @@ $.ajax({
      contentType: "application/json; charset=utf-8",
      url: '/recipes',
      success: function(data){
+     	state.recipesInWeek = data;
        data.forEach(function(element) {
-       	var assignedColumn = $('#' + element.day.toLowerCase());
-       	var html = '<li  class="inDayColumn"><div class="recipecontainer">';
-       	if(element.image) {
-					html += '<img class="recipeImage" src="' + element.image + '">';
-        }
-        if(element.title.length > 30) {
-        	var shortenedName = element.title.substring(0,30);
-        	html += '<p class="recipeName">' + shortenedName + '...</p>' + '</div>';
-        }
-        if(element.title.length <= 30) {
-        	html += '<p class="recipeName">' + element.title + '</p>' + '</div></li>';
-        }
-        assignedColumn.append(html);
+       	/*if(state.currentUser == data.userid){*/
+       		var assignedColumn = $('#' + element.day.toLowerCase());
+	       	var html = '<li  class="inDayColumn"><div class="recipecontainer">';
+	       	if(element.image) {
+						html += '<img class="recipeImage" src="' + element.image + '">';
+	        }
+	        if(element.title.length > 30) {
+	        	var shortenedName = element.title.substring(0,30);
+	        	html += '<p class="recipeName">' + shortenedName + '...</p>' + '</div>';
+	        }
+	        if(element.title.length <= 30) {
+	        	html += '<p class="recipeName">' + element.title + '</p>' + '</div></li>';
+	        }
+	        assignedColumn.append(html);
+       	/*}*/
+       	
       });
     },
     error: function(data) {
@@ -40,39 +48,70 @@ $.ajax({
 	});
 
 
-//event listener for assigning a day to recipeEntryModal
+
+
+
+
+
+
+
+
+
+
+//event listener that is attached to each day column and will assign a day to DOM in recipe entry modal
 $('.addARecipeButton').on('click', function(event) {
-	var	assignedDay = $(this).parent().siblings('.weekday').text();
+	var	assignedDay = $(this).siblings('.weekday').text();
 	assignedDay = assignedDay.toLowerCase().replace(/\b[a-z]/g, function(letter) {
     return letter.toUpperCase();
   });
   $('#assignedDay').text(assignedDay);
+  $('#recipeEntryModal').removeClass('hidden');
+  $('#yummlyApiRecipe ,#recipeInfoModal ,#myRecipeModal').addClass('hidden');
+  
+});
+
+
+$('#findARecipeButton').on('click', function(event) {
+	$('#yummlyApiRecipe').removeClass('hidden');
+})
+
+$('.recipecontainer').on('click', function(event) {
+	$('#recipeInfo').removeClass('hidden');
 })
 
 
+
+
+
+
+
+
+
+
+
+
+//Adds a recipe to the database from the recipe entry modal
 $('#js-recipe-submit').click(function(event) {
 	console.log("adding recipe");
 	var ingredients = [];
-	$('ul li').each(function(index, element) {
-		var value = $(this).find("input");
-		ingredients.push($(value).val());
+	$('.ingredientEntry').each(function(index, element) {
+		if(element.value.length > 0){
+			ingredients.push(element.value);	
+		}
 	});
 	console.log(ingredients);
 	var recipe = {
 		"title": $('#title').val(),
-		"cookware": $('#cookware').val(),
 		"ingredients": ingredients,
 		"instructions": $('#instructions').val(),
-		"day": $('#assignedDay').text()
-	}	
-	var modal = $('#recipeEntryModal');
-	modal.style.display = "none";
+		"day": $('#assignedDay').text(),
+		"image": "./public/images/platecover.png"
+	};
 	addRecipe(recipe);
-	load();
 });
 
 $('#addIngredient').click(function(event) {
-	$('ul').append('<li><input type="text" name="ingredient"></li>');
+	$('#ingredientList').append('<li><input type="text" name="ingredient"></li>');
 });
 
 function addRecipe(recipe) {
@@ -88,6 +127,7 @@ function addRecipe(recipe) {
      data: JSON.stringify(recipe),
      success: function(data){
        console.log('success');
+       	location.reload();
      },
      error: function(data) {
      	console.log('error');
@@ -96,9 +136,20 @@ function addRecipe(recipe) {
 }
 
 
+
+
+
+
+
+
+
+
+
+
 //Yummly API code with search
 $('#js-yummly-search').submit(function(event) {
 	event.preventDefault();
+	$('#yummlyResults').append('<p>Looking for some awesome recipes!</p>');
 	var searchTerm = $('#yummlysearch').val();
 	console.log("Looking for recipes that contain", searchTerm);
 	var url = "http://api.yummly.com/v1/api/recipes";
@@ -111,34 +162,41 @@ $('#js-yummly-search').submit(function(event) {
 	$.getJSON(url, yummlyApp, function(data) {
 		var results = data.matches;
 		state.recipesInSearchResults = data.matches;
-		console.log(state.recipesInSearchResults);
+		var html = "";
 		results.forEach(function(object){
-			$('#yummlyResults').append(
-				'<li class="inBinModal">' + 
+			html += '<li class="inBinModal">' + 
 				'<div class="recipecontainer">' + 
 					'<img class="recipeImage" src="' + object.smallImageUrls[0] + '">' +
 					'<p class="recipeName">' + object.recipeName + '</p>' + 
 					'<div class="idDiv"><p class="hidden recipeId">' + object.id + '</p></div></div>' + 
 				'</div>' + 
-			'</li>'
-			);
-			$("li", "#yummlyResults").draggable({
+			'</li>';
+			
+			
+		});
+		$('#yummlyResults').html(html);
+		$("li", "#yummlyResults").draggable({
 				helper: 'clone',
 			 	revert: 'invalid'
 			});
-		});	
 	});
-
-
-
-
 });
 
-//Displays recipe information in modal 
+
+
+
+
+
+
+
+
+
+
+
+//Displays recipe information for recipes in yummly search results ONLY
 $('#yummlyApiRecipe').on('click', '.recipecontainer', function(event) {
 	//Open the modal
-	var modal = document.getElementById('recipeInfoModal');
-	modal.style.display = "block";
+	$('#recipeInfo').removeClass('hidden');
 
 	//Get recipe specific info
 	var recipeId = $(this).children($('.idDiv')).children($('.recipeId')).text();
@@ -151,14 +209,7 @@ $('#yummlyApiRecipe').on('click', '.recipecontainer', function(event) {
 		"_app_key": '8d66fe539bd68dfea2ac78d0e6ef6b6f'
 	};
 	$.getJSON(url, yummlyApp, function(data) {
-		/*if(!data) {
-			$('#recipeInfo').html(
-			'<span class="close">&times;</span>' + 
-			'<p class="insideModalRecipeName">' + data.name + '</p>' +
-			);
-		}*/
 		console.log(data);
-		//Put recipe info into modal
 		var ingredientLines = data.ingredientLines;
 		var ingredients = '';
 		ingredientLines.forEach(function(value) {
@@ -169,59 +220,231 @@ $('#yummlyApiRecipe').on('click', '.recipecontainer', function(event) {
 			'<img class="modalRecipeImage" src="' + data.images[0].hostedLargeUrl + '">' +
 			'<p class="insideModalRecipeName">' + data.name + '</p>' +
 			'<ul>' + ingredients + '</ul>' +
-			'<a href="' + data.source.sourceRecipeUrl + ' target="_blank"><p class="yummlyAttribution">' + data.attribution.text + '</p></a>'
+			'<a href="' + data.sourceRecipeUrl + '" target="_blank"><p class="yummlyAttribution">Checkout the recipe instructions, powered by Yummly!</p></a>'
 			);
 	});
 });
 
 
-//Recipe info modal JS
-$('#recipeInfoModal').on('click', '.close', function(event) {
-	var modal = $('#recipeInfoModal');
-	console.log(modal);
-	modal.hide();
-})
 
-window.onclick = function(event) {
-  var modal = $('#recipeInfo'); 
-    if (event.target == modal) {
-        modal.style.display = "none";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//My Recipes button opens modal and fills with all recipes in the database
+$('#browseRecipesButton').on('click', function(event) {
+	$('#myRecipeModal').removeClass('hidden');
+  $('#yummlyApiRecipe ,#recipeInfoModal ,#recipeEntryModal ,#groceryListModal').addClass('hidden');
+	//Fill modal with recipes from user
+	$.ajax({
+     type: "GET",
+     dataType: "json",
+     crossdomain: true,
+     headers: {"Access-Control-Allow-Origin": "*"},
+     contentType: "application/json; charset=utf-8",
+     url: '/recipes',
+     success: function(data){
+      $('#myRecipes').html("");
+       data.forEach(function(element) {
+       	var html = '<li class="inBinModal"><div class="recipecontainer">';
+       	if(element.image) {
+					html += '<img class="recipeImage" src="' + element.image + '">';
+        }
+        if(element.title.length > 30) {
+        	var shortenedName = element.title.substring(0,30);
+        	html += '<p class="shortenedName">' + shortenedName + '...</p><p class="recipeName hidden">' + element.title + '</p>' + '</div>';
+        }
+        if(element.title.length <= 30) {
+        	html += '<p class="recipeName">' + element.title + '</p>' + '</div></li>';
+        }
+        $('#myRecipes').append(html);
+      });
+      
+    },
+    error: function(data) {
+    	console.log('error');
     }
-}
+	});
+});
+
+
+
+
+
+
+//Provides recipe information in recipeinfo modal on click of recipe container within myRecipes ONLY
+$('#myRecipeModal').on('click', '.recipecontainer', function(event) {
+	//Open the modal
+	$('#recipeInfo').removeClass('hidden');
+	//Get recipe title from p element
+	var recipeTitle = $(this).children('.recipeName').text();
+	console.log(recipeTitle);
+
+	$.ajax({
+     type: "GET",
+     dataType: "json",
+     crossdomain: true,
+     headers: {"Access-Control-Allow-Origin": "*"},
+     contentType: "application/json; charset=utf-8",
+     url: '/recipes',
+     success: function(data){
+     	console.log("Recipe GET successful");
+     	
+     	console.log(data);
+	    data.forEach(function(element) {
+	     	if(recipeTitle == element.title) {
+	     		var ingredientLines = element.ingredients;
+					var ingredients = '';
+					ingredientLines.forEach(function(value) {
+						ingredients += '<li class="ingredientItem">' + value + '</li>'
+					});
+					var html = '<span class="close">&times;</span>' + 
+						'<img class="modalRecipeImage" src="' + element.image + '">' +
+						'<p class="insideModalRecipeName">' + element.title + '</p>' +
+						'<ul>' + ingredients + '</ul>' + 
+						'<p class="instructions">' + element.instructions + '</p>'
+					if(element.sourceRecipeUrl.length > 0) {
+						html += '<a href="' + element.sourceRecipeUrl + '" target="_blank"><p class="yummlyAttribution">Checkout the recipe instructions, powered by Yummly!</p></a>'
+					};
+	     		$('#recipeInfo').html(html);
+       };
+     })
+     },
+     error: function(data) {
+     	console.log('error');
+     }
+	});
+});
+
+
+
+
+
+
+
+
+
+
+
+//Provides recipe information in recipeinfo modal on click of recipe container within weekly columns ONLY
+$('.recipeByDay').on('click', '.recipecontainer', function(event) {
+	//Open the modal
+	$('#recipeInfo').removeClass('hidden');
+	//Get recipe title from p element
+	var recipeTitle = $(this).children('.recipeName').text();
+	console.log(recipeTitle);
+
+	$.ajax({
+     type: "GET",
+     dataType: "json",
+     crossdomain: true,
+     headers: {"Access-Control-Allow-Origin": "*"},
+     contentType: "application/json; charset=utf-8",
+     url: '/recipes',
+     success: function(data){
+     	console.log("Recipe GET successful");
+     	
+     	console.log(data);
+	    data.forEach(function(element) {
+	     	if(element.title.length > 30) {
+	     		var shortenedName = element.title.substring(0,30)
+	     	}
+	     	if(recipeTitle == element.title || recipeTitle == shortenedName) {
+	     		var ingredientLines = element.ingredients;
+					var ingredients = '';
+					ingredientLines.forEach(function(value) {
+						ingredients += '<li class="ingredientItem">' + value + '</li>'
+					});
+					var html = '<span class="close">&times;</span>' + 
+						'<img class="modalRecipeImage" src="' + element.image + '">' +
+						'<p class="insideModalRecipeName">' + element.title + '</p>' +
+						'<ul>' + ingredients + '</ul>' + 
+						'<p class="instructions">' + element.instructions + '</p>'
+					if(element.sourceRecipeUrl.length > 0) {
+						html += '<a href="' + element.sourceRecipeUrl + '" target="_blank"><p class="yummlyAttribution">Checkout the recipe instructions, powered by Yummly!</p></a>'
+					};
+	     		$('#recipeInfo').html(html);
+       };
+     })
+     },
+     error: function(data) {
+     	console.log('error');
+     }
+	});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Hides the modal the clicked close button is in.
+$('div').on('click', '.close', function(event) {
+	$(this).parent('div').addClass('hidden');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //Drag and drop JS
-//NEED TO FIND A WAY TO ADD RECIPES TO DATABASE ON DROP!
-
 $("li", "#yummlyResults").draggable({
 	helper: 'clone',
  	revert: 'invalid',
  	containment: "document"
 });
 
-$(".recipeByDay").find("ul").droppable({
+$(".recipeByDay")/*.find("ul")*/.droppable({
 	activeClass: "ui-state-default",
 	hoverClass: "ui-state-hover",
 	drop: function( event, ui ) {
 	  	var newClone = $(ui.helper).clone();
 	  	newClone.css("position", "static");
 	  	newClone.addClass('inDayColumn');
-	    $(this).append(newClone);
-	    console.log($(this));
+	  	var list = $(this).find('ul');
+	    list.append(newClone);
 	    var id = ui.draggable.first().children(":first").find(".idDiv").find("p").text();
-	    var day = ui.draggable.parent().attr("id");
+	    var day = list.attr("id");
 	 		updateOnDrop(id, day);
-	    
-
-	    /*var currentRecipeId = 
-	    var recipe = {
-			"title": $('#title').val(),
-			"cookware": $('#cookware').val(),
-			"ingredients": ingredients,
-			"instructions": $('#instructions').val(),
-			"day": $('#assignedDay').text()
-			}
-			addRecipe(recipe);*/
   }
 });
 
@@ -235,13 +458,14 @@ function updateOnDrop(id, day) {
 			return;
 		}
 	});
-	recipe = {
+	var image = recipe.imageUrlsBySize["90"];
+	recipeObject = {
 		"title": recipe.recipeName,
-		"cookware": "no cookware available",
 		"ingredients": recipe.ingredients,
-		"instructions": "no instructions available",
-		"day": day
+		"day": day,
+		"image": image,
 	};
+	
 	$.ajax({
      type: "POST",
      dataType: "json",
@@ -249,12 +473,13 @@ function updateOnDrop(id, day) {
      headers: {"Access-Control-Allow-Origin": "*"},
      contentType: "application/json; charset=utf-8",
      url: "/recipes",
-     data: JSON.stringify(recipe),
+     data: JSON.stringify(recipeObject),
      success: function(data){
        console.log('success');
      },
      error: function(data) {
-     	console.log('error');
+     	
+     	console.log('Error');
      }
 	});
 };
@@ -290,6 +515,33 @@ window.onclick = function(event) {
     }
   }
 }
+
+
+
+
+
+
+
+
+//To make grocery list
+$('#groceryListButton').on('click', function(event) {
+  	$('#yummlyApiRecipe ,#recipeInfoModal ,#recipeEntryModal ,#myRecipeModal').addClass('hidden');
+		var recipes = state.recipesInWeek;
+		var list = [];
+		recipes.forEach(function(element) {
+			list = list.concat(element.ingredients);
+		})
+		var html = "";
+		list.forEach(function(element) {
+			html += '<li>' + element + '</li>';
+		})
+		$('#groceryList').html(html);
+		$('#groceryListModal').removeClass('hidden');
+})
+
+
+
+
 
 
 

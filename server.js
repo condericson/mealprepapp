@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const session = require('client-sessions');
 
 mongoose.Promise = global.Promise;
 
@@ -12,6 +13,12 @@ const {Recipes} = require('./models/recipeModel');
 
 app.use(express.static('public'));
 app.use(morgan('common'));
+app.use(session({
+  cookieName: 'session',
+  secret: '321654987poi',
+  duration: 30*60*1000,
+  activeDuration: 5*60*1000
+}))
 
 //routers
 const recipeRouter = require('./recipes');
@@ -23,6 +30,10 @@ app.use('/users', usersRouter);
 
 
 //get requests to open pages
+app.get('/index', function(req, res) {
+  res.sendFile(__dirname + '/public/index.html');
+})
+
 app.get('/recipeentry', function(req, res) {
   res.sendFile(__dirname + '/public/recipeentry.html');
 })
@@ -38,6 +49,22 @@ app.get('/weeklyview', function(req, res) {
 app.get('/public/images/platecover.png', function(req, res) {
   res.sendFile(__dirname + '/public/images/platecover.png');
 })
+
+/*app.post('/users/login', function(req, res) {
+  User.findOne({ username: req.body.username }, function(err, user) {
+    if (!user) {
+      res.render({error: 'Invalid email or password.' });
+    } else {
+      if (req.body.password === user.password) {
+        // sets a cookie with the user's info
+        req.session.user = user;
+        res.redirect('/weeklyview');
+      } else {
+        res.render({error: 'Invalid email or password.' });
+      }
+    }
+  });
+});*/
 
 
 

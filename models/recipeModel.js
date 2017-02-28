@@ -32,8 +32,11 @@ const RecipeSchema = mongoose.Schema({
     required: true
   },
   image: {
+    type: String
+  },
+  sourceRecipeUrl: {
     type: String,
-    default: "./public/images/platecover.png"
+    default: ""
   }
 });
 

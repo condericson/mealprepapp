@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Weekly View</title>
-	<link href="https://fonts.googleapis.com/css?family=Sansita|Ubuntu" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Sansita|Ubuntu|Mr+Dafoe|Pacifico" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./css/weeklyview.css">
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script
@@ -16,18 +16,21 @@
 </head>
 <body>
 	<nav>
-		<div class="titlediv"><span class="title">Your Weekly Meal Prep</span></div>
-		<a id="findARecipeButton" href="#yummlyApiRecipe">Find a recipe</a>
-		<a id="addARecipeButton" href="#recipeEntryModal">Add a recipe</a>
-		<a id="addARecipeButton" href="#myRecipeModal">Browse my recipes</a>
-		<p class="poweredBy">Powered by <a href="http://www.yummly.com" target="_blank">Yummly</a></p>
+		<div class="titlediv"><span class="title">Your Meal Organizer</span></div>
+		<p class="poweredBy">All recipe information powered by <a href="http://www.yummly.com" target="_blank">Yummly</a></p>
+		
+		<!-- <button id="groceryListButton">Make my grocery list!</button> -->
+		
 		
 		<div class="settings">
 			<button class="dropdown-button" id="dropdown-button">Settings</button>
 			<div id="dropdown" class="dropdown-menu">
-				<a href="">Account</a>
-				<a href="">My Recipes</a><!-- Opens a modal on the bottom? -->
+				<!-- <a href="">Account</a> -->
+				<a id="groceryListButton">Grocery list!</a>
+				<a id="findARecipeButton">Find a Recipe</a>
+				<a id="browseRecipesButton">My Recipes</a>
 				<a href="">Log out</a>
+
 			</div>
 
 		</div>
@@ -37,72 +40,66 @@
 	<div class="section group">
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Sunday</h3>
-			<ul id="sunday">
-				Drop here!
-			</ul>
-			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
+			<ul id="sunday"></ul>
+			<div class="addARecipeButton">+</div>
 		</div>
-		<div class="col span_1_of_7">
+		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Monday</h3>
-			<div id="monday" class="recipeByDay">Drop here!</div>
-			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
+			<ul id="monday"></ul>
+			<div class="addARecipeButton">+</div>
 		</div>
-		<div class="col span_1_of_7">
+		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Tuesday</h3>
-			<div id="tuesday" class="recipeByDay"></div>
-			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
+			<ul id="tuesday"></ul>
+			<div class="addARecipeButton">+</div>
 		</div>
-		<div class="col span_1_of_7">
+		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Wednesday</h3>
-			<div id="wednesday" class="recipeByDay"></div>
-			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
+			<ul id="wednesday"></ul>
+			<div class="addARecipeButton">+</div>
 		</div>
-		<div class="col span_1_of_7">
+		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Thursday</h3>
-			<div id="thursday" class="recipeByDay"></div>
-			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
+			<ul id="thursday"></ul>
+			<div class="addARecipeButton">+</div>
 		</div>
-		<div class="col span_1_of_7">
+		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Friday</h3>
-			<div id="friday" class="recipeByDay"></div>
-			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
+			<ul id="friday"></ul>
+			<div class="addARecipeButton">+</div>
 			</div>
-		<div class="col span_1_of_7">
+		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Saturday</h3>
-			<div id="saturday" class="recipeByDay"></div>
-			<a href="#recipeEntryModal" class="addRecipeLink"><div class="addARecipeButton">+</div></a>
+			<ul id="saturday"></ul>
+			<div class="addARecipeButton">+</div>
 		</div>
 	</div>
 
 
 	
 
-	<div id="recipeEntryModal" class="menuModal">
-		<div>
-			<a href="#close" title="Close" class="close">&times;</a>
+	<div id="recipeEntryModal" class="menuModal hidden">
+			<span title="Close" class="close">&times;</span>
 			<h2>Enter your recipe for <span id="assignedDay"></span></h2>
 			<h3>Title</h3>
 			<input type="text" name="title" id="title">
-			<h3>Cookware</h3>
-			<textarea name="cookware" id="cookware" cols="30" rows="3"></textarea>
 			<h3>Ingredients</h3>
-			<ul>
-				<li><input type="text" name="ingredient" id="ingredient1" class="ingrediententry"></li>
-				<li><input type="text" name="ingredient" id="ingredient2" class="ingrediententry"></li>
-				<li><input type="text" name="ingredient" id="ingredient3" class="ingrediententry"></li>
+			<ul id="ingredientList">
+				<li><input type="text" name="ingredient" id="ingredient1" class="ingredientEntry"></li>
+				<li><input type="text" name="ingredient" id="ingredient2" class="ingredientEntry"></li>
+				<li><input type="text" name="ingredient" id="ingredient3" class="ingredientEntry"></li>
 			</ul>
 			<button id="addIngredient">Add an ingredient</button>
 			<h3>Cooking Instructions</h3>
 			<textarea name="instructions" id="instructions" cols="50" rows="10"></textarea>
 			<button type="submit" id="js-recipe-submit">Add Recipe</button>
-		</div>
 	</div>
 
 
 
 
-	<div id="yummlyApiRecipe" class="binModal">
-		<a href="#close" title="Close" class="close">&times;</a>
+	<div id="yummlyApiRecipe" class="binModal hidden">
+		<span title="Close" class="close">&times;</span>
 		<p class="findarecipe">Find a recipe from Yummly!</p>
 		<form id="js-yummly-search">
 			<label>Search</label>
@@ -110,15 +107,7 @@
 			<button type="submit">Find a Recipe</button>
 		</form>
 		<ul id="yummlyResults">
-				<li class="inBinModal">
-					<div class="recipecontainer" id="Creamy-caprese-pasta-333554">
-						<img class="recipeImage" src="http://lh3.ggpht.com/THkiqa99fALeMM_v5zUZq6CO_wLFW3rgq2pdQOjTgDgn0FxL2suI-9i7xRRtLhC2OkMhLp4eQwkYlQCRMZ3lve4=s90">
-						<p class="recipeName">Creamy Caprese Pasta</p>
-						<div class="idDiv">
-						<p class="hidden recipeId">Creamy-caprese-pasta-333554</p>
-						</div>
-					</div>
-				</li>
+				
 				<!-- results will append here -->
 			</ul>
 		
@@ -127,9 +116,8 @@
 	
 
 <!-- My recipes modal -->
-	<div id="myRecipeModal" class="binModal">
-		<div>
-			<a href="#close" title="Close" class="close">&times;</a>
+	<div id="myRecipeModal" class="binModal hidden">
+			<span title="Close" class="close">&times;</span>
 			<h2>Your recipes! Drag and drop then into the week, or click on one to edit it.</h2>
 			<ul id="myRecipes">
 				<li class="inBinModal">
@@ -144,21 +132,28 @@
 
 		</ul>
 	</div>
-	</div>
+
 
 
 
 <!-- Recipe info modal -->
-<div id="recipeInfoModal" class="recipeInfoModal">
+<div id="recipeInfo" class="recipeInfo hidden">
+	<span class="close">&times;</span>
   <!-- Modal content -->
-  <div id="recipeInfo" class="recipeInfo">
-    <span class="close">&times;</span>
-    
-  </div>
-
 </div>
 
 
+
+
+
+<!-- Grocery list modal -->
+<div id="groceryListModal" class="groceryListModal hidden">
+	<span class="close">&times;</span>
+	<p>Here's your organized grocery list for the week!</p>
+  <ul id="groceryList">
+  	<!-- Modal content -->
+  </ul>
+</div>
 
 
 	

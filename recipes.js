@@ -19,21 +19,13 @@ router.get('/', (req,res) => {
 });
 
 router.post('/', jsonParser, (req, res) => {
-	/*const requiredFields = ['title','ingredients','instructions', 'cookware','userid','date'];
-	for (let i=0; i<requiredFields.length; i++) {
-		const field = requiredFields[i];
-		if (!(field in req.body)) {
-			const message = `Missing \`${field}\` in request body`
-      		console.error(message);
-      		return res.status(400).send(message);
-		}
-	}*/
 	Recipes.create({
 		'title': req.body.title,
 		'ingredients': req.body.ingredients,
 		'instructions': req.body.instructions,
 		'cookware': req.body.cookware,
-        'day': req.body.day
+        'day': req.body.day,
+        'image': req.body.image
 	}, function(err, recipe){
 		if(err) {
 			res.status(500).json({"message":"Error with post"})
@@ -50,10 +42,11 @@ router.put('/:id', jsonParser, function(req, res) {
     {
       $set: {
         title: req.body.title,
-        cookware: req.body.cookware,
         instructions: req.body.instructions,
         ingredients: req.body.ingredients,
-        day: req.body.day
+        day: req.body.day,
+        userid: req.body.userid,
+        image: req.body.image
       }
     },
     {

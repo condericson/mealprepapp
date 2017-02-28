@@ -1,3 +1,11 @@
 * {
-	font-weight: bold
+
+}
+
+#invalid {
+	color: red;
+}
+
+.hidden {
+	display: none;
 }

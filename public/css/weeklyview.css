@@ -11,57 +11,69 @@ html, body {
 
 body {
   margin: 0;
-  background-color: #7FC3FE;
+  background-color: #F7E2C3;
 }
 
 /* Nav styles */
 nav {
   width: 100%;
   height: 70px;
-  background-color: #44A7FE;
+  background-color: #f7cd91;
   position: relative;
 }
 
 .title {
   font-size: 50px;
-  color: white;
+  color: #f7793b;
   font-family: Sansita;
 }
 
 .titlediv {
   display: inline-block;
+  margin: 0 auto;
+  width: 100%;
+  position: absolute;
+  text-align: center;
 }
 .settings {
-  float: right;
   font-family: Ubuntu;
   font-weight: bold;
   display: block;
   position: absolute;
-  right: 10px;
+  left: 10px;
   top: 10px;
 }
 .settings:hover {
   cursor: pointer;
 }
 
+.settings > button:focus {
+  outline: 0;
+}
+
 .poweredBy {
   position: absolute;
-  top: 10px;
-  right: 150px; 
+  top: 40px;
+  right: 10px;
+  margin: 0;
+  font-family: 'Pacifico';
+  font-size: 16px;
 }
 
 /* Dropdown menu */
 .dropdown-button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #b75728;
+    color: #F7E2C3;
     padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
+    font-weight: bold;
+    width: 120px;
 }
 
 .dropdown-button:hover, .dropdown-button:focus {
-    background-color: #3e8e41;
+    background-color: #7f3b19;
 }
 
 .dropdown-menu a {
@@ -74,6 +86,15 @@ nav {
 .dropdown-menu a:hover {
   background-color: #f1f1f1
 }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  left: 0px;
+}
 
 .show {
   display:block;
@@ -85,20 +106,40 @@ nav {
     display: inline-block;
 }
 
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+/* #groceryListButton {
+  background-color: #b75728;
+  color: #F7E2C3;
+  padding: 16px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  width: 220px;
+  position: absolute;
+  top: 10px;
+  right: 200px;
+} */
+
+#groceryListModal {
+  position: fixed;
+  top: 10px;
+  background-color: white;
+  right: 30%;
+  padding: 0 10px;
 }
+
+
+
+
+
+
+
 
 /* Week styles */
 .col {
   border-radius: 5px;
   box-sizing: border-box;
-  background-color: #D5D5D5;
+  background-color: white;
   font-family: Ubuntu;
 }
 
@@ -110,6 +151,7 @@ nav {
 .weekday {
   text-align: center;
   margin: 5px 0px;
+  color: #fc9562;
 }
 
 
@@ -125,7 +167,7 @@ nav {
   border-radius: 5px;
 } */
 
-.previousweek {
+/* .previousweek {
   position: fixed;
   bottom: 1%;
   left: 40%;
@@ -135,7 +177,7 @@ nav {
   position: fixed;
   bottom: 1%;
   left: 50%;
-}
+} */
 
 
 
@@ -191,17 +233,14 @@ nav {
 }
 
 /*  GO FULL WIDTH BELOW 480 PIXELS */
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1000px) {
   .col {  margin: 0%; }
   .span_1_of_7, .span_2_of_7, .span_3_of_7, .span_4_of_7, .span_5_of_7, .span_6_of_7, .span_7_of_7 { 
-    width: 100%;
+    width: 90%;
     height: auto;
   }
 }
 
-.addRecipeLink {
-  text-decoration: none;
-}
 
 .addARecipeButton {
   color: grey;
@@ -212,6 +251,7 @@ nav {
   width: 120px;
   height: 120px;
   margin: 30px auto;
+  cursor: pointer;
 }
 
 
@@ -229,17 +269,6 @@ nav {
   height: 55%;
   background: rgba(0,0,0,0.8);
   z-index: 1;
-  opacity:0;
-  -webkit-transition: opacity 400ms ease-in;
-  -moz-transition: opacity 400ms ease-in;
-  transition: opacity 400ms ease-in;
-  pointer-events: none;
-  overflow-y: auto;
-}
-
-.binModal:target {
-  opacity:1;
-  pointer-events: auto;
 }
 
 .close {
@@ -263,7 +292,7 @@ nav {
 }
 
 .close:hover { 
-  background: #00d9ff; 
+  background: #7f3b19; 
   cursor: pointer; 
 }
 
@@ -280,13 +309,11 @@ nav {
   height: 700px;
   width: 50%;
   background: rgba(256,256,256,1);
-  z-index: 1;
-  opacity: 0;
-  -webkit-transition: opacity 400ms ease-in;
-  -moz-transition: opacity 400ms ease-in;
-  transition: opacity 400ms ease-in;
-  pointer-events: none;
-  overflow-y: auto;
+  z-index: 3;
+}
+
+#recipeEntryModal {
+  z-index: 4;
 }
 
 .menuModal:target {
@@ -304,10 +331,12 @@ nav {
 }
 
 
+.recipeByDay > ul {
+  padding: 0px;
+}
 
 
-
-.recipecontainer {
+/* .recipecontainer {
   position: relative;
   width: 100%;
   height: 100%;
@@ -317,16 +346,14 @@ nav {
 }
 
 .recipeImage {
-  /* position: absolute; */
+  position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 100px;
-  border: 10px solid grey;
   margin: 0;
   display: block;
-}
+} */
 
-.recipeName {
+.recipeName, .shortenedName {
   width: 100%;
   /* height: 100%; */
   text-align: center;
@@ -348,7 +375,30 @@ nav {
 }
 
 .inDayColumn {
+  height: 130px;
+}
 
+.inDayColumn > .recipecontainer {
+  position: relative;
+  height: 130px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.inDayColumn > .recipecontainer > .recipeImage{
+  position: absolute;
+  height: auto;
+  width: 100%;
+  bottom: -10%;
+}
+
+.inDayColumn > .recipecontainer > .recipeName{
+  position: absolute;
+  top: 30px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0px 0px 5px black;
+  font-size: 16px;
 }
 
 
@@ -364,31 +414,20 @@ nav {
   display: none;
 }
 
-/* Recipe info modal CSS */
-/* The Modal (background) */
-.recipeInfoModal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 2; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
-/* Modal Content/Box */
 .recipeInfo {
+    position: fixed;
+    top: 15%;
+    right: 25%;
+    z-index: 2;
     background-color: #fefefe;
-    margin: 10% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    position: relative;
+    width: 50%;
 }
 
 ul {
   list-style: none;
 }
+
+
