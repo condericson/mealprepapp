@@ -139,7 +139,7 @@ nav {
 .col {
   border-radius: 5px;
   box-sizing: border-box;
-  background-color: white;
+  background-color: #959595;
   font-family: Ubuntu;
 }
 
@@ -232,26 +232,22 @@ nav {
     width: 13.85%;
 }
 
-/*  GO FULL WIDTH BELOW 480 PIXELS */
-@media only screen and (max-width: 1000px) {
-  .col {  margin: 0%; }
-  .span_1_of_7, .span_2_of_7, .span_3_of_7, .span_4_of_7, .span_5_of_7, .span_6_of_7, .span_7_of_7 { 
-    width: 90%;
-    height: auto;
-  }
-}
+
 
 
 .addARecipeButton {
   color: grey;
   border: 5px solid grey;
-  font-size: 100px;
-  border-radius: 100px;
+  font-size: 50px;
+  border-radius: 5px;
   text-align: center;
-  width: 120px;
-  height: 120px;
-  margin: 30px auto;
+  line-height: 33px;
+  width: 100%;
+  height: 50px;
+  /* margin: 30px auto; */
   cursor: pointer;
+  box-sizing: border-box;
+  background-color: #D8D8D8;
 }
 
 
@@ -261,14 +257,13 @@ nav {
   position: fixed;
   box-sizing: border-box;
   padding: 0 20px;
-  font-family: Arial, Helvetica, sans-serif;
   /* top: 0; */
   right: 0;
   bottom: 0;
   left: 0;
   height: 55%;
-  background: rgba(0,0,0,0.8);
-  z-index: 1;
+  background: #F68757;
+  z-index: 3;
 }
 
 .close {
@@ -354,14 +349,14 @@ nav {
   display: block;
 } */
 
-.recipeName, .shortenedName {
+/* .recipeName, .shortenedName {
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
   text-align: center;
   cursor: pointer;
   position: absolute;
   margin-top: 10px;
-}
+} */
 
 .recipeByDay {
   position: relative;
@@ -376,33 +371,86 @@ nav {
 }
 
 .inDayColumn {
-  height: 190px;
+  width: 100%;
   margin-bottom: 10px;
-  /* padding-bottom: 50px; */
+  height: auto;
+  background-color: #D8D8D8;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .inDayColumn > .recipecontainer {
+  width: 100%;
+  height: 100%;
   position: relative;
-  height: 130px;
-  overflow: hidden;
-
+  box-sizing: border-box;
 }
 
 .inDayColumn > .recipecontainer > .recipeImage{
-  position: absolute;
-  height: auto;
-  min-height: 190px;
   width: 100%;
-  bottom: -25%;
+  height: auto;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  box-sizing: border-box;
 }
 
 .inDayColumn > .recipecontainer > .recipeName{
-  position: absolute;
-  top: 30px;
-  color: white;
+  color: black;
   font-weight: bold;
-  text-shadow: 0px 0px 5px black;
+  /* text-shadow: 0px 0px 5px black; */
   font-size: 16px;
+  text-align: center;
+}
+
+.recipeinfo {
+  background: #658DFB;
+  color: #FFFFFF;
+  line-height: 20px;
+  position: absolute;
+  left: 12%;
+  text-align: center;
+  bottom: 17%;
+  width: 40px;
+  text-decoration: none;
+  font-weight: bold;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  -moz-box-shadow: 1px 1px 3px #000;
+  -webkit-box-shadow: 1px 1px 3px #000;
+  box-shadow: 1px 1px 3px #000;
+  z-index: 2;
+}
+
+.recipeinfo:hover { 
+  background: #7f3b19; 
+  cursor: pointer; 
+}
+
+.recipedelete {
+  background: #F63939;
+  color: #FFFFFF;
+  line-height: 20px;
+  position: absolute;
+  right: 13%;
+  text-align: center;
+  bottom: 17%;
+  width: 52px;
+  text-decoration: none;
+  font-weight: bold;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  -moz-box-shadow: 1px 1px 3px #000;
+  -webkit-box-shadow: 1px 1px 3px #000;
+  box-shadow: 1px 1px 3px #000;
+  z-index: 2;
+}
+
+.recipedelete:hover { 
+  background: #7f3b19;
+  cursor: pointer; 
 }
 
 
@@ -410,6 +458,8 @@ nav {
   box-sizing: border-box;
   width: 50%;
   margin: 10px 0px 10px 20px;
+  font-family: 'Pacifico';
+  font-size: 24px;
 }
 
 
@@ -435,3 +485,47 @@ ul {
 }
 
 
+
+#js-yummly-search {
+ font-family: Ubuntu;
+}
+
+
+
+/*  GO FULL WIDTH BELOW 480 PIXELS */
+@media only screen and (max-width: 1000px) {
+  .col {  margin: 0%; }
+  .span_1_of_7, .span_2_of_7, .span_3_of_7, .span_4_of_7, .span_5_of_7, .span_6_of_7, .span_7_of_7 { 
+    width: 32%;
+    height: auto;
+    margin: .5% 0 1% 1%;
+  }
+
+.inDayColumn {
+  width: 100%;
+  margin-bottom: 10px;
+  height: auto;
+  background-color: #D8D8D8;
+}
+
+.inDayColumn > .recipecontainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.inDayColumn > .recipecontainer > .recipeImage{
+  width: 100%;
+  height: auto;
+}
+
+.inDayColumn > .recipecontainer > .recipeName{
+  color: black;
+  font-weight: bold;
+  /* text-shadow: 0px 0px 5px black; */
+  font-size: 16px;
+  text-align: center;
+}
+
+
+}

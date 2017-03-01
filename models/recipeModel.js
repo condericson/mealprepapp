@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const RecipeSchema = mongoose.Schema({
   title: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   ingredients: {
     type: Array,
@@ -18,7 +17,7 @@ const RecipeSchema = mongoose.Schema({
     type: String,
     default: ""
   },
-  userid: {
+  userId: {
     type: String,
     required: false
   },

@@ -12,7 +12,6 @@ $(document).ready(function() {
 
 
 
-
 //Fill weekly view on log in
 $.ajax({
      type: "GET",
@@ -25,8 +24,9 @@ $.ajax({
      	if($.cookie('meal-prep-app')){
      		var user = $.cookie('meal-prep-app');
      	}
-     	/*state.recipesInWeek = data;
+     	state.recipesInWeek = data;
        data.forEach(function(element) {
+       	if(user == element.userId) {
        		var assignedColumn = $('#' + element.day.toLowerCase());
 	       	var html = '<li  class="inDayColumn"><div class="recipecontainer">';
 	       	if(element.image) {
@@ -37,12 +37,13 @@ $.ajax({
 	        	html += '<p class="recipeName">' + shortenedName + '...</p>' + '</div>';
 	        }
 	        if(element.title.length <= 30) {
-	        	html += '<p class="recipeName">' + element.title + '</p>' + '</div></li>';
+	        	html += '<p class="recipeName">' + element.title + '</p>';
 	        }
+	        html += '<span title="info" class="recipeinfo">info</span><span title="Close" class="recipedelete">delete</span></div></li>';
 	        assignedColumn.append(html);
-       	
-      });*/
-    },
+       	}
+      });    	
+     },
     error: function(data) {
     	console.log('error');
     }
@@ -127,7 +128,8 @@ $('#js-recipe-submit').click(function(event) {
 		"ingredients": ingredients,
 		"instructions": $('#instructions').val(),
 		"day": $('#assignedDay').text(),
-		"image": "./public/images/platecover.png"
+		"image": "./public/images/platecover.png",
+		"userId": $.cookie('meal-prep-app')
 	};
 	addRecipe(recipe);
 });
@@ -363,11 +365,11 @@ $('#myRecipeModal').on('click', '.recipecontainer', function(event) {
 
 
 //Provides recipe information in recipeinfo modal on click of recipe container within weekly columns ONLY
-$('.recipeByDay').on('click', '.recipecontainer', function(event) {
+$('.recipeByDay').on('click', '.recipeinfo', function(event) {
 	//Open the modal
 	$('#recipeInfo').removeClass('hidden');
 	//Get recipe title from p element
-	var recipeTitle = $(this).children('.recipeName').text();
+	var recipeTitle = $(this).siblings('.recipeName').text();
 	console.log(recipeTitle);
 
 	$.ajax({
@@ -465,6 +467,8 @@ $(".recipeByDay")/*.find("ul")*/.droppable({
 	  	var newClone = $(ui.helper).clone();
 	  	newClone.css("position", "static");
 	  	newClone.addClass('inDayColumn');
+	  	newClone.children('recipecontainer').append(`<span title="Close" class="recipedelete">delete</span>`)
+	  	newClone.removeClass('inBinModal');
 	  	var list = $(this).find('ul');
 	    list.append(newClone);
 	    var id = ui.draggable.first().children(":first").find(".idDiv").find("p").text();
@@ -489,6 +493,7 @@ function updateOnDrop(id, day) {
 		"ingredients": recipe.ingredients,
 		"day": day,
 		"image": image,
+		"userId": $.cookie('meal-prep-app')
 	};
 	
 	$.ajax({
@@ -503,7 +508,6 @@ function updateOnDrop(id, day) {
        console.log('success');
      },
      error: function(data) {
-     	
      	console.log('Error');
      }
 	});
@@ -567,6 +571,33 @@ $('#groceryListButton').on('click', function(event) {
 
 
 
+
+$('.recipeByDay').on('click', '.recipedelete', function(event) {
+	console.log('deleting');
+	var recipeName = $(this).siblings('.recipeName').text()
+	var id = "";
+	state.recipesInWeek.forEach(function(element){
+		if(recipeName == element.title) {
+			var id = element._id;
+		}
+	})
+	var url = '/recipes/' + id;
+	$.ajax({
+     type: "DELETE",
+     dataType: "json",
+     crossdomain: true,
+     headers: {"Access-Control-Allow-Origin": "*"},
+     contentType: "application/json; charset=utf-8",
+     url: url,
+     success: function(data){
+       console.log('success');
+     },
+     error: function(data) {
+     	console.log('Error');
+     }
+	});
+	$(this).parent().parent('li').remove();
+})
 
 
 

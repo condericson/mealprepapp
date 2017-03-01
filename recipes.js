@@ -25,7 +25,8 @@ router.post('/', jsonParser, (req, res) => {
 		'instructions': req.body.instructions,
 		'cookware': req.body.cookware,
         'day': req.body.day,
-        'image': req.body.image
+        'image': req.body.image,
+        'userId': req.body.userId
 	}, function(err, recipe){
 		if(err) {
 			res.status(500).json({"message":"Error with post"})
@@ -45,7 +46,7 @@ router.put('/:id', jsonParser, function(req, res) {
         instructions: req.body.instructions,
         ingredients: req.body.ingredients,
         day: req.body.day,
-        userid: req.body.userid,
+        userId: req.body.userId,
         image: req.body.image
       }
     },
