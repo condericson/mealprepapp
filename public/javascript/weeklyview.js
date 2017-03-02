@@ -11,6 +11,31 @@ $(document).ready(function() {
 
 
 
+getChefName($.cookie('meal-prep-app'));
+
+function getChefName(cookie){
+	$.ajax({
+		type: "GET",
+		dataType: "json",
+   	crossdomain: true,
+   	headers: {"Access-Control-Allow-Origin": "*"},
+   	contentType: "application/json; charset=utf-8",
+   	url: '/users',
+   	success: function(data){
+     	data.forEach(function(element) {
+     		var id = ('j:"' + element._id + '"');
+     		if(id == cookie) {
+     			var name = element.chefName;
+     			$('#usernameInTitle').text(name);
+     		}	
+     	})
+     },
+    error: function(data) {
+    	console.log('error');
+    }
+	})
+}
+
 
 //Fill weekly view on log in
 $.ajax({
@@ -39,10 +64,11 @@ $.ajax({
 	        if(element.title.length <= 30) {
 	        	html += '<p class="recipeName">' + element.title + '</p>';
 	        }
-	        html += '<span title="info" class="recipeinfo">info</span><span title="Close" class="recipedelete">delete</span></div></li>';
+	        html += '<i class="fa fa-info-circle recipeinfo" aria-hidden="true"></i><i class="fa fa-times-circle recipedelete" aria-hidden="true"></i></div></li>';
 	        assignedColumn.append(html);
+
        	}
-      });    	
+      }); 
      },
     error: function(data) {
     	console.log('error');
@@ -527,7 +553,6 @@ function updateOnDrop(id, day) {
 //dropdown 
 $("#dropdown-button").on('click', function(event) {
   $('#dropdown').toggle("show");
-
 });
 
 
@@ -556,14 +581,22 @@ window.onclick = function(event) {
 $('#groceryListButton').on('click', function(event) {
   	$('#yummlyApiRecipe ,#recipeInfoModal ,#recipeEntryModal ,#myRecipeModal').addClass('hidden');
 		var recipes = state.recipesInWeek;
-		var list = [];
-		recipes.forEach(function(element) {
-			list = list.concat(element.ingredients);
+		var list = {};
+		recipes.forEach(function(recipe) {
+			recipe.ingredients.forEach(function(element){
+				if(element in list) {
+					list[element] += 1;
+				}
+				else {
+					list[element] = 1;
+				}
+			});
 		})
+		console.log(list);
 		var html = "";
-		list.forEach(function(element) {
-			html += '<li>' + element + '</li>';
-		})
+		for(var key in list) {
+			html += '<li>' + list[key] + ' ' + key + '</li>';
+		}
 		$('#groceryList').html(html);
 		$('#groceryListModal').removeClass('hidden');
 })
@@ -578,9 +611,9 @@ $('.recipeByDay').on('click', '.recipedelete', function(event) {
 	var id = "";
 	state.recipesInWeek.forEach(function(element){
 		if(recipeName == element.title) {
-			var id = element._id;
+			id = element._id;
 		}
-	})
+	});
 	var url = '/recipes/' + id;
 	$.ajax({
      type: "DELETE",

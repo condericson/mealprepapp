@@ -15,7 +15,6 @@ $('#js-login-form').submit(function(event) {
 
 function logIn(userInfo, username) {
 	var url = '/users/login';
-    console.log("logging in2");
 	$.ajax({
      type: "POST",
      dataType: "json",

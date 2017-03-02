@@ -26,6 +26,8 @@ nav {
   font-size: 50px;
   color: #f7793b;
   font-family: Sansita;
+  /* text-shadow: 0px 0px 5px black; */
+  font-weight: bold;
 }
 
 .titlediv {
@@ -126,6 +128,7 @@ nav {
   background-color: white;
   right: 30%;
   padding: 0 10px;
+  z-index: 30;
 }
 
 
@@ -152,6 +155,7 @@ nav {
   text-align: center;
   margin: 5px 0px;
   color: #fc9562;
+  text-shadow: 0px 0px 5px black;
 }
 
 
@@ -368,6 +372,19 @@ nav {
   display: inline-block;
   margin-right: 50px;
   margin-bottom: 80px;
+}
+
+.inBinModal > .recipecontainer {
+  width: 100%;
+}
+
+.inBinModal > .recipecontainer > .recipeImage {
+  width: 100%;
+
+}
+
+.inBinModal > .recipecontainer > .recipeName {
+  width: 100%;
 }
 
 .inDayColumn {
