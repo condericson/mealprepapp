@@ -53,7 +53,7 @@ $.ajax({
        data.forEach(function(element) {
        	if(user == element.userId) {
        		var assignedColumn = $('#' + element.day.toLowerCase());
-	       	var html = '<li  class="inDayColumn"><div class="recipecontainer">';
+	       	var html = '<li  class="inDayColumn"><div class="recipecontainer"><div class="infobox"><i class="fa fa-info-circle recipeinfo" aria-hidden="true"></i><i class="fa fa-trash recipedelete" aria-hidden="true"></i></div>';
 	       	if(element.image) {
 						html += '<img class="recipeImage" src="' + element.image + '">';
 	        }
@@ -64,7 +64,7 @@ $.ajax({
 	        if(element.title.length <= 30) {
 	        	html += '<p class="recipeName">' + element.title + '</p>';
 	        }
-	        html += '<i class="fa fa-info-circle recipeinfo" aria-hidden="true"></i><i class="fa fa-times-circle recipedelete" aria-hidden="true"></i></div></li>';
+	        
 	        assignedColumn.append(html);
 
        	}
@@ -212,6 +212,7 @@ $('#js-yummly-search').submit(function(event) {
 	$.getJSON(url, yummlyApp, function(data) {
 		var results = data.matches;
 		state.recipesInSearchResults = data.matches;
+		console.log(state.recipesInSearchResults);
 		var html = "";
 		results.forEach(function(object){
 			html += '<li class="inBinModal">' + 
@@ -486,14 +487,15 @@ $("li", "#yummlyResults").draggable({
  	containment: "document"
 });
 
-$(".recipeByDay")/*.find("ul")*/.droppable({
+$(".recipeByDay").droppable({
 	activeClass: "ui-state-default",
 	hoverClass: "ui-state-hover",
 	drop: function( event, ui ) {
 	  	var newClone = $(ui.helper).clone();
-	  	newClone.css("position", "static");
+	  	console.log(newClone.children($('.idDiv')).children($('.recipeId')).text());
+	  	/*newClone.css("position", "static");*/
 	  	newClone.addClass('inDayColumn');
-	  	newClone.children('recipecontainer').append(`<span title="Close" class="recipedelete">delete</span>`)
+	  	newClone.children('.recipecontainer').append(`<span title="Close" class="recipedelete">delete</span>`)
 	  	newClone.removeClass('inBinModal');
 	  	var list = $(this).find('ul');
 	    list.append(newClone);
@@ -538,6 +540,30 @@ function updateOnDrop(id, day) {
      }
 	});
 };
+
+
+
+
+/*var recipeId = $(this).children($('.idDiv')).children($('.recipeId')).text();
+	recipeId = recipeId.replace(/\s+/g, '-')
+	console.log("Looking for recipe with ID", recipeId);
+	var url = "http://api.yummly.com/v1/api/recipe/" + recipeId;
+	console.log(url);
+	var yummlyApp = {
+		"_app_id": '1215d699',
+		"_app_key": '8d66fe539bd68dfea2ac78d0e6ef6b6f'
+	};
+	$.getJSON(url, yummlyApp, function(data) {
+		console.log(data);*/
+
+
+
+
+
+
+
+
+
 
 
 //Need to add get function for myRecipeModal
