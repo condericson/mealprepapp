@@ -35,8 +35,8 @@ app.get('/recipeentry', function(req, res) {
   res.sendFile(__dirname + '/public/recipeentry.html');
 })
 
-app.get('/signup', function(req, res) {
-  res.sendFile(__dirname + '/public/signup.html');
+app.get('/login', function(req, res) {
+  res.sendFile(__dirname + '/public/login.html');
 })
 
 app.get('/weeklyview', function(req, res) {
