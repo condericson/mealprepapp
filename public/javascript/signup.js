@@ -1,5 +1,13 @@
 $(document).ready(function() {
 
+
+$('.login').on('click', function(event) {
+  window.location.href = "/login"
+})
+
+
+
+
 $('#js-signup-button').click(function(event) {
 	event.preventDefault();
      console.log("adding user");

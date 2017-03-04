@@ -13,13 +13,8 @@ const RecipeSchema = mongoose.Schema({
     type: String,
     default: ""
   },
-  cookware: {
-    type: String,
-    default: ""
-  },
   userId: {
-    type: String,
-    required: false
+    type: String
   },
   date: {
     type: Date,
@@ -34,6 +29,10 @@ const RecipeSchema = mongoose.Schema({
     type: String
   },
   sourceRecipeUrl: {
+    type: String,
+    default: ""
+  },
+  yummlyId: {
     type: String,
     default: ""
   }

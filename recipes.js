@@ -23,12 +23,14 @@ router.post('/', jsonParser, (req, res) => {
 		'title': req.body.title,
 		'ingredients': req.body.ingredients,
 		'instructions': req.body.instructions,
-		'cookware': req.body.cookware,
+        'userId': req.body.userId,
         'day': req.body.day,
         'image': req.body.image,
-        'userId': req.body.userId
+        'sourceRecipeUrl': req.body.sourceRecipeUrl,
+        'yummlyId': req.body.yummlyId
 	}, function(err, recipe){
 		if(err) {
+            console.log(err);
 			res.status(500).json({"message":"Error with post"})
 		}
 		res.status(201).json(recipe);

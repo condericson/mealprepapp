@@ -268,7 +268,7 @@ nav {
   bottom: 0;
   left: 0;
   height: 55%;
-  background: #F68757;
+  background: #b5e3f9;
   z-index: 3;
 }
 
@@ -374,11 +374,16 @@ nav {
   height: 130px;
   display: inline-block;
   margin-right: 50px;
-  margin-bottom: 80px;
+  margin-top: 30px;
+  vertical-align: top;
+  margin-bottom: 20px;
 }
 
 .inBinModal > .recipecontainer {
   width: 100%;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .inBinModal > .recipecontainer > .recipeImage {
