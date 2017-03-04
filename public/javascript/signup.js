@@ -32,12 +32,39 @@ function addUser(user) {
           data: JSON.stringify(user),
           success: function(data){
             console.log(data);
-            window.location.href = "/index";
+            var userInfo = {
+              "username": data.username,
+              "password": data.password
+            }
+            logIn(userInfo)
           },
           error: function(data) {
           	console.log('ajax broke');
           }
      });
+}
+
+function logIn(userInfo) {
+  var url = '/users/login';
+  $.ajax({
+     type: "POST",
+     dataType: "json",
+     crossdomain: true,
+     headers: {"Access-Control-Allow-Origin": "*"},
+     contentType: "application/json; charset=utf-8",
+     url: url,
+     data: JSON.stringify(userInfo),
+     success: function(data){
+        console.log(data);
+        console.log('success');
+        event.preventDefault();
+        window.location.href = "/weeklyview";
+     },
+     error: function(data) {
+      console.log('error', data);
+        $('#invalid').removeClass('hidden');
+     }
+  });
 }
 
 });//document.ready end

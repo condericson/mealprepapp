@@ -11,7 +11,6 @@ html, body {
 
 body {
   margin: 0;
-  background-image: '/public/images/background.png';
 }
 
 /* Nav styles */
@@ -545,55 +544,47 @@ ul {
  border-radius: 5px;
 }
 
-
-
-/*  GO FULL WIDTH BELOW 480 PIXELS */
-@media only screen and (max-width: 1000px) {
-  .col {  margin: 0%; }
-  .span_1_of_7, .span_2_of_7, .span_3_of_7, .span_4_of_7, .span_5_of_7, .span_6_of_7, .span_7_of_7 { 
-    width: 32%;
-    height: auto;
-    margin: .5% 0 1% 1%;
-  }
-
-.inDayColumn {
-  width: 100%;
-  margin-bottom: 10px;
-  height: auto;
-  background-color: #D8D8D8;
-}
-
-.inDayColumn > .recipecontainer {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.inDayColumn > .recipecontainer > .recipeImage{
-  width: 100%;
-  height: auto;
-}
-
-.inDayColumn > .recipecontainer > .recipeName{
-  color: black;
-  font-weight: bold;
-  /* text-shadow: 0px 0px 5px black; */
+.areyousure {
   font-size: 16px;
-  text-align: center;
+  z-index: 20;
+  background-color: #ff8f8f;
+  position: absolute;
+  left: -136px;
+  top: 51px;
+  width: 160px;
+  border-radius: 4px;
+  box-shadow: 1px 2px 2px 0px #888888;
+}
+
+.yes {
+  background-color: #f75555;
+}
+
+.no {
+  background-color: red;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #ff8f8f;
+  position: absolute;
+  top: -10px;
+  right: 5px;
 }
 
 
-}
 
-
-/*  GO FULL WIDTH BELOW 480 PIXELS */
 @media only screen and (max-width: 1400px) {
   .col {  margin: 0%; }
   .span_1_of_7, .span_2_of_7, .span_3_of_7, .span_4_of_7, .span_5_of_7, .span_6_of_7, .span_7_of_7 { 
-    width: 32%;
+    width: 100%;
     height: auto;
-    margin: .5% 0 1% 1%;
+    margin-top: 10px;
   }
+
 
 .inDayColumn {
   width: 100%;
@@ -606,11 +597,17 @@ ul {
   width: 100%;
   height: 100%;
   position: relative;
+  text-align: initial;
 }
 
 .inDayColumn > .recipecontainer > .recipeImage{
-  width: 100%;
+  width: 40%;
   height: auto;
+  border-radius: 5px;
+  margin: 10px 0px 0px 10px;
+  padding: 0;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .inDayColumn > .recipecontainer > .recipeName{
@@ -619,10 +616,32 @@ ul {
   /* text-shadow: 0px 0px 5px black; */
   font-size: 16px;
   text-align: center;
+  display: inline-block;
 }
 
 .section {
-  width: 100%;
+  width: auto;
+  margin: 0px 10% 0px 10%;
+}
+
+.infobox {
+  top: 90%;
+  font-size: 36px;
+}
+.recipeinfo {
+  display: none !important;
+}
+
+.recipedelete {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  padding-top: 2px;
+  padding-left: 1px;
+}
+
+.fullscreeningredientlist {
+  display: inline-block;
 }
 
 

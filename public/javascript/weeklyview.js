@@ -56,13 +56,18 @@ function fillWeeklyView() {
        data.forEach(function(element) {
        	if(user == element.userId) {
        		var assignedColumn = $('#' + element.day.toLowerCase());
-	       	var html = '<li  class="inDayColumn"><div class="recipecontainer"><div class="infobox"><i class="fa fa-info-circle recipeinfo" aria-hidden="true"></i><i class="fa fa-trash recipedelete" aria-hidden="true"></i></div>';
+	       	var html = '<li  class="inDayColumn"><div class="recipecontainer"><div class="infobox"><i class="fa fa-info-circle recipeinfo" aria-hidden="true"></i><i class="fa fa-trash recipedelete" aria-hidden="true"></i><div class="areyousure hidden"><p>Are you sure?</p><div class="yes">Delete</div><div class="no">No</div><div class="triangle"></div></div></div>';
 	       	if(element.image) {
 						html += '<img class="recipeImage" src="' + element.image + '">';
 	        }
-	        html += '<p class="recipeName">' + element.title + '</p></div>';
+	        html += '<p class="recipeName">' + element.title + '</p>';
+	        html += '<ul class="fullscreeningredientlist">';
+	        element.ingredients.forEach(function(ingredient) {
+	        	html += '<li>' + ingredient + '</li>';
+	        });
+	        html += '</ul>';
+	        html += '<p class="recipeSource">' + element.sourceRecipeUrl + '</p></div>';
 	        assignedColumn.append(html);
-
        	}
       }); 
      },
@@ -625,14 +630,31 @@ $('#groceryListButton').on('click', function(event) {
 
 
 $('.recipeByDay').on('click', '.recipedelete', function(event) {
+	$(this).siblings($('.areyousure')).removeClass('hidden');
+});
+
+
+//fix this
+window.onclick = function(event) {
+  if(!$('.areyousure').hasClass('hidden')) {
+		if (!event.target.matches('.areyousure')) {
+	    $('.areyousure').addClass('hidden');
+	  }
+  }
+	  
+}
+
+
+
+
+$('.recipeByDay').on('click', '.yes', function(event) {
 	console.log(state.recipesInWeek);
 	console.log('deleting');
-	var recipeName = $(this).parent().siblings('.recipeName').text();
+	var recipeName = $(this).parent().parent().siblings('.recipeName').text();
 	console.log(recipeName);
 	var id = "";
 	state.recipesInWeek.forEach(function(element){
-		var shortenedName = element.title.substring(0,30);
-		if(recipeName == shortenedName) {
+		if(recipeName == element.title) {
 			id = element._id;
 		}
 
@@ -654,7 +676,7 @@ $('.recipeByDay').on('click', '.recipedelete', function(event) {
      	console.log(err);
      }
 	});
-	$(this).parent().parent().parent().remove();
+	$(this).parent().parent().parent().parent().remove();
 })
 
 

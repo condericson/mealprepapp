@@ -13,7 +13,7 @@ $('#js-login-form').submit(function(event) {
 
 })
 
-function logIn(userInfo, username) {
+function logIn(userInfo) {
 	var url = '/users/login';
 	$.ajax({
      type: "POST",
@@ -25,7 +25,6 @@ function logIn(userInfo, username) {
      data: JSON.stringify(userInfo),
      success: function(data){
         console.log(data);
-        console.log($.cookie('meal-prep-app'));
         console.log('success');
         window.location.href = "/weeklyview";
      },
@@ -38,11 +37,6 @@ function logIn(userInfo, username) {
 
 
 
-
-
-$('#js-signup').click(function(event) {
-	
-})
 
 
 

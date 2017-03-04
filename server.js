@@ -47,22 +47,6 @@ app.get('/public/images/platecover.png', function(req, res) {
   res.sendFile(__dirname + '/public/images/platecover.png');
 })
 
-/*app.post('/users/login', function(req, res) {
-  User.findOne({ username: req.body.username }, function(err, user) {
-    if (!user) {
-      res.render({error: 'Invalid email or password.' });
-    } else {
-      if (req.body.password === user.password) {
-        // sets a cookie with the user's info
-        req.session.user = user;
-        res.redirect('/weeklyview');
-      } else {
-        res.render({error: 'Invalid email or password.' });
-      }
-    }
-  });
-});*/
-
 
 let server;
 
