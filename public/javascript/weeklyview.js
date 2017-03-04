@@ -60,14 +60,7 @@ function fillWeeklyView() {
 	       	if(element.image) {
 						html += '<img class="recipeImage" src="' + element.image + '">';
 	        }
-	        if(element.title.length > 30) {
-	        	var shortenedName = element.title.substring(0,30);
-	        	html += '<p class="recipeName">' + shortenedName + '...</p>' + '</div>';
-	        }
-	        if(element.title.length <= 30) {
-	        	html += '<p class="recipeName">' + element.title + '</p>';
-	        }
-	        
+	        html += '<p class="recipeName">' + element.title + '</p></div>';
 	        assignedColumn.append(html);
 
        	}
@@ -634,7 +627,7 @@ $('#groceryListButton').on('click', function(event) {
 $('.recipeByDay').on('click', '.recipedelete', function(event) {
 	console.log(state.recipesInWeek);
 	console.log('deleting');
-	var recipeName = $(this).parent().siblings('.recipeName').text()
+	var recipeName = $(this).parent().siblings('.recipeName').text();
 	console.log(recipeName);
 	var id = "";
 	state.recipesInWeek.forEach(function(element){
@@ -656,11 +649,12 @@ $('.recipeByDay').on('click', '.recipedelete', function(event) {
      success: function(data){
        console.log('success');
      },
-     error: function(data) {
+     error: function(err) {
      	console.log('Error');
+     	console.log(err);
      }
 	});
-	$(this).parent().parent('li').parent('li').remove();
+	$(this).parent().parent().parent().remove();
 })
 
 
