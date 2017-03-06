@@ -24,7 +24,7 @@ nav {
 .title {
   font-size: 50px;
   color: #f7793b;
-  font-family: Sansita;
+  font-family: Lobster;
   /* text-shadow: 0px 0px 5px black; */
   font-weight: bold;
 }
@@ -54,10 +54,10 @@ nav {
 
 .poweredBy {
   position: absolute;
-  top: 40px;
-  right: 10px;
+  top: 50px;
+  right: 112px;
   margin: 0;
-  font-family: 'Pacifico';
+  font-family: Roboto;
   font-size: 16px;
 }
 
@@ -108,6 +108,17 @@ nav {
     display: inline-block;
 }
 
+.yummlylink {
+  position: absolute;
+  top: -15px;
+  right: -3px;
+}
+
+#yummlylogo {
+  width: 103px;
+  position: absolute;
+}
+
 /* #groceryListButton {
   background-color: #b75728;
   color: #F7E2C3;
@@ -129,9 +140,44 @@ nav {
   right: 30%;
   padding: 0 10px;
   z-index: 30;
+  box-shadow: 0px 0px 8px 0px #4e4e4e;
+  border-radius: 5px;
 }
 
+#recipeInfo {
+  position: fixed;
+  top: 9%;
+  left: 39%;
+  background-color: white;
+  font-family: Ubuntu;
+  /* border: 4px solid grey; */
+  border-radius: 5px;
+  padding: 25px;
+  z-index: 4;
+  box-shadow: 0px 0px 8px 0px #4e4e4e;
+}
 
+#recipeInfo > img {
+  margin: 10px 0px 0px 10px;
+  border-radius: 5px;
+}
+
+#recipeInfo > .infoModalRecipeName {
+  padding: 10px 0px 0px 10px;
+  /* text-align: center; */
+  font-size: 24px;
+  color: #f7793b;
+  font-weight: bold;
+  margin: 0px;
+}
+
+#recipeInfo > .infoModalIngredients {
+  padding: 10px 0px 0px 10px;
+}
+
+#recipeInfo > a {
+  padding: 10px 0px 0px 10px;
+}
 
 
 
@@ -242,7 +288,7 @@ nav {
 
 .addARecipeButton {
   color: grey;
-  border: 5px solid grey;
+  border: 3px solid grey;
   font-size: 50px;
   border-radius: 5px;
   text-align: center;
@@ -266,13 +312,14 @@ nav {
   right: 0;
   bottom: 0;
   left: 0;
-  height: 55%;
+  height: 60%;
   background: #b5e3f9;
   z-index: 3;
+  box-shadow: 0px -3px 20px 0px #4e4e4e;
 }
 
 .close {
-  background: #f7793b;
+  background: #244a5d;
   color: #FFFFFF;
   line-height: 25px;
   position: absolute;
@@ -291,9 +338,9 @@ nav {
   z-index: 20;
 }
 
-.close:hover { 
-  background: #7f3b19; 
-  cursor: pointer; 
+.close:hover {
+  background: #e26326;
+  cursor: pointer;
 }
 
 #recipeEntryModal {
@@ -369,29 +416,64 @@ nav {
 }
 
 .inBinModal {
-  width: 130px;
-  height: 130px;
+  width: 190px;
+  height: auto;
   display: inline-block;
-  margin-right: 50px;
-  margin-top: 30px;
   vertical-align: top;
-  margin-bottom: 20px;
+  margin: 15px 25px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px black;
 }
 
 .inBinModal > .recipecontainer {
   width: 100%;
+  height: 100%;
   border: 1px solid black;
-  padding: 5px;
+  /* padding: 5px; */
   border-radius: 5px;
+  position: relative;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .inBinModal > .recipecontainer > .recipeImage {
-  width: 100%;
-
+  width: 80%;
+  height: auto;
+  /* border-top-right-radius: 5px; */
+  /* border-top-left-radius: 5px; */
+  box-sizing: border-box;
+  border-radius: 20%;
+  margin: 10px 0px 15px 0px;
 }
 
 .inBinModal > .recipecontainer > .recipeName {
-  width: 100%;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  padding-top: 12px;
+  margin: 0px 20px 10px 15px;
+  text-align: left;
+  font-family: Ubuntu;
+}
+
+.infoIconBin {
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  /* padding-top: 12px; */
+  /* margin: 4px 2px 10px 15px; */
+  text-align: center;
+  font-family: Ubuntu;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background: #6290fc;
+  color: #FFFFFF;
+  box-shadow: 1px 1px 3px #000;
+  border-radius: 10px;
+  width: 17px;
+  height: 17px;
 }
 
 .inDayColumn {
@@ -415,12 +497,11 @@ nav {
 .inDayColumn > .recipecontainer > .recipeImage{
   width: 80%;
   height: auto;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
+  /* border-top-right-radius: 5px; */
+  /* border-top-left-radius: 5px; */
   box-sizing: border-box;
-  border-radius: 100%;
-  margin: 0 auto;
-  padding-top: 10px;
+  border-radius: 20%;
+  margin: 10px 0px 15px 0px;
 }
 
 .inDayColumn > .recipecontainer > .recipeName{
@@ -428,9 +509,10 @@ nav {
   font-weight: bold;
   /* text-shadow: 0px 0px 5px black; */
   font-size: 16px;
-  padding-left: 10px;
-  margin-right: 23px;
+  padding-top: 12px;
+  margin: 0px 0px 10px 15px;
   text-align: left;
+  width: 80%;
 }
 
 .fa {
@@ -438,15 +520,11 @@ nav {
 
 }
 
-.recipeinfo {
-  /* background: #658DFB; */
+.infoIconDBRecipe {
   background: #6290fc;
   color: #FFFFFF;
   line-height: 20px;
-  /* position: absolute; */
-  /* left: 5px; */
   text-align: center;
-  /* top: 5px; */
   width: 17px;
   height: 17px;
   text-decoration: none;
@@ -460,6 +538,7 @@ nav {
   z-index: 2;
   display: block !important;
   margin-bottom: 5px;
+  cursor: pointer;
 }
 
 .recipeinfo:hover {
@@ -506,10 +585,10 @@ nav {
 
 .findarecipe {
   box-sizing: border-box;
-  width: 50%;
+  width: 100%;
   margin: 10px 0px 10px 20px;
-  font-family: 'Pacifico';
-  font-size: 24px;
+  font-family: uBuntu;
+  font-size: 26px;
 }
 
 
@@ -518,20 +597,14 @@ nav {
   display: none;
 }
 
-
-/* .recipeInfo {
-    position: fixed;
-    top: 15%;
-    right: 25%;
-    z-index: 3;
-    background-color: #fefefe;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-} */
-
 ul {
   list-style: none;
+}
+
+.yourRecipes {
+  font-family: ubuntu;
+  font-size: 26px;
+  margin: 15px 0px;
 }
 
 
@@ -542,6 +615,25 @@ ul {
 
 #js-yummly-search > input {
  border-radius: 5px;
+}
+
+#yummlyResults {
+  padding: 0px 5%;
+}
+
+.yummlylink2 {
+  position: absolute;
+  top: 7px;
+  left: 371px;
+}
+
+.looking {
+  text-align: center;
+  font-size: 41px;
+  color: #f7793b;
+  font-family: Lobster;
+  text-shadow: 1px 1px 3px black;
+  font-weight: bold;
 }
 
 .areyousure {
@@ -575,6 +667,20 @@ ul {
   right: 5px;
 }
 
+.fa-spinner {
+  color: #f7793b;
+  position: absolute;
+  top: 284px;
+  left: 47%;
+  width: 64.6px;
+}
+
+
+@media only screen and (min-width: 1400px) {
+  .fullscreeningredientlist, .recipeSource {
+    display: none;
+  }
+}
 
 
 @media only screen and (max-width: 1400px) {
@@ -628,7 +734,8 @@ ul {
   top: 90%;
   font-size: 36px;
 }
-.recipeinfo {
+
+.inDayColumn > .recipecontainer > .infobox > .recipeinfo {
   display: none !important;
 }
 

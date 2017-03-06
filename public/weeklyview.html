@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Weekly View</title>
-	<link href="https://fonts.googleapis.com/css?family=Sansita|Ubuntu|Mr+Dafoe|Pacifico" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Sansita|Ubuntu|Mr+Dafoe|Pacifico|Roboto|Raleway|Lobster" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./css/weeklyview.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
@@ -18,8 +18,8 @@
 </head>
 <body background="./images/background.png">
 	<nav>
-		<div class="titlediv"><span class="title">Welcome, Chef <span id="usernameInTitle"></span></span></div>
-		<p class="poweredBy">All recipe information powered by <a href="http://www.yummly.com" target="_blank">Yummly</a></p>
+		<div class="titlediv"><span class="title">Welcome, Chef <span id="usernameInTitle"></span>!</span></div>
+		<p class="poweredBy">Recipe information powered by <a class="yummlylink" href="http://www.yummly.com" target="_blank"><img id="yummlylogo" src="./images/yummly_logo.png"></a></p>
 		
 		<!-- <button id="groceryListButton">Make my grocery list!</button> -->
 		
@@ -104,7 +104,7 @@
 
 	<div id="yummlyApiRecipe" class="binModal hidden">
 		<span title="Close" class="close">&times;</span>
-		<p class="findarecipe">Find a fantastic recipe from Yummly!</p>
+		<p class="findarecipe">Find a fantastic recipe from <a class="yummlylink2" href="http://www.yummly.com" target="_blank"><img id="yummlylogo" src="./images/yummly_logo.png"></a></p>
 		<form id="js-yummly-search">
 			<label class="searchLabel">Search</label>
 			<input type="text" name="search" id="yummlysearch">
@@ -122,17 +122,9 @@
 <!-- My recipes modal -->
 	<div id="myRecipeModal" class="binModal hidden">
 			<span title="Close" class="close">&times;</span>
-			<h2>Your recipes! Drag and drop then into the week, or click on one to edit it.</h2>
+			<p class="yourRecipes">Your previously used recipes! Drag and drop then into the week to reuse them.</p>
 			<ul id="myRecipes">
-				<li class="inBinModal">
-					<div class="recipecontainer " id="Creamy-caprese-pasta-333554" draggable="true">
-						<img class="recipeImage" src="http://lh3.ggpht.com/THkiqa99fALeMM_v5zUZq6CO_wLFW3rgq2pdQOjTgDgn0FxL2suI-9i7xRRtLhC2OkMhLp4eQwkYlQCRMZ3lve4=s90">
-						<p class="recipeName">Creamy Caprese Pasta</p>
-						<div class="idDiv">
-							<p class="hidden recipeId">Creamy-caprese-pasta-333554</p>
-						</div>
-					</div>
-				</li>
+				<!-- Recipes appear here -->
 
 		</ul>
 	</div>

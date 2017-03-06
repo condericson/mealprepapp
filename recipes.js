@@ -27,7 +27,8 @@ router.post('/', jsonParser, (req, res) => {
         'day': req.body.day,
         'image': req.body.image,
         'sourceRecipeUrl': req.body.sourceRecipeUrl,
-        'yummlyId': req.body.yummlyId
+        'yummlyId': req.body.yummlyId,
+        'totalTime': req.body.totalTime
 	}, function(err, recipe){
 		if(err) {
             console.log(err);
@@ -45,11 +46,14 @@ router.put('/:id', jsonParser, function(req, res) {
     {
       $set: {
         title: req.body.title,
-        instructions: req.body.instructions,
         ingredients: req.body.ingredients,
-        day: req.body.day,
+        instructions: req.body.instructions,
         userId: req.body.userId,
-        image: req.body.image
+        day: req.body.day,
+        image: req.body.image,
+        sourceRecipeUrl: req.body.sourceRecipeUrl,
+        yummlyId: req.body.yummlyId,
+        totalTime: req.body.totalTime
       }
     },
     {

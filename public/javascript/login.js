@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+$('#signup').on('click', function(event) {
+  window.location.href = "/index"
+})
+
 $('#js-login-form').submit(function(event) {
 	event.preventDefault();
     $('#invalid').addClass('hidden');
