@@ -476,39 +476,49 @@ $(".recipeByDay").droppable({
 	activeClass: "ui-state-default",
 	hoverClass: "ui-state-hover",
 	drop: function( event, ui ) {
-	  	var newClone = $(ui.helper).clone();
-	  	var list = $(this).children('ul');
-	    var name = newClone.text();
-	    var id = "";
-	    state.recipesInSearchResults.forEach(function(element) {
-	    	if(name == element.recipeName) {
-	    		id = element.id;
-	    	}
-	    })
-	    var day = list.attr("id");
-	    if($(this).hasClass("yummlyresult")) {
-	    	console.log("IT WORKED");
-	    	updateOnDrop(id, day);
-	    }
-	    if(!$(this).hasClass("yummlyresult")) {
-	    	var recipeObject = {};
-	    	var recipeName = $(this).children('.recipecontainer').children('.recipeName').text();
-	    	state.myRecipes.forEach(function(element) {
-	    		if(element.recipeName == recipeName) {
-	    			recipeObject = {
-	    				'title': element.name,
-							'ingredients': data.ingredientLines,
-							'userId': $.cookie('meal-prep-app'),
-							'totalTime': data.totalTime,
-							'image': data.images[0].hostedLargeUrl,
-							'day': day,
-							'sourceRecipeUrl': data.source.sourceRecipeUrl,
-							'yummlyId': data.id
-	    			}
-	    		}
-	    	})
-	    	/*addToDatabase(recipeObject);*/
-	    }
+		console.log($(this));
+		console.log(event);
+		console.log(ui.draggable);
+		console.log(ui.draggable.hasClass("yummlyresult"));
+		console.log(!ui.draggable.hasClass("yummlyresult"));
+  	var newClone = $(ui.helper).clone();
+  	var list = $(this).children('ul');
+    var name = newClone.text();
+    var id = "";
+    state.recipesInSearchResults.forEach(function(element) {
+    	if(name == element.recipeName) {
+    		id = element.id;
+    	}
+    })
+    var day = list.attr("id");
+    var draggedItem = ui.draggable;
+    if(draggedItem.hasClass("yummlyresult")) {
+    	console.log("IT WORKED");
+    	updateOnDrop(id, day);
+    }
+    if(!draggedItem.hasClass("yummlyresult")) {
+    	var recipeObject = {};
+    	var recipeName = draggedItem.children('.recipecontainer').children('.recipeName').text();
+    	console.log(recipeName);
+    	console.log(state.myRecipes);
+    	state.myRecipes.forEach(function(element) {
+    		if(element.title == recipeName) {
+    			recipeObject = {
+    				'title': element.title,
+						'ingredients': element.ingredients,
+						'userId': $.cookie('meal-prep-app'),
+						'totalTime': element.totalTime,
+						'image': element.image,
+						'day': day,
+						'sourceRecipeUrl': element.sourceRecipeUrl,
+						'yummlyId': element.id
+    			}
+    		}
+    	})
+    	console.log(recipeObject);
+    	addToDatabase(recipeObject);
+    	
+    }
 	 		
   }
 });
@@ -527,13 +537,13 @@ function updateOnDrop(id, day) {
 			'title': data.name,
 			'ingredients': data.ingredientLines,
 			'userId': $.cookie('meal-prep-app'),
-			/*'totalTime': data.totalTime,*/
+			'totalTime': data.totalTime,
 			'image': data.images[0].hostedLargeUrl,
 			'day': day,
 			'sourceRecipeUrl': data.source.sourceRecipeUrl,
 			'yummlyId': data.id
 		};
-		/*addToDatabase(recipeObject);*/
+		addToDatabase(recipeObject);
 
 	});
 }
