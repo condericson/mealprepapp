@@ -38,6 +38,7 @@ function getChefName(cookie){
 
 fillWeeklyView();
 
+console.log(state.recipesInWeek);
 
 //Fill weekly view on log in
 function fillWeeklyView() {
@@ -681,14 +682,15 @@ $('.recipeByDay').on('click', '.remove', function(event) {
 		if(recipeName == element.title) {
 			id = element._id;
 			recipeObject = {
-				'title': element.name,
+				'title': element.title,
 				'ingredients': element.ingredients,
 				'userId': $.cookie('meal-prep-app'),
 				'totalTime': element.totalTime,
 				'image': element.image,
 				'day': "",
 				'sourceRecipeUrl': element.sourceRecipeUrl,
-				'yummlyId': element.yummlyId
+				'yummlyId': element.yummlyId,
+				'instructions': element.instructions
 			};
 		};
 	});
@@ -696,7 +698,6 @@ $('.recipeByDay').on('click', '.remove', function(event) {
 	var url = '/recipes/' + id;
 	removeDay(url, recipeObject);
 	$(this).parent().parent().parent().parent().remove();
-	fillWeeklyView();
 })
 
 

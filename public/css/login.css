@@ -1,5 +1,5 @@
 * {
-	font-family: Roboto
+	font-family: 'Crete Round', serif;
 }
 
 html {
@@ -13,8 +13,25 @@ body {
 	height: 100%;
 }
 
+nav {
+	background-color: white;
+	height: 66px;
+	position: relative;
+}
+
+.pagetitle {
+	color: #f7793b;
+	font-size: 40px;
+	position: absolute;
+	margin: 0;
+	top: 4px;
+	left: 22px;
+}
+
+
 #invalid {
 	color: red;
+	margin: 0;
 }
 
 .hidden {
@@ -39,13 +56,15 @@ input {
 	background-color: #e4e4e4;
 	text-align: center;
 	width: 100%;
-	font-size: 24px;
+	font-size: 22px;
 	color: #f7793b;
 	outline: none;
 	padding-top: 10px;
 	margin-bottom: 10px;
-	text-shadow: 1px 1px 2px #b1b0b0;
+	text-shadow: 1px 1px 3px #b1b0b0;
 	border-color: #a2a2a2;
+	font-family: 'Nixie One', serif;
+	font-weight: bold;
 }
 
 ::-webkit-input-placeholder { /* Chrome */
@@ -82,7 +101,11 @@ input {
   width: 100%;
 }
 
-.entrybutton:active {
+.#js-login:target {
+	background: linear-gradient(to top, #64cdff, #3cafe6);
+}
+
+.#signup:target {
 	background: linear-gradient(to top, #64cdff, #3cafe6);
 }
 
@@ -94,24 +117,29 @@ input {
 
 .logintitle {
 	color: #3db0e6;
-	font-size: 24px;
+	font-size: 30px;
 	padding-bottom: 10px;
 	margin: 0;
-	text-shadow: 1px 1px 2px rgb(165, 165, 165);
+	text-shadow: 1px 1px 7px rgb(165, 165, 165);
+	/* font-family: 'Bree Serif', serif; */
 	/* font-weight: bold; */
 }
 
 #signup {
 	text-align: center;
-  margin: 20px auto 0px;
-  padding: 5px;
-  font-size: 24px;
-  border: 2px solid #e0e0e0;
-  border-radius: 5px;
-  background: linear-gradient(to bottom, #64cdff, #3cafe6);
-  color: white;
-  cursor: pointer;
-  outline: none;
-  width: 300px;
-  box-sizing: border-box;
+	/* margin: 20px auto 0px; */
+	padding: 5px;
+	font-size: 20px;
+	border: 2px solid #e0e0e0;
+	border-radius: 5px;
+	background: linear-gradient(to bottom, #64cdff, #3cafe6);
+	color: white;
+	cursor: pointer;
+	outline: none;
+	width: 100px;
+	box-sizing: border-box;
+	position: absolute;
+	right: 20px;
+	top: 13px;
 }
+

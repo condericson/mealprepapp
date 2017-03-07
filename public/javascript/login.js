@@ -12,7 +12,13 @@ $('#js-login-form').submit(function(event) {
 		"username": $('#js-username-input').val(),
 		"password": $('#js-password-input').val()
 	};
-	logIn(userInfo);
+    if($('#js-username-input').val() == "" || $('#js-password-input').val() == "") {
+        $('#invalid').removeClass('hidden');
+    }
+    else {
+        logIn(userInfo);    
+    }
+	
 
 
 })
