@@ -7,21 +7,24 @@
 	<title>Meal Prep App</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="./css/login.css">
-	<link href="https://fonts.googleapis.com/css?family=Sansita|Ubuntu|Mr+Dafoe|Pacifico|Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Sansita|Ubuntu|Mr+Dafoe|Pacifico|Roboto|Bree+Serif|Nixie+One|Crete+Round" rel="stylesheet">
 </head>
 <body>
-	<nav></nav>
+	<nav>
+		<p class="pagetitle">Prepped and Ready</p>
+		<button id="signup">Sign up</button>
+	</nav>
 
 	<form id="js-login-form">
 		<p class="logintitle">Log in!</p>
 		<input type="" name="username" id="js-username-input" placeholder="Username">
 		<input type="password" name="password" id="js-password-input" placeholder="Password">
 		<button type="submit" id="js-login">Start Preping!</button>
+		<p id="invalid" class="hidden">Invalid username or password</p>
 	</form>
-	<p id="invalid" class="hidden">Invalid username or password</p>
 	
 
-	<button id="signup">Sign up for an account</button>
+	
 
 		
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>

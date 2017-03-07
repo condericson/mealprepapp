@@ -137,11 +137,34 @@ nav {
   position: fixed;
   top: 10px;
   background-color: white;
-  right: 30%;
+  /* right: 30%; */
   padding: 0 10px;
   z-index: 30;
   box-shadow: 0px 0px 8px 0px #4e4e4e;
   border-radius: 5px;
+  font-family: ubuntu;
+  padding: 25px;
+  left: 34%;
+}
+
+.fa-square-o {
+  padding: 0px 10px;
+}
+
+.grocerylisttitle {
+  font-size: 24px;
+  margin-left: 20px;
+  padding: 10px 0px 0px 10px;
+  /* text-align: center; */
+  font-size: 24px;
+  color: #f7793b;
+  font-weight: bold;
+  margin: 0px;
+}
+
+.ingredientsfromyummly {
+  position: relative;
+  margin: 40px 20px 20px 20px;
 }
 
 #recipeInfo {
@@ -461,6 +484,17 @@ nav {
   font-family: Ubuntu;
 }
 
+.daymarker {
+  font-family: Ubuntu;
+  text-align: right;
+  margin-right: 10px;
+  margin-bottom: 9px;
+  margin-top: 10px;
+  color: #00aafb;
+  font-weight: bold;
+  font-size: 15px;
+}
+
 .infoIconBin {
   color: black;
   font-weight: bold;
@@ -603,12 +637,13 @@ nav {
 
 ul {
   list-style: none;
+  padding-left: 15px;
 }
 
 .yourRecipes {
-  font-family: ubuntu;
   font-size: 26px;
   margin: 15px 0px;
+  font-family: 'Crete Round', serif;
 }
 
 
@@ -648,16 +683,43 @@ ul {
   left: -136px;
   top: 51px;
   width: 160px;
+  height: 106px;
   border-radius: 4px;
-  box-shadow: 1px 2px 2px 0px #888888;
+  box-shadow: 3px 3px 2px 0px #5f5e5e;
+  font-family: ubuntu;
 }
 
-.yes {
-  background-color: #f75555;
+.deletequestion > span {
+  margin-top: 10px;
+}
+
+
+.deletequestion {
+  color: black;
+  font-weight: bold;
+  margin: 12px;
+}
+
+.remove, .delete {
+  background-color: red;
+  position: absolute;
+  padding: 5px;
+  left: 11px;
+  border-radius: 5px;
+  width: 57px;
+  cursor: pointer;
+  color: white;
 }
 
 .no {
-  background-color: red;
+  background-color: #17bf00;
+  position: absolute;
+  padding: 5px;
+  right: 11px;
+  border-radius: 5px;
+  width: 45px;
+  cursor: pointer;
+  color: white;
 }
 
 .triangle {
