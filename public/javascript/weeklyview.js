@@ -15,8 +15,8 @@ getChefName($.cookie('meal-prep-app'));
 
 function getChefName(cookie){
 	$.ajax({
-		type: "GET",
-		dataType: "json",
+	type: "GET",
+	dataType: "json",
    	crossdomain: true,
    	headers: {"Access-Control-Allow-Origin": "*"},
    	contentType: "application/json; charset=utf-8",
@@ -60,6 +60,7 @@ function fillWeeklyView() {
        		var assignedColumn = $('#' + element.day.toLowerCase());
 	       	var html = '<li  class="inDayColumn"><div class="recipecontainer"><div class="infobox"><i class="fa fa-info-circle infoIconDBRecipe" aria-hidden="true"></i><i class="fa fa-trash recipedelete" aria-hidden="true"></i><div class="areyousure hidden"><p class="deletequestion">Remove from the week?</p><div class="remove">Remove</div><div class="no">No</div><div class="triangle"></div></div></div>';
 	       	html += '<p class="recipeName">' + element.title + '</p>';
+	       	html += '<p class="totalTime">' + element.totalTime + '</p>';
 	       	if(element.image) {
 						html += '<img class="recipeImage" src="' + element.image + '">';
 	        }
@@ -68,7 +69,7 @@ function fillWeeklyView() {
 	        	html += '<li>' + ingredient + '</li>';
 	        });
 	        html += '</ul>';
-	        html += '<p class="recipeSource">' + element.sourceRecipeUrl + '</p></div></li>';
+	        html += '<a href="' + element.sourceRecipeUrl + '" target="_blank"><p class="recipeSource">Checkout the recipe instructions, powered by Yummly</p></a></div></li>';
 	        assignedColumn.append(html);
        	}
       }); 
@@ -277,6 +278,7 @@ $('#yummlyApiRecipe').on('click', '.infoIconBin', function(event) {
 		$('#recipeInfo').html(
 			'<span class="close">&times;</span>' + 
 			'<p class="infoModalRecipeName">' + data.name + '</p>' +
+			'<p class="infoModalTotalTime">' + data.totalTime + '</p>' +
 			'<img class="modalRecipeImage" src="' + data.images[0].hostedLargeUrl + '">' +
 			'<ul>' + ingredients + '</ul>' +
 			'<a href="' + data.sourceRecipeUrl + '" target="_blank"><p class="yummlyAttribution">Checkout the recipe instructions, powered by Yummly!</p></a>'
@@ -427,6 +429,7 @@ function recipeInfoModalFill(element) {
 		});
 		var html = '<span class="close">&times;</span>' + 
 			'<p class="infoModalRecipeName">' + element.title + '</p>' +
+			'<p class="infoModalTotalTime">' + element.totalTime + '</p>' +
 			'<img class="modalRecipeImage" src="' + element.image + '">' +
 			'<ul class="infoModalIngredients">' + ingredients + '</ul>' + 
 			'<p class="instructions">' + element.instructions + '</p>'
@@ -786,7 +789,7 @@ function deleteRecipeFromDatabase(url) {
 
 
 
-
+console.log(state);
 });//document.ready end
 
 
