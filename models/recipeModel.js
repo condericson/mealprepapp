@@ -32,10 +32,6 @@ const RecipeSchema = mongoose.Schema({
     type: String,
     default: ""
   },
-  yummlyId: {
-    type: String,
-    default: ""
-  },
   totalTime: {
     type: String
   }

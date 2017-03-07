@@ -68,7 +68,7 @@ function fillWeeklyView() {
 	        });
 	        html += '</ul>';
 	        html += '<p class="recipeSource">' + element.sourceRecipeUrl + '</p></div></li>';
-	        assignedColumn.append(html);
+	        assignedColumn.html(html);
        	}
       }); 
      },
@@ -306,6 +306,10 @@ $('#browseRecipesButton').on('click', function(event) {
 	$('#myRecipeModal').removeClass('hidden');
   $('#yummlyApiRecipe ,#recipeInfo ,#recipeEntryModal ,#groceryListModal').addClass('hidden');
 	//Fill modal with recipes from user
+	fillMyRecipes()
+});
+
+function fillMyRecipes() {
 	$.ajax({
     type: "GET",
     dataType: "json",
@@ -328,6 +332,9 @@ $('#browseRecipesButton').on('click', function(event) {
 	       	if(recipe.image) {
 						html += '<img class="recipeImage" src="' + recipe.image + '">';
 	        }
+	        if(recipe.day.length > 0) {
+						html += '<p class="daymarker">' + recipe.day + '</p>';
+	        }
 	        html += '</div></li>';
 	      	};
 	      });
@@ -342,7 +349,7 @@ $('#browseRecipesButton').on('click', function(event) {
     	console.log('error');
     }
 	});
-});
+}
 
 
 
@@ -511,8 +518,7 @@ $(".recipeByDay").droppable({
 						'totalTime': element.totalTime,
 						'image': element.image,
 						'day': day,
-						'sourceRecipeUrl': element.sourceRecipeUrl,
-						'yummlyId': element.id
+						'sourceRecipeUrl': element.sourceRecipeUrl
     			}
     		}
     	})
@@ -542,7 +548,8 @@ function updateOnDrop(id, day) {
 			'image': data.images[0].hostedLargeUrl,
 			'day': day,
 			'sourceRecipeUrl': data.source.sourceRecipeUrl,
-			'yummlyId': data.id
+
+
 		};
 		addToDatabase(recipeObject);
 
@@ -689,14 +696,16 @@ $('.recipeByDay').on('click', '.remove', function(event) {
 				'image': element.image,
 				'day': "",
 				'sourceRecipeUrl': element.sourceRecipeUrl,
-				'yummlyId': element.yummlyId,
 				'instructions': element.instructions
+
 			};
 		};
 	});
 	console.log(id);
 	var url = '/recipes/' + id;
 	removeDay(url, recipeObject);
+	fillWeeklyView();
+	fillMyRecipes();
 	$(this).parent().parent().parent().parent().remove();
 })
 
@@ -739,8 +748,7 @@ $('#myRecipes').on('click', '.delete', function(event) {
 	console.log(id);
 	var url = '/recipes/' + id;
 	deleteRecipeFromDatabase(url);
-	$(this).parent().parent().parent().parent().remove();
-	fillWeeklyView();
+	/*$(this).parent().parent().parent().parent().remove();*/
 })
 
 function deleteRecipeFromDatabase(url) {
@@ -752,11 +760,14 @@ function deleteRecipeFromDatabase(url) {
      contentType: "application/json; charset=utf-8",
      url: url,
      success: function(data){
-       console.log('success');
+     	location.reload();
+      console.log('success');
+
      },
      error: function(err) {
      	console.log('Error');
      	console.log(err);
+
      }
 	});
 }
