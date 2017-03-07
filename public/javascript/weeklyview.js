@@ -53,11 +53,12 @@ function fillWeeklyView() {
      	if($.cookie('meal-prep-app')){
      		var user = $.cookie('meal-prep-app');
      	}
+     	state.recipesInWeek = [];
       data.forEach(function(element) {
-       	if(user == element.userId) {
+       	if(user == element.userId && element.day.length > 0) {
        		state.recipesInWeek.push(element);
        		var assignedColumn = $('#' + element.day.toLowerCase());
-	       	var html = '<li  class="inDayColumn"><div class="recipecontainer"><div class="infobox"><i class="fa fa-info-circle infoIconDBRecipe" aria-hidden="true"></i><i class="fa fa-trash recipedelete" aria-hidden="true"></i><div class="areyousure hidden"><p>Are you sure?</p><div class="remove">Delete</div><div class="no">No</div><div class="triangle"></div></div></div>';
+	       	var html = '<li  class="inDayColumn"><div class="recipecontainer"><div class="infobox"><i class="fa fa-info-circle infoIconDBRecipe" aria-hidden="true"></i><i class="fa fa-trash recipedelete" aria-hidden="true"></i><div class="areyousure hidden"><p class="deletequestion">Remove from the week?</p><div class="remove">Remove</div><div class="no">No</div><div class="triangle"></div></div></div>';
 	       	html += '<p class="recipeName">' + element.title + '</p>';
 	       	if(element.image) {
 						html += '<img class="recipeImage" src="' + element.image + '">';
@@ -68,7 +69,7 @@ function fillWeeklyView() {
 	        });
 	        html += '</ul>';
 	        html += '<p class="recipeSource">' + element.sourceRecipeUrl + '</p></div></li>';
-	        assignedColumn.html(html);
+	        assignedColumn.append(html);
        	}
       }); 
      },
@@ -214,6 +215,7 @@ $('#js-yummly-search').submit(function(event) {
 		"q": searchTerm.toLowerCase(),
 		'requirePictures': 'true'
 	};
+	state.recipesInSearchResults = [];
 	$.getJSON(url, yummlyApp, function(data) {
 		var results = data.matches;
 		state.recipesInSearchResults = data.matches;
@@ -252,6 +254,7 @@ $('#yummlyApiRecipe').on('click', '.infoIconBin', function(event) {
 	//Open the modal
 	console.log(state.recipesInSearchResults);
 	$('#recipeInfo').removeClass('hidden');
+	$('#groceryListModal').addClass('hidden');
 	var recipeName = $(this).siblings($('.recipeName')).text();
 	var recipeID = "";
 	state.recipesInSearchResults.forEach(function(element){
@@ -322,18 +325,19 @@ function fillMyRecipes() {
       if($.cookie('meal-prep-app')){
      		var user = $.cookie('meal-prep-app');
      	}
-
+     	state.myRecipes = [];
      	var html = "";
       data.forEach(function(recipe) {
        	if(user == recipe.userId) {
        		state.myRecipes.push(recipe);
-	       	html += '<li class="inBinModal"><div class="recipecontainer"><div class="infobox"><i class="fa fa-info-circle infoIconDBRecipe" aria-hidden="true"></i><i class="fa fa-trash recipedelete" aria-hidden="true"></i><div class="areyousure hidden"><p>Are you sure?</p><div class="delete">Delete</div><div class="no">No</div><div class="triangle"></div></div></div>';
+	       	html += '<li class="inBinModal"><div class="recipecontainer"><div class="infobox"><i class="fa fa-info-circle infoIconDBRecipe" aria-hidden="true"></i><i class="fa fa-trash recipedelete" aria-hidden="true"></i><div class="areyousure hidden"><p class="deletequestion">Delete from database?</p><div class="delete">Delete</div><div class="no">No</div><div class="triangle"></div></div></div>';
 	       	html += '<p class="recipeName">' + recipe.title + '</p>';
 	       	if(recipe.image) {
 						html += '<img class="recipeImage" src="' + recipe.image + '">';
 	        }
 	        if(recipe.day.length > 0) {
-						html += '<p class="daymarker">' + recipe.day + '</p>';
+	        	var Day = recipe.day.charAt(0).toUpperCase() + recipe.day.slice(1);
+						html += '<p class="daymarker">' + Day + '</p>';
 	        }
 	        html += '</div></li>';
 	      	};
@@ -360,8 +364,9 @@ function fillMyRecipes() {
 $('#myRecipeModal').on('click', '.infoIconDBRecipe', function(event) {
 	//Open the modal
 	$('#recipeInfo').removeClass('hidden');
+	$('#groceryListModal').addClass('hidden');
 	//Get recipe title from p element
-	var recipeTitle = $(this).parent().sibling('.recipeName').text();
+	var recipeTitle = $(this).parent().siblings('.recipeName').text();
 	console.log(recipeTitle);
 
 	$.ajax({
@@ -400,6 +405,7 @@ $('#myRecipeModal').on('click', '.infoIconDBRecipe', function(event) {
 $('.recipeByDay').on('click', '.infoIconDBRecipe', function(event) {
 	//Open the modal
 	$('#recipeInfo').removeClass('hidden');
+	$('#groceryListModal').addClass('hidden');
 	//Get recipe title from p element
 	var recipeTitle = $(this).parent().siblings('.recipeName').text();
 	console.log(recipeTitle);
@@ -638,7 +644,7 @@ $('#groceryListButton').on('click', function(event) {
 		console.log(list);
 		var html = "";
 		for(var key in list) {
-			html += '<li>' + list[key] + ' ' + key + '</li>';
+			html += '<li>' + list[key] + ' <i class="fa fa-square-o" aria-hidden="true"></i> ' + key + '</li>';
 		}
 		$('#groceryList').html(html);
 		$('#groceryListModal').removeClass('hidden');
@@ -704,6 +710,7 @@ $('.recipeByDay').on('click', '.remove', function(event) {
 	console.log(id);
 	var url = '/recipes/' + id;
 	removeDay(url, recipeObject);
+	$('.clearOnDrop').html("");
 	fillWeeklyView();
 	fillMyRecipes();
 	$(this).parent().parent().parent().parent().remove();
@@ -735,12 +742,12 @@ function removeDay(url, recipeObject) {
 
 
 $('#myRecipes').on('click', '.delete', function(event) {
-	console.log(state.recipesInWeek);
+	console.log(state.myRecipes);
 	console.log('deleting');
 	var recipeName = $(this).parent().parent().siblings('.recipeName').text();
 	console.log(recipeName);
 	var id = "";
-	state.recipesInWeek.forEach(function(element){
+	state.myRecipes.forEach(function(element){
 		if(recipeName == element.title) {
 			id = element._id;
 		}
@@ -760,7 +767,10 @@ function deleteRecipeFromDatabase(url) {
      contentType: "application/json; charset=utf-8",
      url: url,
      success: function(data){
-     	location.reload();
+     	/*location.reload();*/
+     	$('.clearOnDrop').html("");
+			fillWeeklyView();
+     	fillMyRecipes();
       console.log('success');
 
      },
