@@ -250,6 +250,12 @@ nav {
   left: 50%;
 } */
 
+.entryheader {
+  color: #f7793b;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 0px;
+}
 
 
 
@@ -395,12 +401,37 @@ nav {
   top: 0;
 }
 
+.bluebackground {
+  background-color: #9fe0ff;
+  padding: 10px 0px;
+}
+
+.whitebackground {
+  background-color: white;
+  padding: 10px 0px;
+}
+
+.entrytitlelabel {
+  margin: 10px;
+}
+
+#title {
+  margin: 10px;
+}
+
+.entryingredients {
+  margin: 10px;
+}
+
+
+
 #js-recipe-submit {
   margin-bottom: 15px;
 }
 
 .ingrediententry, #addIngredient {
   background-color: white;
+  margin: 0px 0px 0px 15px;
 }
 
 
@@ -642,6 +673,7 @@ nav {
 ul {
   list-style: none;
   padding-left: 15px;
+  margin-bottom: 0px;
 }
 
 .yourRecipes {

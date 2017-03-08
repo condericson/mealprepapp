@@ -78,18 +78,34 @@
 	<div class="greybackground hidden">
 		<div id="recipeEntryModal">
 			<span id="entryclose" title="Close" class="close">&times;</span>
+
 			<p class="entryheader">Enter your recipe for <span id="assignedDay"></span></p>
-			<label class="entrytitlelabel">Title</label>
-			<input type="text" name="title" id="title">
-			<label class="entryingredients">Ingredients</label>
-			<ul id="ingredientList">
-				<li><input type="text" name="ingredient" id="ingredient1" class="ingredientEntry"></li>
-				<li><input type="text" name="ingredient" id="ingredient2" class="ingredientEntry"></li>
-				<li><input type="text" name="ingredient" id="ingredient3" class="ingredientEntry"></li>
-			</ul>
-			<button id="addIngredient">Add an ingredient</button>
-			<h3>Cooking Instructions</h3>
-			<textarea name="instructions" id="instructions" cols="50" rows="10"></textarea>
+			
+			<div class="bluebackground">
+				<p class="entrytitlelabel">Title</p>
+				<input type="text" name="title" id="title">
+			</div>
+
+			<div class="whitebackground">
+				<p class="entryingredients">Ingredients</p>
+				<ul id="ingredientList">
+					<li><input type="text" name="ingredient" id="ingredient1" class="ingredientEntry" placeholder="i.e. apples"></li>
+					<li><input type="text" name="ingredient" id="ingredient2" class="ingredientEntry" placeholder="i.e. sugar"></li>
+					<li><input type="text" name="ingredient" id="ingredient3" class="ingredientEntry" placeholder="i.e. love"></li>
+				</ul>
+				<button id="addIngredient">Add an ingredient</button>
+			</div>
+
+			<div class="bluebackground">
+				<p class="cookinginstructions">Cooking Instructions</p>
+				<textarea name="instructions" id="instructions" cols="50" rows="10"></textarea>
+			</div>
+
+			<div class="whitebackground">
+				<p class="preptime">Prep time</p>
+				<input type="text" name="preptime" placeholder="25 min">
+			</div>
+
 			<button type="submit" id="js-recipe-submit">Add Recipe</button>
 		</div>
 	</div>
