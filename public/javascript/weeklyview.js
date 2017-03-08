@@ -578,6 +578,7 @@ function addToDatabase(recipeObject) {
       console.log('success');
       $('.clearOnDrop').html("");
 			fillWeeklyView();
+			fillMyRecipes();
      },
      error: function(err) {
      	console.log('Error');

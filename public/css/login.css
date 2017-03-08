@@ -1,5 +1,5 @@
 * {
-	font-family: 'Crete Round', serif;
+	font-family: ubuntu;
 }
 
 html {
@@ -21,7 +21,7 @@ nav {
 
 .pagetitle {
 	color: #f7793b;
-	font-size: 40px;
+	font-size: 45px;
 	position: absolute;
 	margin: 0;
 	top: 4px;
