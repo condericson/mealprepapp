@@ -1147,6 +1147,20 @@ ul {
     margin-left: 10%;
   }
 
+  #groceryListModal {
+    position: absolute;
+    top: 10px;
+    background-color: white;
+    right: 1%;
+    padding: 0 10px;
+    z-index: 30;
+    box-shadow: 0px 0px 8px 0px #4e4e4e;
+    border-radius: 5px;
+    font-family: ubuntu;
+    padding: 25px;
+    left: 1%;
+  }
+
 
 /*font size for mobile
 

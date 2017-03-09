@@ -646,6 +646,22 @@ window.onclick = function(event) {
 $('#groceryListButton').on('click', function(event) {
   	$('#yummlyApiRecipe ,#recipeInfo ,#recipeEntryModal ,#groceryListModal').addClass('hidden');
 		var recipes = state.recipesInWeek;
+		var list = [];
+		var html = "";
+		recipes.forEach(function(element) {
+			list = list.concat(element.ingredients);
+		})
+		console.log(list);
+		list.forEach(function(ingredient) {
+			html += '<li><i class="fa fa-square-o" aria-hidden="true"></i> ' + ingredient + '</li>';
+		});
+		$('#groceryList').html(html);
+		$('#groceryListModal').removeClass('hidden');
+});
+
+/*$('#groceryListButton').on('click', function(event) {
+  	$('#yummlyApiRecipe ,#recipeInfo ,#recipeEntryModal ,#groceryListModal').addClass('hidden');
+		var recipes = state.recipesInWeek;
 		var list = {};
 		recipes.forEach(function(recipe) {
 			recipe.ingredients.forEach(function(element){
@@ -664,7 +680,7 @@ $('#groceryListButton').on('click', function(event) {
 		}
 		$('#groceryList').html(html);
 		$('#groceryListModal').removeClass('hidden');
-})
+})*/
 
 
 
