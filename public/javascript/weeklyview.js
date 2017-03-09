@@ -224,16 +224,17 @@ $('#js-yummly-search').submit(function(event) {
 		console.log(state.recipesInSearchResults);
 		var html = "";
 		results.forEach(function(object){
-			html += '<li class="inBinModal yummlyresult">' + 
+			html += '<li class="draggableItem inBinModal yummlyresult">' + 
 				'<div class="recipecontainer">' + 
 				'<i class="fa fa-info-circle infoIconBin" aria-hidden="true"></i>' + 
 				'<p class="recipeName">' + object.recipeName + '</p>' +
 				'<img class="recipeImage" src="' + object.smallImageUrls[0] + '">' +
+				'<div class="addToWeek"><p>Day</p><div class="weekoptions hidden"><ul><li class="weekoptionli">Su</li><li class="weekoptionli">M</li><li class="weekoptionli">T</li><li class="weekoptionli">W</li><li class="weekoptionli">Th</li><li class="weekoptionli">F</li><li class="weekoptionli">Sa</li></ul></div></div>' +
 				'</div>' + 
 			'</li>';		
 		});
 		$('#yummlyResults').html(html);
-		$("li", "#yummlyResults").draggable({
+		$(".draggableItem", "#yummlyResults").draggable({
 				helper: 'clone',
 			 	revert: 'invalid'
 			});
@@ -333,7 +334,7 @@ function fillMyRecipes() {
       data.forEach(function(recipe) {
        	if(user == recipe.userId) {
        		state.myRecipes.push(recipe);
-	       	html += '<li class="inBinModal"><div class="recipecontainer"><div class="infobox"><i class="fa fa-info-circle infoIconDBRecipe" aria-hidden="true"></i><i class="fa fa-trash recipedelete" aria-hidden="true"></i><div class="areyousure hidden"><p class="deletequestion">Delete from database?</p><div class="delete">Delete</div><div class="no">No</div><div class="triangle"></div></div></div>';
+	       	html += '<li class="draggableItem inBinModal"><div class="recipecontainer"><div class="infobox"><i class="fa fa-info-circle infoIconDBRecipe" aria-hidden="true"></i><i class="fa fa-trash recipedelete" aria-hidden="true"></i><div class="areyousure hidden"><p class="deletequestion">Delete from database?</p><div class="delete">Delete</div><div class="no">No</div><div class="triangle"></div></div></div>';
 	       	html += '<p class="recipeName">' + recipe.title + '</p>';
 	       	if(recipe.image) {
 						html += '<img class="recipeImage" src="' + recipe.image + '">';
@@ -342,11 +343,12 @@ function fillMyRecipes() {
 	        	var Day = recipe.day.charAt(0).toUpperCase() + recipe.day.slice(1);
 						html += '<p class="daymarker">' + Day + '</p>';
 	        }
+	        html += '<div class="addToWeek"><p>Day</p><div class="weekoptions hidden"><ul><li class="weekoptionli">Su</li><li class="weekoptionli">M</li><li class="weekoptionli">T</li><li class="weekoptionli">W</li><li class="weekoptionli">Th</li><li class="weekoptionli">F</li><li class="weekoptionli">Sa</li></ul></div></div>';
 	        html += '</div></li>';
 	      	};
 	      });
 	    $('#myRecipes').append(html);
-	    $("li", "#myRecipes").draggable({
+	    $(".draggableItem", "#myRecipes").draggable({
 				helper: 'clone',
 			 	revert: 'invalid'
 			});
@@ -459,12 +461,26 @@ $('div').on('click', '.close', function(event) {
 	$(this).parent('div').addClass('hidden');
 });
 
+$('div').on('click', '.myRecipeClose', function(event) {
+	$(this).parent().parent().addClass('hidden');
+});
+
 $('#entryclose').on('click', function(event) {
 	 $('.greybackground').addClass('hidden');
 });
 
 
 
+
+//add to week menu options
+$('#myRecipeModal').on('click', '.addToWeek', function(event) {
+	$(this).children('.weekoptions').removeClass('hidden');
+});
+
+$('#myRecipeModal').on('click', '.weekoptionli', function(event) {
+	console.log($(this).text());
+	/*var day = $(this).attr('id').val();*/
+});
 
 
 
@@ -478,13 +494,13 @@ $('#entryclose').on('click', function(event) {
 
 
 //Drag and drop JS
-$("li", "#yummlyResults").draggable({
+$(".draggableItem", "#yummlyResults").draggable({
 	helper: 'clone',
  	revert: 'invalid',
  	containment: "document"
 });
 
-$("li", "#myRecipes").draggable({
+$(".draggableItem", "#myRecipes").draggable({
 	helper: 'clone',
  	revert: 'invalid',
  	containment: "document"
@@ -540,12 +556,12 @@ $(".recipeByDay").droppable({
   }
 });
 
-$('#myRecipeModal').on('dragstart', '.inBinModal', function(event) {
+$('#myRecipeModal').on('dragstart', '.draggableItem', function(event) {
 	console.log('dragstart', this)
 	$('#myRecipeModal').addClass('js-scrollToggle');
 })
 
-$('#myRecipeModal').on('mouseup', '.inBinModal', function(event) {
+$('#myRecipeModal').on('mouseup', '.draggableItem', function(event) {
 	console.log('mouseup', this)
 	$('#myRecipeModal').removeClass('js-scrollToggle');
 })

@@ -115,11 +115,10 @@
 
 	<div id="yummlyApiRecipe" class="binModal hidden">
 		<span title="Close" class="close">&times;</span>
-		<p class="findarecipe">Find a fantastic recipe from <a class="yummlylink2" href="http://www.yummly.com" target="_blank"><img id="yummlylogo" src="./images/yummly_logo.png"></a></p>
+		<p class="findarecipe">Recipes from <a class="yummlylink2" href="http://www.yummly.com" target="_blank"><img id="yummlylogo" src="./images/yummly_logo.png"></a></p>
 		<form id="js-yummly-search">
-			<label class="searchLabel">Search</label>
 			<input type="text" name="search" id="yummlysearch">
-			<button type="submit">Find a Recipe</button>
+			<button type="submit" class="yummlysearchbutton">Search</button>
 		</form>
 		<ul id="yummlyResults">
 				
@@ -132,12 +131,13 @@
 
 <!-- My recipes modal -->
 	<div id="myRecipeModal" class="binModal hidden">
-			<div class="myRecipeBinModal-header">
-				<span title="Close" class="close">&times;</span>
-				<p class="yourRecipes">Your previously used recipes! Drag and drop then into the week to reuse them.</p>
-			</div>
-			<ul id="myRecipes">
-				<!-- Recipes appear here -->
+		
+		<div class="myRecipeBinModal-header">
+			<span title="Close" class="myRecipeClose">&times;</span>	
+			<p class="yourRecipes">Your recipes!</p>
+		</div>
+		<ul id="myRecipes">
+			<!-- Recipes appear here -->
 
 		</ul>
 	</div>
