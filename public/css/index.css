@@ -16,6 +16,8 @@ body {
 nav {
 	height: 60px;
 	position: relative;
+	z-index: 5;
+	background-color: #64cdff;
 }
 
 .login {
@@ -49,6 +51,8 @@ nav {
 	background-color: lightgrey;
 	position: relative;
 	overflow: hidden;
+	background-color: #f7793b;
+	z-index: 3;
 }
 
 video {
@@ -56,21 +60,21 @@ video {
 	position: absolute;
 	top: -192px;
 	height: auto;
-	width: 100%;
+	width: 110%;
 	min-width: 1513px;
 }
 
 #titlediv {
 	position: relative;
+	z-index: 4;
 }
 .title {
 	position: absolute;
-	text-align: center;
 	font-size: 48px;
 	margin: 0;
 	font-weight: bold;
-	top: -220px;
-	left: 161px;
+	top: 281px;
+	left: 150px;
 	color: white;
 	text-shadow: 1px 1px 8px black;
 }
@@ -81,19 +85,16 @@ video {
 	padding-top: 23px;
 	font-size: 17px;
 	position: absolute;
-	top: -172px;
-	left: 162px;
+	top: 325px;
+	left: 151px;
 	color: white;
 	text-shadow: 1px 1px 8px black;
 }
 
 .signupform {
-	/* margin: 0 auto; */
-	width: 300px;
+	margin: 20px auto;
+	width: 270px;
 	text-align: center;
-	position: absolute;
-	right: 18%;
-	top: 1em;
 	padding: 15px;
 	border: 3px solid #e0e0e0;
 	border-radius: 5px;
@@ -154,6 +155,10 @@ video {
 
 .relative {
 	position: relative;
+	z-index: 5;
+	padding-top: 10px;
+	background-color: #64cdff;
+	height: 42%;
 }
 
 
@@ -165,4 +170,62 @@ video {
 	margin: 0;
 	text-shadow: 1px 1px 2px rgb(165, 165, 165);
 	/* font-weight: bold; */
+}
+
+.altbackground {
+	display: none;
+}
+
+@media only screen and (max-width: 1220px) {
+	video {
+		right: -10%;
+	}
+
+}
+
+@media only screen and (max-width: 860px) {
+	video {
+		left: -40%;
+	}
+
+}
+
+@media only screen and (max-width: 700px) {
+	video {
+		display: none;
+	}
+
+	.altbackground {
+		display: block;
+		position: fixed;
+		top: 26%;
+		left: 53%;
+		height: 79%;
+		transform: translate(-50%, -50%) rotate(90deg);
+		/* transform: rotate(45deg); */
+	}
+
+	.title {
+		position: absolute;
+		font-size: 48px;
+		margin: 0;
+		font-weight: bold;
+		top: 17px;
+		left: 37px;
+		color: white;
+		text-shadow: 1px 1px 8px black;
+	}
+
+	.description {
+		text-align: left;
+		margin: 0;
+		padding-top: 23px;
+		font-size: 17px;
+		position: absolute;
+		top: 70px;
+		left: 37px;
+		color: white;
+		text-shadow: 1px 1px 8px black;
+	}
+
 }

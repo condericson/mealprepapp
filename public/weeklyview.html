@@ -18,7 +18,7 @@
 </head>
 <body background="./images/background.png">
 	<nav>
-		<div class="titlediv"><span class="title">Welcome, Chef <span id="usernameInTitle"></span>!</span></div>		
+		<div class="titlediv"><span class="title">Welcome, Chef <span id="usernameInTitle"></span>!</span><span class="title2">Prepper</span></div>		
 		
 		<div class="settings">
 			<button class="dropdown-button" id="dropdown-button"><i class="fa fa-bars" aria-hidden="true"></i></button>
@@ -38,37 +38,37 @@
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Sunday</h3>
 			<ul id="sunday" class="clearOnDrop"></ul>
-			<div class="addARecipeButton">+</div>
+			<div class="addARecipeButton">+ Add recipe</div>
 		</div>
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Monday</h3>
 			<ul id="monday" class="clearOnDrop"></ul>
-			<div class="addARecipeButton">+</div>
+			<div class="addARecipeButton">+ Add recipe</div>
 		</div>
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Tuesday</h3>
 			<ul id="tuesday" class="clearOnDrop"></ul>
-			<div class="addARecipeButton">+</div>
+			<div class="addARecipeButton">+ Add recipe</div>
 		</div>
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Wednesday</h3>
 			<ul id="wednesday" class="clearOnDrop"></ul>
-			<div class="addARecipeButton">+</div>
+			<div class="addARecipeButton">+ Add recipe</div>
 		</div>
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Thursday</h3>
 			<ul id="thursday" class="clearOnDrop"></ul>
-			<div class="addARecipeButton">+</div>
+			<div class="addARecipeButton">+ Add recipe</div>
 		</div>
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Friday</h3>
 			<ul id="friday" class="clearOnDrop"></ul>
-			<div class="addARecipeButton">+</div>
+			<div class="addARecipeButton">+ Add recipe</div>
 			</div>
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Saturday</h3>
 			<ul id="saturday" class="clearOnDrop"></ul>
-			<div class="addARecipeButton">+</div>
+			<div class="addARecipeButton">+ Add recipe</div>
 		</div>
 	</div>
 
@@ -98,12 +98,12 @@
 
 			<div class="bluebackground">
 				<p class="cookinginstructions">Cooking Instructions</p>
-				<textarea name="instructions" id="instructions" cols="50" rows="10"></textarea>
+				<textarea name="instructions" id="instructions"></textarea> <!--  cols="50" rows="10" -->
 			</div>
 
 			<div class="whitebackground">
 				<p class="preptime">Prep time</p>
-				<input type="text" name="preptime" placeholder="25 min">
+				<input type="text" name="preptime" class="preptimeinput" placeholder="25 min">
 			</div>
 
 			<button type="submit" id="js-recipe-submit">Add Recipe</button>
@@ -132,8 +132,10 @@
 
 <!-- My recipes modal -->
 	<div id="myRecipeModal" class="binModal hidden">
-			<span title="Close" class="close">&times;</span>
-			<p class="yourRecipes">Your previously used recipes! Drag and drop then into the week to reuse them.</p>
+			<div class="myRecipeBinModal-header">
+				<span title="Close" class="close">&times;</span>
+				<p class="yourRecipes">Your previously used recipes! Drag and drop then into the week to reuse them.</p>
+			</div>
 			<ul id="myRecipes">
 				<!-- Recipes appear here -->
 

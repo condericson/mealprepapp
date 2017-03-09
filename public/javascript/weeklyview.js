@@ -64,12 +64,13 @@ function fillWeeklyView() {
 	       	if(element.image) {
 						html += '<img class="recipeImage" src="' + element.image + '">';
 	        }
+	        html += '<div class="ingredientDropDown"><div class="dropdownarrow arrowup"></div>Ingredients</div>';
 	        html += '<ul class="fullscreeningredientlist">';
 	        element.ingredients.forEach(function(ingredient) {
 	        	html += '<li>' + ingredient + '</li>';
 	        });
 	        html += '</ul>';
-	        html += '<a href="' + element.sourceRecipeUrl + '" target="_blank"><p class="recipeSource">Checkout the recipe instructions, powered by Yummly</p></a></div></li>';
+	        html += '<a href="' + element.sourceRecipeUrl + '" target="_blank" class="recipeSourceLink"><p class="recipeSource">Recipe instructions</p></a></div></li>';
 	        assignedColumn.append(html);
        	}
       }); 
@@ -281,7 +282,7 @@ $('#yummlyApiRecipe').on('click', '.infoIconBin', function(event) {
 			'<p class="infoModalTotalTime">' + data.totalTime + '</p>' +
 			'<img class="modalRecipeImage" src="' + data.images[0].hostedLargeUrl + '">' +
 			'<ul>' + ingredients + '</ul>' +
-			'<a href="' + data.sourceRecipeUrl + '" target="_blank"><p class="yummlyAttribution">Checkout the recipe instructions, powered by Yummly!</p></a>'
+			'<a href="' + data.sourceRecipeUrl + '" target="_blank"><p class="yummlyAttribution">Recipe instructions</p></a>'
 			);
 	});
 });
@@ -434,7 +435,7 @@ function recipeInfoModalFill(element) {
 			'<ul class="infoModalIngredients">' + ingredients + '</ul>' + 
 			'<p class="instructions">' + element.instructions + '</p>'
 		if(element.sourceRecipeUrl.length > 0) {
-			html += '<a href="' + element.sourceRecipeUrl + '" target="_blank"><p class="yummlyAttribution">Checkout the recipe instructions, powered by Yummly!</p></a>'
+			html += '<a href="' + element.sourceRecipeUrl + '" target="_blank"><p class="yummlyAttribution">Recipe instructions</p></a>'
 		};
  		$('#recipeInfo').html(html);
 }
@@ -538,6 +539,17 @@ $(".recipeByDay").droppable({
 	 		
   }
 });
+
+$('#myRecipeModal').on('dragstart', '.inBinModal', function(event) {
+	console.log('dragstart', this)
+	$('#myRecipeModal').addClass('js-scrollToggle');
+})
+
+$('#myRecipeModal').on('mouseup', '.inBinModal', function(event) {
+	console.log('mouseup', this)
+	$('#myRecipeModal').removeClass('js-scrollToggle');
+})
+
 
 
 function updateOnDrop(id, day) {
@@ -786,7 +798,11 @@ function deleteRecipeFromDatabase(url) {
 	});
 }
 
-
+$('.recipeByDay').on('click', '.ingredientDropDown', function(event) {
+	$('.dropdownarrow').toggleClass('arrowup');
+	$('.dropdownarrow').toggleClass('arrowdown');
+	$('.fullscreeningredientlist').toggleClass('displayed');
+})
 
 
 
