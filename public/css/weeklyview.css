@@ -318,7 +318,7 @@ nav {
 
 .addARecipeButton {
   color: black;
-  border: 3px solid black;
+  border: 2px solid black;
   font-size: 17px;
   border-radius: 5px;
   text-align: center;
@@ -329,6 +329,7 @@ nav {
   cursor: pointer;
   box-sizing: border-box;
   background-color: #ffffff;
+  font-weight: bold;
 }
 
 
@@ -380,7 +381,7 @@ nav {
   color: #FFFFFF;
   line-height: 25px;
   position: absolute;
-  right: 0px;
+  right: 7px;
   text-align: center;
   top: 10px;
   width: 24px;
@@ -457,36 +458,70 @@ nav {
   margin: 0px 0px 10px 10px;
   border-width: 0px 0px 1px 0px;
   background-color: #9fe0ff;
-  text-align: center;
+  text-align: left;
   font-size: 18px;
   color: black;
   outline: none;
   margin-bottom: 10px;
   text-shadow: 1px 1px 2px #b1b0b0;
   border-color: black;
+  width: 90%;
+  font-family: ubuntu;
 }
 
 .entryingredients {
   margin: 10px;
+  font-size: 22px;
+  color: #9fe0ff;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #e6e6e6;
 }
 
-.cookinginstructions {
-  margin: 10px;
+.ingredientEntry {
+  border-width: 0px 0px 10px 0px;
+  border-bottom: 1px solid black;
+  margin-left: 15px;
+  font-family: ubuntu;
+  outline: none;
+  font-size: 16px;
+  width: 50%;
 }
+
+.cookinginstructions {margin: 10px;font-size: 22px;color: white;font-weight: bold;text-shadow: 1px 1px 4px #48b0e2;}
 
 #instructions {
-  width: 80%;
+  max-width: 93%;
   height: 100px;
   margin: 10px;
+  outline: none;
+  width: 93%;
 }
 
 .preptime {
   margin: 10px;
+  font-size: 22px;
+  color: #9fe0ff;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #e6e6e6;
 }
 
 .preptimeinput {
 
 margin: 10px;
+
+border-width: 0px 0px 10px 0px;
+
+border-bottom: 1px solid black;
+
+margin-left: 15px;
+
+font-family: ubuntu;
+
+outline: none;
+
+font-size: 16px;
+
+width: 50%;
 }
 
 #js-recipe-submit {
@@ -504,7 +539,17 @@ margin: 10px;
 
 .ingrediententry, #addIngredient {
   background-color: white;
-  margin: 0px 0px 0px 15px;
+  margin-left: 15px;
+  font-family: ubuntu;
+  outline: none;
+  font-size: 16px;
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+  background-color: #9fe0ff;
+  border: none;
+  box-shadow: 1px 1px 1px #b7b7b7;
+  font-weight: bold;
 }
 
 
@@ -631,14 +676,14 @@ margin: 10px;
 
 .myRecipeBinModal-header {
   width: 95%;
-  box-shadow: 0px 12px 20px #b5e3f9;
-  position: fixed;
-  background-color: #b5e3f9;
+  /* box-shadow: 0px 12px 20px #b5e3f9; */
+  /* position: fixed; */
+  /* background-color: #b5e3f9; */
   z-index: 9;
 }
 
 #myRecipes {
-  margin-top: 50px;
+  margin-top: 0px;
 }
 
 .inDayColumn {
@@ -772,6 +817,8 @@ ul {
   font-size: 26px;
   margin: 15px 0px 0px 40px;
   font-family: 'Crete Round', serif;
+  /* position: fixed; */
+  left: 0px;
 }
 
 
@@ -1071,7 +1118,7 @@ ul {
 
   .weekoptions > ul > li {
     float: left;
-    padding: 0px 3.9px;
+    padding: 0px 3.7px;
     border-left: 1px solid #b5e3f9;
     font-size: 19px;
   }
@@ -1208,6 +1255,7 @@ ul {
 
   .displayed {
     display: list-item;
+    margin-left: 28px;
   }
 
   .inDayColumn > .recipecontainer > .totalTime {
