@@ -27,7 +27,6 @@ router.post('/', jsonParser, (req, res) => {
         'day': req.body.day,
         'image': req.body.image,
         'sourceRecipeUrl': req.body.sourceRecipeUrl,
-        'yummlyId': req.body.yummlyId,
         'totalTime': req.body.totalTime
 	}, function(err, recipe){
 		if(err) {
@@ -52,7 +51,6 @@ router.put('/:id', jsonParser, function(req, res) {
         day: req.body.day,
         image: req.body.image,
         sourceRecipeUrl: req.body.sourceRecipeUrl,
-        yummlyId: req.body.yummlyId,
         totalTime: req.body.totalTime
       }
     },

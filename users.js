@@ -14,14 +14,14 @@ router.use(cookieParser());
 
 
 
-router.get('/', (req,res) => {
+/*router.get('/', (req,res) => {
   User.find(function(err, user) {
     if(err) {
       res.status(500).json({"message": "Error!"});
     }
     res.status(201).json(user);
   })
-});
+});*/
 
 router.get('/logout', (req,res) => {
   res.clearCookie("meal-prep-app");

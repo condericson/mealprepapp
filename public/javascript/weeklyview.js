@@ -1,3 +1,17 @@
+/*Things to fix:
+yummly cutting off
+recipe info from yummly li's
+
+*/
+
+
+
+
+
+
+
+
+
 /*const moment = require('moment');*/
 
 var state = {
@@ -496,7 +510,7 @@ $('#yummlyApiRecipe').on('click', '.weekoptionli', function(event) {
 function clickToAddToDay(selectedDay) {
 	console.log(selectedDay.text());
 	var shortenedDay = selectedDay.text().toLowerCase();
-	var assignedDay = function() {
+	var assignedDay = (function() {
 		if(shortenedDay == 'su') {
 			return 'sunday';
 		}
@@ -518,7 +532,7 @@ function clickToAddToDay(selectedDay) {
 		if(shortenedDay == 'sa') {
 			return 'saturday';
 		}
-	};
+	}) ();
 	console.log(assignedDay);
 
 }
