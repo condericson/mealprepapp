@@ -1,7 +1,7 @@
-/*Things to fix:
+/*
+Things to fix:
 yummly cutting off
 recipe info from yummly li's
-
 */
 
 
@@ -23,9 +23,12 @@ var state = {
 
 $(document).ready(function() {
 
+var cookie = $.cookie('meal-prep-app');
 
+var correctedCookieId = cookie.substring(3, cookie.length - 1);
+console.log(correctedCookieId);
+getChefName(correctedCookieId);
 
-getChefName($.cookie('meal-prep-app'));
 
 function getChefName(cookie){
 	$.ajax({
@@ -34,16 +37,11 @@ function getChefName(cookie){
    	crossdomain: true,
    	headers: {"Access-Control-Allow-Origin": "*"},
    	contentType: "application/json; charset=utf-8",
-   	url: '/users',
+   	url: '/users/' + cookie,
    	success: function(data){
-     	data.forEach(function(element) {
-     		var id = ('j:"' + element._id + '"');
-     		if(id == cookie) {
-     			var name = element.chefName;
-     			$('#usernameInTitle').text(name);
-     		}	
-     	})
-     },
+			var name = data.chefName;
+			$('#usernameInTitle').text(name);
+    },
     error: function(data) {
     	console.log('error');
     }

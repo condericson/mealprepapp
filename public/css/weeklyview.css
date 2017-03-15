@@ -1300,3 +1300,21 @@ ul {
     left: 1%;
   }
 
+  .poweredBy {
+    text-align: left;
+    margin-left: 30px;
+    width: auto;
+    font-size: 12px;
+  }
+
+  .yummlylink {
+    padding-left: 7px;
+  }
+
+  #yummlylogo {
+    width: 53px;
+  }
+
+
+
+}

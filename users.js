@@ -12,8 +12,6 @@ const jsonParser = bodyParser.json();
 router.use(morgan('common'));
 router.use(cookieParser());
 
-
-
 /*router.get('/', (req,res) => {
   User.find(function(err, user) {
     if(err) {
@@ -22,6 +20,20 @@ router.use(cookieParser());
     res.status(201).json(user);
   })
 });*/
+
+
+router.get('/:id', (req, res) => {
+  var _id = mongoose.Types.ObjectId(req.params.id);
+  console.log("ID HERE", _id);
+  User.findOne({
+    _id: _id
+  }, function(err, user){
+    if(err) {
+      res.status(500).json({"message":"Username not found"})
+    }
+    res.status(201).json(user);      
+  });
+});
 
 router.get('/logout', (req,res) => {
   res.clearCookie("meal-prep-app");
@@ -58,7 +70,6 @@ router.post('/login', jsonParser, (req, res) => {
       /*}*/
     }    
   });
-  
 });
 
 

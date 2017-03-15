@@ -8,6 +8,20 @@ var should = chai.should();
 chai.use(chaiHttp);
 
 
+
+
+
+
+
+
+
+
+
+
+// Recipe Tests
+
+
+//Recipe Get
 describe('Recipes', function() {
   before(function() {
     return runServer();
@@ -34,46 +48,9 @@ describe('Recipes', function() {
 
 
 
-
-
-/*describe('index page', function() {
-  it('exists', function(done) {
-    chai.request(app)
-      .get('/')
-      .end(function(err, res) {
-        res.should.have.status(200);
-        res.should.be.html;
-        done();
-    });
-  });
-});*/
-
-/*describe('Users', function() {
-  before(function() {
-    return runServer();
-  });
-  after(function() {
-    return closeServer();
-  });
-  it('should list users on GET', function() {
-    return chai.request(app)
-      .get('/users')
-      .then(function(res) {
-        res.should.have.status(201);
-        res.should.be.json;
-        res.body.should.be.a('array');
-        res.body.length.should.be.above(0);
-        res.body.forEach(function(item) {
-          item.should.be.a('object');
-          item.should.have.all.keys(
-            'id', 'username', 'chefName', 'password');
-        });
-      });
-  });
-});*/
-
-
+//Recipe POST, PUT, and DELETE
 describe('creation, editing, and delete of recipe', function() {
+  var workingId = "";
   before(function() {
     return runServer();
   });
@@ -99,52 +76,110 @@ describe('creation, editing, and delete of recipe', function() {
     .post('/recipes')
     .send(newRecipe)
     .then(function(res) {
- 			console.log(res.body);
       res.should.have.status(201);
       res.should.be.json;
       res.body.should.be.a('object');
       res.body.should.include.keys(
-      	"_id", 
-      	"title",
-      	"userId",
-      	"image",
-      	"totalTime",
-      	"__v",
-      	"sourceRecipeUrl",
-    		"day",
-    		"date",
-    		"instructions",
-    		"ingredients"
-    	);
+        "_id", 
+        "title",
+        "userId",
+        "image",
+        "totalTime",
+        "__v",
+        "sourceRecipeUrl",
+        "day",
+        "date",
+        "instructions",
+        "ingredients"
+      );
       res.body._id.should.not.be.null;
+      workingId = res.body._id;
     });
-	});
-/*
+  });
+
   it('should update recipes on PUT', function() {
+    console.log("HERE IS THE WORKING ID", workingId);
     const updateData = {
-      name: 'foo',
-      checked: true
+      title: "Test Lasagna2",
+      userId: "j:\"58c712cb0a63582330158ceb\"",
+      image: "./public/images/platecover.png",
+      totalTime: "21 min",
+      sourceRecipeUrl: "",
+      day: "tuesday",
+      instructions: "Test this recipe again",
+      ingredients: [
+        "pasta",
+        "tomatos",
+        "love",
+        "more love"
+      ]
     };
-    return chai.request(server)
-      // first have to get so we have an idea of object to update
-      .get('/recipes')
+    return chai.request(app)
+      .put(`/recipes/` + workingId)
+      .send(updateData)
       .then(function(res) {
-        updateData.id = res.body[0].id;
-        return chai.request(server)
-          .put(`/shopping-list/${updateData.id}`)
-          .send(updateData)
-      })
-      .then(function(res) {
-        res.should.have.status(200);
+        res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a('object');
-        res.body.should.deep.equal(updateData);
       });
-  });*/
+  });
+
+  it('should delete recipe on DELETE', function() {
+    return chai.request(app)
+    .delete(`/recipes/` + workingId)
+    .then(function(res) {
+      res.should.have.status(201);
+    });
+  });
+});
 
 
 
 
+
+// User Tests
+
+
+//User POST, PUT, and DELETE
+describe('Users', function() {
+  var userId = "";
+  before(function() {
+    return runServer();
+  });
+  after(function() {
+    return closeServer();
+  });
+  it('should create a user on POST', function() {
+    var newUser = {
+    'username': "test user",
+    'password': "test password",
+    'chefName': "Test McTester"
+  }
+    return chai.request(app)
+      .post('/users')
+      .send(newUser)
+      .then(function(res) {
+        res.should.have.status(201);
+        res.should.be.json;
+        res.body.should.be.a('object');
+        res.body.length.should.be.above(0);
+        res.body.should.have.all.keys(
+            'id', 'username', 'chefName', 'password');
+        userId = res.body.id;
+      });
+  });
+  it('should return specific user on GET', function() {
+    return chai.request(app)
+      .get('/users/' + userId)
+      .then(function(res) {
+        res.should.have.status(201);
+        res.should.be.json;
+        res.body.should.be.a('object');
+        res.body.length.should.be.above(0);
+        res.body.should.have.all.keys(
+          'id', 'username', 'chefName', 'password');
+      });
+  });
 });
 
 
@@ -190,19 +225,6 @@ it('should update items on PUT', function() {
       });
   });
 
-  it('should delete items on DELETE', function() {
-    return chai.request(server)
-      // first have to get so we have an `id` of item
-      // to delete
-      .get('/shopping-list')
-      .then(function(res) {
-        return chai.request(server)
-          .delete(`/shopping-list/${res.body[0].id}`);
-      })
-      .then(function(res) {
-        res.should.have.status(204);
-      });
-  });
 
 
 
