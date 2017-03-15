@@ -151,10 +151,10 @@ describe('Users', function() {
   });
   it('should create a user on POST', function() {
     var newUser = {
-    'username': "test user",
-    'password': "test password",
-    'chefName': "Test McTester"
-  }
+      'username': "test user",
+      'password': "test password",
+      'chefName': "Test McTester"
+    }
     return chai.request(app)
       .post('/users')
       .send(newUser)
@@ -168,6 +168,7 @@ describe('Users', function() {
         userId = res.body.id;
       });
   });
+  console.log("HERE IS THE USERID", userId);
   it('should return specific user on GET', function() {
     return chai.request(app)
       .get('/users/' + userId)
