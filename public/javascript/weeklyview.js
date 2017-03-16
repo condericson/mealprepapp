@@ -142,6 +142,7 @@ $('.addARecipeButton').on('click', function(event) {
 $('#findARecipeButton').on('click', function(event) {
 	$('#yummlyApiRecipe').removeClass('hidden');
 	$('#recipeEntryModal ,#recipeInfo ,#myRecipeModal').addClass('hidden');
+	hideDropDown();
 })
 
 $('.recipecontainer').on('click', function(event) {
@@ -328,7 +329,8 @@ $('#browseRecipesButton').on('click', function(event) {
 	$('#myRecipeModal').removeClass('hidden');
   $('#yummlyApiRecipe ,#recipeInfo ,#recipeEntryModal ,#groceryListModal').addClass('hidden');
 	//Fill modal with recipes from user
-	fillMyRecipes()
+	fillMyRecipes();
+	hideDropDown();
 });
 
 function fillMyRecipes() {
@@ -499,10 +501,12 @@ $('#yummlyApiRecipe').on('click', '.addToWeek', function(event) {
 
 $('#myRecipeModal').on('click', '.weekoptionli', function(event) {
 	clickToAddToDay($(this));
+	$(this).parent().addClass('hidden');
 });
 
 $('#yummlyApiRecipe').on('click', '.weekoptionli', function(event) {
 	clickToAddToDay($(this));
+	$(this).parent().addClass('hidden');
 });
 
 function clickToAddToDay(selectedDay) {
@@ -532,6 +536,43 @@ function clickToAddToDay(selectedDay) {
 		}
 	}) ();
 	console.log(assignedDay);
+	var name = selectedDay.parent().parent().parent().siblings('.recipeName').text();
+	var parentli = selectedDay.parent().parent().parent().parent().parent();
+	console.log(parentli);
+  var id = "";
+  console.log(state.recipesInSearchResults);
+  var day = assignedDay;
+  if(parentli.hasClass("yummlyresult")) {
+  	state.recipesInSearchResults.forEach(function(element) {
+	  	if(name == element.recipeName) {
+	  		id = element.id;
+	  	}
+  	})
+  	console.log("Drag and drop successful");
+  	console.log(id);
+  	updateOnDrop(id, day);
+  }
+  if(!parentli.hasClass("yummlyresult")) {
+  	var recipeObject = {};
+  	console.log(name);
+  	console.log(state.myRecipes);
+  	state.myRecipes.forEach(function(element) {
+  		if(element.title == name) {
+  			recipeObject = {
+  				'title': element.title,
+					'ingredients': element.ingredients,
+					'userId': $.cookie('meal-prep-app'),
+					'totalTime': element.totalTime,
+					'image': element.image,
+					'day': day,
+					'sourceRecipeUrl': element.sourceRecipeUrl
+  			}
+  		}
+  	})
+  	console.log(recipeObject);
+  	addToDatabase(recipeObject);
+  	
+  }
 
 }
 
@@ -737,30 +778,13 @@ $('#groceryListButton').on('click', function(event) {
 		});
 		$('#groceryList').html(html);
 		$('#groceryListModal').removeClass('hidden');
+		hideDropDown();
 });
 
-/*$('#groceryListButton').on('click', function(event) {
-  	$('#yummlyApiRecipe ,#recipeInfo ,#recipeEntryModal ,#groceryListModal').addClass('hidden');
-		var recipes = state.recipesInWeek;
-		var list = {};
-		recipes.forEach(function(recipe) {
-			recipe.ingredients.forEach(function(element){
-				if(element in list) {
-					list[element] += 1;
-				}
-				else {
-					list[element] = 1;
-				}
-			});
-		})
-		console.log(list);
-		var html = "";
-		for(var key in list) {
-			html += '<li>' + list[key] + ' <i class="fa fa-square-o" aria-hidden="true"></i> ' + key + '</li>';
-		}
-		$('#groceryList').html(html);
-		$('#groceryListModal').removeClass('hidden');
-})*/
+
+
+
+
 
 
 
@@ -783,15 +807,16 @@ $('#myRecipes').on('click', '.no', function(event) {
 });
 
 
-//fix this
-/*window.onclick = function(event) {
-  if(!$('.areyousure').hasClass('hidden')) {
-		if (!event.target.matches('.areyousure')) {
-	    $('.areyousure').addClass('hidden');
-	  }
-  }
-	  
-}*/
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -906,7 +931,15 @@ $('.recipeByDay').on('click', '.ingredientDropDown', function(event) {
 
 
 
-console.log(state);
+
+function hideDropDown() {
+	document.getElementById('dropdown').style.display = 'none';
+}
+
+
+
+
+
 });//document.ready end
 
 
