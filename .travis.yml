@@ -7,3 +7,4 @@ deploy:
   app: tranquil-reef-20267
   on:
     repo: condericson/mealprepapp
+  before_script: chmod 0777 ./node_modules/.bin/mocha
