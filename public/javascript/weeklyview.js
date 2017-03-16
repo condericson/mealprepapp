@@ -594,12 +594,12 @@ $(".recipeByDay").droppable({
     		if(element.title == recipeName) {
     			recipeObject = {
     				'title': element.title,
-						'ingredients': element.ingredients,
-						'userId': $.cookie('meal-prep-app'),
-						'totalTime': element.totalTime,
-						'image': element.image,
-						'day': day,
-						'sourceRecipeUrl': element.sourceRecipeUrl
+					'ingredients': element.ingredients,
+					'userId': $.cookie('meal-prep-app'),
+					'totalTime': element.totalTime,
+					'image': element.image,
+					'day': day,
+					'sourceRecipeUrl': element.sourceRecipeUrl
     			}
     		}
     	})
@@ -621,6 +621,16 @@ $('#myRecipeModal').on('mouseup', '.draggableItem', function(event) {
 	$('#myRecipeModal').removeClass('js-scrollToggle');
 })
 
+$('#yummlyApiRecipe').on('dragstart', '.draggableItem', function(event) {
+	console.log('dragstart', this)
+	$('#yummlyApiRecipe').addClass('js-scrollToggle');
+})
+
+$('#yummlyApiRecipe').on('mouseup', '.draggableItem', function(event) {
+	console.log('mouseup', this)
+	$('#yummlyApiRecipe').removeClass('js-scrollToggle');
+})
+
 
 
 function updateOnDrop(id, day) {
@@ -640,9 +650,7 @@ function updateOnDrop(id, day) {
 			'totalTime': data.totalTime,
 			'image': data.images[0].hostedLargeUrl,
 			'day': day,
-			'sourceRecipeUrl': data.source.sourceRecipeUrl,
-
-
+			'sourceRecipeUrl': data.source.sourceRecipeUrl
 		};
 		addToDatabase(recipeObject);
 
@@ -661,8 +669,8 @@ function addToDatabase(recipeObject) {
      success: function(data){
       console.log('success');
       $('.clearOnDrop').html("");
-			fillWeeklyView();
-			fillMyRecipes();
+		fillWeeklyView();
+		fillMyRecipes();
      },
      error: function(err) {
      	console.log('Error');

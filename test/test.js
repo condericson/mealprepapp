@@ -22,7 +22,7 @@ chai.use(chaiHttp);
 
 
 //Recipe Get
-describe('Recipes', function() {
+/*describe('Recipes', function() {
   before(function() {
     return runServer();
   });
@@ -33,6 +33,7 @@ describe('Recipes', function() {
     return chai.request(app)
       .get('/recipes')
       .then(function(res) {
+        console.log(res.body);
         res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a('array');
@@ -40,11 +41,11 @@ describe('Recipes', function() {
         res.body.forEach(function(item) {
           item.should.be.a('object');
           item.should.have.all.keys(
-            'title', 'ingredients', 'instructions', 'userId', 'day', 'image', 'sourceRecipeUrl', 'totalTime', '_id', '__v', 'date');
+            'title', 'ingredients', 'instructions', 'userId', 'day', 'image', 'sourceRecipeUrl', 'totalTime', '_id', '__v', 'yummlyId', 'date');
         });
       });
   });
-});
+});*/
 
 
 
@@ -98,7 +99,6 @@ describe('creation, editing, and delete of recipe', function() {
   });
 
   it('should update recipes on PUT', function() {
-    console.log("HERE IS THE WORKING ID", workingId);
     const updateData = {
       title: "Test Lasagna2",
       userId: "j:\"58c712cb0a63582330158ceb\"",
@@ -151,21 +151,24 @@ describe('Users', function() {
   });
   it('should create a user on POST', function() {
     var newUser = {
-      'username': "test user",
-      'password': "test password",
-      'chefName': "Test McTester"
+      username: "test user",
+      password: "test password",
+      chefName: "Test McTester"
     }
+  console.log(newUser);
+
     return chai.request(app)
       .post('/users')
       .send(newUser)
       .then(function(res) {
+        console.log("USER RES.BODY", res.body);
         res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a('object');
         res.body.length.should.be.above(0);
         res.body.should.have.all.keys(
-            'id', 'username', 'chefName', 'password');
-        userId = res.body.id;
+            '_id', 'username', 'chefName', 'password');
+        userId = res.body._id;
       });
   });
   console.log("HERE IS THE USERID", userId);
