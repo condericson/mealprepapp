@@ -19,7 +19,7 @@ router.get('/', (req,res) => {
 });
 
 router.post('/', jsonParser, (req, res) => {
-	Recipes.create({
+    Recipes.create({
 		'title': req.body.title,
 		'ingredients': req.body.ingredients,
 		'instructions': req.body.instructions,

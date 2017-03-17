@@ -12,14 +12,14 @@ const jsonParser = bodyParser.json();
 router.use(morgan('common'));
 router.use(cookieParser());
 
-/*router.get('/', (req,res) => {
+router.get('/', (req,res) => {
   User.find(function(err, user) {
     if(err) {
       res.status(500).json({"message": "Error!"});
     }
     res.status(201).json(user);
   })
-});*/
+});
 
 
 router.get('/:id', (req, res) => {
@@ -41,11 +41,13 @@ router.get('/logout', (req,res) => {
 });
 
 router.post('/', jsonParser, (req, res) => {
+  console.log("REQ.BODY FROM USER.JS POST", req.body);
   User.create({
     'username': req.body.username,
     'password': req.body.password,
     'chefName': req.body.chefName
   }, function(err, user){
+    console.log("USER.JS POST ERR", err);
     if(err) {
       res.status(500).json({"message":"Error with post"})
     }
@@ -61,9 +63,6 @@ router.post('/login', jsonParser, (req, res) => {
       res.status(500).json({"message":"Username or password not valid"})
     }
     if(user.password === req.body.password) {
-      /*console.log(user);
-      const cookie = req.cookies[USER_COOKIE_NAME];*/
-      /*if (cookie === undefined) {*/
         console.log(user._id);
         res.cookie(USER_COOKIE_NAME, user._id, {});
         res.status(201).json({"message":"Password accepted"})  

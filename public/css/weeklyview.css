@@ -27,7 +27,7 @@ nav {
   font-size: 50px;
   color: #f7793b;
   font-family: Lobster;
-  /* text-shadow: 0px 0px 5px black; */
+  text-shadow: 1px 1px 2px black;
   font-weight: bold;
   /* width: 60%; */
 }
@@ -61,8 +61,8 @@ nav {
 
 /* Dropdown menu */
 .dropdown-button {
-    background-color: #b75728;
-    color: #F7E2C3;
+    background-color: #64cdff;
+    color: #ffffff;
     /* padding: 16px; */
     font-size: 36px;
     border: none;
@@ -550,6 +550,7 @@ width: 50%;
   border: none;
   box-shadow: 1px 1px 1px #b7b7b7;
   font-weight: bold;
+  margin-top: 5px;
 }
 
 
@@ -692,8 +693,8 @@ width: 50%;
   height: auto;
   background-color: white;
   border: 1px solid black;
-  border-radius: 5px;
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 .inDayColumn > .recipecontainer {
@@ -795,7 +796,6 @@ width: 50%;
 
 .findarecipe {
   box-sizing: border-box;
-  width: 100%;
   margin: 10px 0px 20px 20px;
   font-family: uBuntu;
   font-size: 22px;
