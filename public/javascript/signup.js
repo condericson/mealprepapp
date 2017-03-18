@@ -10,7 +10,11 @@ $('.login').on('click', function(event) {
 
 $('#js-signup-button').click(function(event) {
 	event.preventDefault();
-     console.log("adding user");
+  console.log("adding user");
+  if($('#username').val().length < 1 || $('#password').val().length < 1 || $('#chefName').val().length < 1) {
+    $('#invalid').removeClass('hidden');
+    return console.log("sign up values not entered");
+  }
 	var user = {
 		"username": $('#username').val(),
 		"password": $('#password').val(),

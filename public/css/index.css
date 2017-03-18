@@ -178,6 +178,16 @@ video {
 	display: none;
 }
 
+#invalid {
+	color: red;
+	position: absolute;
+	bottom: 68px;
+}
+
+.hidden {
+	display: none;
+}
+
 @media only screen and (max-width: 1220px) {
 	video {
 		right: -10%;
