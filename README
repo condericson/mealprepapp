@@ -1,7 +1,9 @@
 Prepper
-Thinkful (https://www.thinkful.com/) capstone project for demonstrating proficiency with using API's (Unit 3 Lesson 5).
+A meal preparation application designed to assist with organizing meals on a weekly basis, provide search results using keywords from Yummly's API for recipes that can be added to the weekly view, to allow users to upload their own recipes to the weekly view, and to create a grocery list using the ingredients of the recipes in the week for ease of shopping.
 
-![Screenshots](https://github.com/condericson/concertfinder/blob/gh-pages/allpics.png)
+This was created as a capstone project, part of Thinkful flexible bootcamp program (https://www.thinkful.com/), for demonstrating proficiency with creating full-stack web applications.
+
+![Screenshots](https://github.com/condericson/meal-prep-app/blob/gh-pages/allpics.png)
 
 
 Description
