@@ -3,7 +3,7 @@ A meal preparation application designed to assist with organizing meals on a wee
 
 This was created as a capstone project, part of Thinkful flexible bootcamp program (https://www.thinkful.com/), for demonstrating proficiency with creating full-stack web applications.
 
-![Screenshots](https://github.com/condericson/meal-prep-app/blob/gh-pages/allpics.png)
+![Screenshots](https://github.com/condericson/meal-prep-app/blob/master/desktoppng)
 
 
 Description
