@@ -33,7 +33,6 @@ chai.use(chaiHttp);
     return chai.request(app)
       .get('/recipes')
       .then(function(res) {
-        console.log(res.body);
         res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a('array');
@@ -50,7 +49,7 @@ chai.use(chaiHttp);
 
 
 //Recipe POST, PUT, and DELETE
-/*describe('creation, editing, and delete of recipe', function() {
+describe('creation, editing, and delete of recipe', function() {
   var workingId = "";
   before(function() {
     return runServer();
@@ -135,7 +134,7 @@ chai.use(chaiHttp);
       res.should.have.status(201);
     });
   });
-});*/
+});
 
 
 
@@ -144,7 +143,7 @@ chai.use(chaiHttp);
 // User Tests
 
 
-//User POST, PUT, and DELETE
+//User POST, GET, PUT, and DELETE
 describe('Users', function() {
   var userId = "";
   before(function() {
@@ -155,7 +154,7 @@ describe('Users', function() {
   });
   it('should create a user on POST', function() {
     const newUser = {
-      username: "test user11111111",
+      username: "test user",
       password: "test password",
       chefName: "Test McTester"
     }
@@ -165,19 +164,18 @@ describe('Users', function() {
       .post('/users')
       .send(newUser)
       .then(function(res) {
-        console.log("USER RES.BODY", res.body);
         res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a('object');
         res.body.should.have.all.keys(
             '_id', 'username', 'chefName', 'password', '__v');
         userId = res.body._id;
+        console.log("LOG OF ID", res.body._id)
       })
       /*.catch(function(err) {
         console.log("CAUGHT ERR", err);
       });*/
   });
-  console.log("HERE IS THE USERID", userId);
   it('should return specific user on GET', function() {
     return chai.request(app)
       .get('/users/' + userId)
@@ -186,9 +184,33 @@ describe('Users', function() {
         res.should.be.json;
         res.body.should.be.a('object');
         res.body.should.have.all.keys(
-          'id', 'username', 'chefName', 'password');
+          '_id', 'username', 'chefName', 'password', '__v');
       });
   });
+
+  it('should update user on PUT', function() {
+    const updatedUser = {
+      username: "test user's brother",
+      password: "test password's password",
+      chefName: "Test Tester McFaceTest"
+    };
+    return chai.request(app)
+      .put(`/users/` + userId)
+      .send(updatedUser)
+      .then(function(res) {
+        res.should.have.status(201);
+        res.should.be.json;
+        res.body.should.be.a('object');
+      });
+  });
+
+  it('should delete specific user on DELETE', function() {
+    return chai.request(app)
+      .delete('/users/' + userId)
+      .then(function(res) {
+        res.should.have.status(201);
+      })
+  })
 });
 
 
