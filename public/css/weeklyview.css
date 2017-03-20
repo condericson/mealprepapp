@@ -406,7 +406,7 @@ nav {
 #recipeEntryModal {
   font-family: Arial, Helvetica, sans-serif;
   position: fixed;
-  height: 655px;
+  height: 695px;
   top: 4%;
   background-color: white;
   border: 1px solid #b75728;
@@ -452,6 +452,11 @@ nav {
   color: white;
   font-weight: bold;
   text-shadow: 1px 1px 4px #48b0e2;
+}
+
+.titlerequired {
+  color: red;
+  margin: 0px 0px 0px 10px;
 }
 
 #title {

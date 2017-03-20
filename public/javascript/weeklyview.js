@@ -147,6 +147,10 @@ $('.recipecontainer').on('click', function(event) {
 //Adds a recipe to the database from the recipe entry modal
 $('#js-recipe-submit').click(function(event) {
 	console.log("adding recipe");
+	if($('.filledout').val().length < 1) {
+		$('.titlerequired').removeClass('hidden');
+		return console.log('Title absent from entry parameters');
+	}
 	var ingredients = [];
 	$('.ingredientEntry').each(function(index, element) {
 		if(element.value.length > 0){
