@@ -1,7 +1,7 @@
 /*
 Things to fix:
-yummly cutting off
-recipe info from yummly li's
+recipe by id not name on yummly results
+
 */
 
 
@@ -274,7 +274,8 @@ $('#yummlyApiRecipe').on('click', '.infoIconBin', function(event) {
 	console.log(state.recipesInSearchResults);
 	$('#recipeInfo').removeClass('hidden');
 	$('#groceryListModal').addClass('hidden');
-	var recipeName = $(this).siblings($('.recipeName')).text();
+	var recipeName = $(this).siblings('.recipeName').text();
+	console.log(recipeName);
 	var recipeId = "";
 	state.recipesInSearchResults.forEach(function(element){
 		if(element.recipeName == recipeName) {
