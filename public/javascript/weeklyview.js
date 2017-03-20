@@ -210,7 +210,7 @@ $('#js-yummly-search').submit(function(event) {
 	$('#yummlyResults').html('<p class="looking">Looking for some awesome recipes!</p><i class="fa fa-spinner fa-pulse fa-4x" aria-hidden="true"></i>');
 	var searchTerm = $('#yummlysearch').val();
 	console.log("Looking for recipes that contain", searchTerm);
-	var url = "http://api.yummly.com/v1/api/recipes";
+	var url = "https://api.yummly.com/v1/api/recipes";
 	var yummlyApp = {
 		"_app_id": '1215d699',
 		"_app_key": '8d66fe539bd68dfea2ac78d0e6ef6b6f',
@@ -266,7 +266,7 @@ $('#yummlyApiRecipe').on('click', '.infoIconBin', function(event) {
 			recipeId = element.id;
 		}
 	});*/
-	var url = "http://api.yummly.com/v1/api/recipe/" + recipeId;
+	var url = "https://api.yummly.com/v1/api/recipe/" + recipeId;
 	var yummlyApp = {
 		"_app_id": '1215d699',
 		"_app_key": '8d66fe539bd68dfea2ac78d0e6ef6b6f'
@@ -662,7 +662,7 @@ $('#yummlyApiRecipe').on('mouseup', '.draggableItem', function(event) {
 function updateOnDrop(id, day) {
 	var recipeId = id;
 	console.log(id);
-	var url = "http://api.yummly.com/v1/api/recipe/" + recipeId;
+	var url = "https://api.yummly.com/v1/api/recipe/" + recipeId;
 	var yummlyApp = {
 		"_app_id": '1215d699',
 		"_app_key": '8d66fe539bd68dfea2ac78d0e6ef6b6f'
