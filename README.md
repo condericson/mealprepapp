@@ -23,7 +23,7 @@ You can access Prepper on the live site at: https://prepper-condericson.herokuap
 ## Version 2.0 changes and added functionality:
 * Provide option for users to upload their own images to user created recipes
 * Add checkboxes for grocery list modal
-* Provide 
+* Increase security for user passwords
 
 
 ## Technical
