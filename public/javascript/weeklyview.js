@@ -1,20 +1,3 @@
-/*
-Things to fix:
-recipe by id not name on yummly results
-make drag and drop more obvious
-
-*/
-
-
-
-
-
-
-
-
-
-/*const moment = require('moment');*/
-
 var state = {
 	currentUser: "",
 	recipesInWeek: [],
@@ -246,6 +229,7 @@ $('#js-yummly-search').submit(function(event) {
 				'<i class="fa fa-info-circle infoIconBin" aria-hidden="true"></i>' + 
 				'<p class="recipeName">' + object.recipeName + '</p>' +
 				'<img class="recipeImage" src="' + object.smallImageUrls[0] + '">' +
+				'<p class="recipeId hidden">' + object.id + '</p>' + 
 				'<div class="addToWeek"><p>Day</p><div class="weekoptions hidden"><ul><li class="weekoptionli">Su</li><li class="weekoptionli">M</li><li class="weekoptionli">T</li><li class="weekoptionli">W</li><li class="weekoptionli">Th</li><li class="weekoptionli">F</li><li class="weekoptionli">Sa</li></ul></div></div>' +
 				'</div>' + 
 			'</li>';		
@@ -275,14 +259,13 @@ $('#yummlyApiRecipe').on('click', '.infoIconBin', function(event) {
 	console.log(state.recipesInSearchResults);
 	$('#recipeInfo').removeClass('hidden');
 	$('#groceryListModal').addClass('hidden');
-	var recipeName = $(this).siblings('.recipeName').text();
-	console.log(recipeName);
-	var recipeId = "";
-	state.recipesInSearchResults.forEach(function(element){
+	var recipeId = $(this).siblings('.recipeId').text();
+	console.log(recipeId);
+	/*state.recipesInSearchResults.forEach(function(element){
 		if(element.recipeName == recipeName) {
 			recipeId = element.id;
 		}
-	});
+	});*/
 	var url = "http://api.yummly.com/v1/api/recipe/" + recipeId;
 	var yummlyApp = {
 		"_app_id": '1215d699',
@@ -613,14 +596,14 @@ $(".recipeByDay").droppable({
 		console.log(!ui.draggable.hasClass("yummlyresult"));
   	var newClone = $(ui.helper).clone();
   	var list = $(this).children('ul');
-    var name = newClone.children('.recipecontainer').children('.recipeName').text();
-    var id = "";
-    console.log(state.recipesInSearchResults);
+    var id = newClone.children('.recipecontainer').children('.recipeId').text();
+    /*var id = "";*/
+    /*console.log(state.recipesInSearchResults);
     state.recipesInSearchResults.forEach(function(element) {
-    	if(name == element.recipeName) {
+    	if(yummlyid == element.id) {
     		id = element.id;
     	}
-    })
+    })*/
     var day = list.attr("id");
     var draggedItem = ui.draggable;
     if(draggedItem.hasClass("yummlyresult")) {
@@ -637,12 +620,12 @@ $(".recipeByDay").droppable({
     		if(element.title == recipeName) {
     			recipeObject = {
     				'title': element.title,
-					'ingredients': element.ingredients,
-					'userId': $.cookie('meal-prep-app'),
-					'totalTime': element.totalTime,
-					'image': element.image,
-					'day': day,
-					'sourceRecipeUrl': element.sourceRecipeUrl
+						'ingredients': element.ingredients,
+						'userId': $.cookie('meal-prep-app'),
+						'totalTime': element.totalTime,
+						'image': element.image,
+						'day': day,
+						'sourceRecipeUrl': element.sourceRecipeUrl
     			}
     		}
     	})
