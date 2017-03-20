@@ -6,6 +6,8 @@ This was created as a capstone project, part of Thinkful flexible bootcamp progr
 
 ![Screenshots](https://github.com/condericson/mealprepapp/blob/master/readme_images/desktop.png)
 
+![Screenshots](https://github.com/condericson/mealprepapp/blob/master/readme_images/responsive.png)
+
 
 ## Description
 Prepper is Concert Finder combines the database of available concerts by artist and organizes them to easily compare dates and times that consumers can choose from. When a upcoming event has been chosen, the consumer can click to display a map to the location of the concert. This application removes the hassle consumers face when comparing multiple venues and their locations. The app provides consumers with one webpage that allows them to compare the destinations of all upcoming events for the artist.  
