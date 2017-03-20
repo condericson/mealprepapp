@@ -1,6 +1,7 @@
 /*
 Things to fix:
 recipe by id not name on yummly results
+make drag and drop more obvious
 
 */
 

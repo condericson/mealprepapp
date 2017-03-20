@@ -4,16 +4,20 @@ A meal preparation application designed to assist with organizing meals on a wee
 
 This was created as a capstone project, part of Thinkful flexible bootcamp program (https://www.thinkful.com/), for demonstrating proficiency with creating full-stack web applications.
 
+## Desktop
+
 ![Screenshots](https://github.com/condericson/mealprepapp/blob/master/readme_images/desktop.png)
+
+## Responsive
 
 ![Screenshots](https://github.com/condericson/mealprepapp/blob/master/readme_images/responsive.png)
 
 
 ## Description
-Prepper is Concert Finder combines the database of available concerts by artist and organizes them to easily compare dates and times that consumers can choose from. When a upcoming event has been chosen, the consumer can click to display a map to the location of the concert. This application removes the hassle consumers face when comparing multiple venues and their locations. The app provides consumers with one webpage that allows them to compare the destinations of all upcoming events for the artist.  
+Prepper provides a user specific experience by requiring login credentials and saving recipes created or added to specific users. The user is able to add their own recipes to the database through a recipe entry modal or they can search through results provided by an API from Yummly to add pre-made recipes. The site can be viewed on a desktop as well as on a small device such as an ipad or phone. Functionality is changed based on the size of the display and method of interface: touch or click.
 
 Live Site
-You can access Concert Finder at https://condericson.github.io/concertfinder/
+You can access Prepper on the live site at: 
 
 
 Version 2 changes and added functionality:
@@ -21,10 +25,7 @@ Version 2 changes and added functionality:
 * add checkboxes for grocery list modal that can save to database
 
 
-
-
-
-##Technical
-* The app is built using HTML5, CSS3, and Javascript with jQuery.
-* The app is fully responsive, adapting for mobile, table and desktop viewports. (under construction)
-* The app gathers information through API's from Seatgeek and Google Maps.
+## Technical
+* The app is built using HTML5, CSS3, Javascript with jQuery, Node.js, and MongoDB, and tests with Mongoose and Chai.
+* The app is fully responsive, adapting for mobile, tablet, and desktop viewports.
+* The app gathers information through an API from Yummly.
