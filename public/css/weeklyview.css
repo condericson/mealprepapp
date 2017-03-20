@@ -973,6 +973,12 @@ ul {
   display: none;
 }
 
+@media only screen and (max-width: 1000px) {
+  .draganddrop {
+    display: none;
+  } 
+}
+
 @media only screen and (min-width: 1000px) {
   .fullscreeningredientlist, .recipeSource, .totalTime, .addToWeek {
     display: none;
