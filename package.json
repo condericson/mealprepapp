@@ -12,6 +12,7 @@
     "moment": "^2.17.1",
     "mongoose": "^4.8.2",
     "morgan": "^1.8.1",
+    "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-http": "^0.3.0",
     "toastr": "^2.1.2"
@@ -36,4 +37,3 @@
   },
   "homepage": "https://github.com/condericson/mealprepapp#readme"
 }
-
