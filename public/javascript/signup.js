@@ -8,7 +8,7 @@ $('.login').on('click', function(event) {
 
 
 
-$('#js-signup-button').click(function(event) {
+$('.signupform').on('submit', function(event) {
 	event.preventDefault();
   console.log("adding user");
   if($('#username').val().length < 1 || $('#password').val().length < 1 || $('#chefName').val().length < 1) {
