@@ -17,7 +17,7 @@ This was created as a capstone project, part of Thinkful flexible bootcamp progr
 Prepper provides a user specific experience by requiring login credentials and saving recipes created or added to specific users. The user is able to add their own recipes to the database through a recipe entry modal or they can search through results provided by an API from Yummly to add pre-made recipes. The site can be viewed on a desktop as well as on a small device such as an ipad or phone. Functionality is changed based on the size of the display and method of interface: touch or click.
 
 Live Site
-You can access Prepper on the live site at: 
+You can access Prepper on the live site at: https://prepper-condericson.herokuapp.com.
 
 
 Version 2 changes and added functionality:
