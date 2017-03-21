@@ -24,6 +24,7 @@ You can access Prepper on the live site at: https://prepper-condericson.herokuap
 * Provide option for users to upload their own images to user created recipes
 * Add checkboxes for grocery list modal
 * Increase security for user passwords
+* Create 404 page for navigating to a page that doesn't exist
 
 
 ## Technical
