@@ -21,13 +21,15 @@ You can access Prepper on the live site at: https://prepper-condericson.herokuap
 
 
 ## Version 2.0 changes and added functionality:
-* Provide option for users to upload their own images to user created recipes
-* Add checkboxes for grocery list modal
-* Increase security for user passwords
-* Create 404 page for navigating to a page that doesn't exist
+* Provide option for users to upload their own images to user created recipes.
+* Add checkboxes for grocery list modal.
+* Increase security for user passwords.
+* Create 404 page for navigating to a page that doesn't exist.
+* Provide more feedback for users for incorrect inputs (i.e. already existing usernames).
+* Provide responsive styling for landscape view on mobile device.
 
 
 ## Technical
-* The app is built using HTML5, CSS3, Javascript with jQuery, Node.js, and MongoDB, and tests with Mongoose and Chai.
+* The app is built using HTML5, CSS3, Javascript with jQuery, Node.js, and MongoDB, and tests with Chai.
 * The app is fully responsive, adapting for mobile, tablet, and desktop viewports.
 * The app gathers information through an API from Yummly.
