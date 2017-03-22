@@ -14,11 +14,12 @@ $('#js-login-form').submit(function(event) {
 	};
     if($('#js-username-input').val() == "" || $('#js-password-input').val() == "") {
         $('#invalid').removeClass('hidden');
+        return console.log("Invalid entry");
     }
     else {
         logIn(userInfo);    
     }
-	
+
 
 
 })
