@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
     if(err) {
       res.status(500).json({"message":"Username not found"})
     }
-    res.status(201).json(user);      
+    res.status(201).json(user);
   });
 });
 
@@ -62,12 +62,15 @@ router.post('/login', jsonParser, (req, res) => {
     if(err) {
       res.status(500).json({"message":"Username or password not valid"})
     }
+    if(!user){
+      res.status(500).json({"message":"Username or password not valid"})
+    }
     if(user.password === req.body.password) {
         console.log(user._id);
         res.cookie(USER_COOKIE_NAME, user._id, {});
-        res.status(201).json({"message":"Password accepted"})  
+        res.status(201).json({"message":"Password accepted"})
       /*}*/
-    }    
+    }
   });
 });
 
@@ -76,7 +79,7 @@ router.put('/:id', jsonParser, function(req, res) {
   var _id = mongoose.Types.ObjectId(req.params.id);
     User.findOneAndUpdate({
       _id: _id
-    }, 
+    },
     {
       $set: {
         username: req.body.username,
@@ -86,7 +89,7 @@ router.put('/:id', jsonParser, function(req, res) {
     },
     {
       new: true
-    }, 
+    },
     function(err, user) {
         if (err || !user) {
             console.error("Could not update user", req.body.username);
