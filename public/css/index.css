@@ -51,7 +51,7 @@ nav {
 	background-color: lightgrey;
 	position: relative;
 	overflow: hidden;
-	background-color: #f7793b;
+	background-color: #64cdff;
 	z-index: 3;
 }
 
@@ -240,4 +240,16 @@ video {
 		text-shadow: 1px 1px 8px black;
 	}
 
+}
+
+@media screen and (max-width: 700px) and (orientation:landscape) {
+	.altbackground {
+		display: block;
+		position: fixed;
+		top: -29%;
+		left: 0;
+		width: 100%;
+		transform: none;
+		height: auto;
+	}
 }
