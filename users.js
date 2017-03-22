@@ -60,16 +60,15 @@ router.post('/login', jsonParser, (req, res) => {
     'username': req.body.username
   }, function(err, user){
     if(err) {
-      res.status(500).json({"message":"Username or password not valid"})
+      return res.status(500).json({"message":"Username or password not valid"})
     }
     if(!user){
-      res.status(500).json({"message":"Username or password not valid"})
+      return res.status(500).json({"message":"Username or password not valid"})
     }
     if(user.password === req.body.password) {
         console.log(user._id);
         res.cookie(USER_COOKIE_NAME, user._id, {});
         res.status(201).json({"message":"Password accepted"})
-      /*}*/
     }
   });
 });
