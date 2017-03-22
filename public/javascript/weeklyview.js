@@ -69,7 +69,7 @@ function fillWeeklyView() {
 	        html += '<a href="' + element.sourceRecipeUrl + '" target="_blank" class="recipeSourceLink"><p class="recipeSource">Recipe instructions</p></a></div></li>';
 	        assignedColumn.append(html);
        	}
-      }); 
+      });
      },
     error: function(data) {
     	console.log('error');
@@ -109,6 +109,8 @@ $('#logout').on('click', function(event) {
 
 
 
+
+
 //event listener that is attached to each day column and will assign a day to DOM in recipe entry modal
 $('.addARecipeButton').on('click', function(event) {
 	var	assignedDay = $(this).siblings('.weekday').text();
@@ -119,7 +121,7 @@ $('.addARecipeButton').on('click', function(event) {
   $('#recipeEntryModal').removeClass('hidden');
   $('#recipeEntryModal').parent().removeClass('hidden');
   $('#yummlyApiRecipe ,#recipeInfo ,#myRecipeModal').addClass('hidden');
-  
+
 });
 
 
@@ -154,7 +156,7 @@ $('#js-recipe-submit').click(function(event) {
 	var ingredients = [];
 	$('.ingredientEntry').each(function(index, element) {
 		if(element.value.length > 0){
-			ingredients.push(element.value);	
+			ingredients.push(element.value);
 		}
 	});
 	console.log(ingredients);
@@ -228,15 +230,15 @@ $('#js-yummly-search').submit(function(event) {
 		console.log(state.recipesInSearchResults);
 		var html = "";
 		results.forEach(function(object){
-			html += '<li class="draggableItem inBinModal yummlyresult">' + 
-				'<div class="recipecontainer">' + 
-				'<i class="fa fa-info-circle infoIconBin" aria-hidden="true"></i>' + 
+			html += '<li class="draggableItem inBinModal yummlyresult">' +
+				'<div class="recipecontainer">' +
+				'<i class="fa fa-info-circle infoIconBin" aria-hidden="true"></i>' +
 				'<p class="recipeName">' + object.recipeName + '</p>' +
 				'<img class="recipeImage" src="' + object.smallImageUrls[0] + '">' +
-				'<p class="recipeId hidden">' + object.id + '</p>' + 
+				'<p class="recipeId hidden">' + object.id + '</p>' +
 				'<div class="addToWeek"><p>Day</p><div class="weekoptions hidden"><ul><li class="weekoptionli">Su</li><li class="weekoptionli">M</li><li class="weekoptionli">T</li><li class="weekoptionli">W</li><li class="weekoptionli">Th</li><li class="weekoptionli">F</li><li class="weekoptionli">Sa</li></ul></div></div>' +
-				'</div>' + 
-			'</li>';		
+				'</div>' +
+			'</li>';
 		});
 		$('#yummlyResults').html(html);
 		$(".draggableItem", "#yummlyResults").draggable({
@@ -283,7 +285,7 @@ $('#yummlyApiRecipe').on('click', '.infoIconBin', function(event) {
 			ingredients += '<li class="ingredientItem">' + value + '</li>'
 		});
 		$('#recipeInfo').html(
-			'<span class="close">&times;</span>' + 
+			'<span class="close">&times;</span>' +
 			'<p class="infoModalRecipeName">' + data.name + '</p>' +
 			'<p class="infoModalTotalTime">' + data.totalTime + '</p>' +
 			'<img class="modalRecipeImage" src="' + data.images[0].hostedLargeUrl + '">' +
@@ -437,11 +439,11 @@ function recipeInfoModalFill(element) {
 		ingredientLines.forEach(function(value) {
 			ingredients += '<li class="ingredientItem">' + value + '</li>'
 		});
-		var html = '<span class="close">&times;</span>' + 
+		var html = '<span class="close">&times;</span>' +
 			'<p class="infoModalRecipeName">' + element.title + '</p>' +
 			'<p class="infoModalTotalTime">' + element.totalTime + '</p>' +
 			'<img class="modalRecipeImage" src="' + element.image + '">' +
-			'<ul class="infoModalIngredients">' + ingredients + '</ul>' + 
+			'<ul class="infoModalIngredients">' + ingredients + '</ul>' +
 			'<p class="instructions">' + element.instructions + '</p>'
 		if(element.sourceRecipeUrl.length > 0) {
 			html += '<a href="' + element.sourceRecipeUrl + '" target="_blank"><p class="yummlyAttribution">Recipe instructions</p></a>'
@@ -560,7 +562,7 @@ function clickToAddToDay(selectedDay) {
   	})
   	console.log(recipeObject);
   	addToDatabase(recipeObject);
-  	
+
   }
 
 }
@@ -635,9 +637,9 @@ $(".recipeByDay").droppable({
     	})
     	console.log(recipeObject);
     	addToDatabase(recipeObject);
-    	
+
     }
-	 		
+
   }
 });
 
@@ -724,7 +726,7 @@ function addToDatabase(recipeObject) {
 
 
 
-//dropdown 
+//dropdown
 $("#dropdown-button").on('click', function(event) {
   $('#dropdown').toggle("show");
 });
@@ -932,7 +934,7 @@ function hideDropDown() {
 });//document.ready end
 
 
-	
+
 
 
 
