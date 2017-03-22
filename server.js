@@ -24,6 +24,8 @@ app.use('/recipes', recipeRouter);
 const usersRouter = require('./users');
 app.use('/users', usersRouter);
 
+// const logoutRouter = require('./logout');
+// app.use('/logout', logoutRouter);
 
 
 //get requests to open pages

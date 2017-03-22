@@ -35,10 +35,17 @@ router.get('/:id', (req, res) => {
   });
 });
 
-router.get('/logout', (req,res) => {
+
+
+
+router.get('/logout/logout', (req, res) => {
   res.clearCookie("meal-prep-app");
   res.status(201).json({"message":"logging out"})
 });
+
+
+
+
 
 router.post('/', jsonParser, (req, res) => {
   console.log("REQ.BODY FROM USER.JS POST", req.body);

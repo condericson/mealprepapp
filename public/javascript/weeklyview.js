@@ -87,7 +87,7 @@ $('#logout').on('click', function(event) {
      crossdomain: true,
      headers: {"Access-Control-Allow-Origin": "*"},
      contentType: "application/json; charset=utf-8",
-     url: '/users/logout',
+     url: '/users/logout/logout',
      success: function(data){
       console.log('success');
       window.location.href = 'index.html';
