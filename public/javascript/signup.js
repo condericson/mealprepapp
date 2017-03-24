@@ -19,32 +19,31 @@ $('.signupform').on('submit', function(event) {
 		"username": $('#username').val(),
 		"password": $('#password').val(),
 		"chefName": $('#chefName').val()
-	}	
+	}
 	addUser(user);
 });
 
 function addUser(user) {
-     var url = '/users';
-	console.log(url);
+  var url = '/users';
 	$.ajax({
-          type: "POST",
-          dataType: "json",
-          crossdomain: true,
-          headers: {"Access-Control-Allow-Origin": "*"},
-          contentType: "application/json; charset=utf-8",
-          url: url,
-          data: JSON.stringify(user),
-          success: function(data){
-            console.log(data);
-            var userInfo = {
-              "username": data.username,
-              "password": data.password
-            }
-            logIn(userInfo)
-          },
-          error: function(data) {
-          	console.log('ajax broke');
-          }
+    type: "POST",
+    dataType: "json",
+    crossdomain: true,
+    headers: {"Access-Control-Allow-Origin": "*"},
+    contentType: "application/json; charset=utf-8",
+    url: url,
+    data: JSON.stringify(user),
+    success: function(data){
+      console.log(data);
+      var userInfo = {
+        "username": data.username,
+        "password": data.password
+      }
+      logIn(userInfo)
+    },
+    error: function(data) {
+    	console.log('ajax broke');
+    }
      });
 }
 

@@ -41,7 +41,7 @@ router.put('/:id', jsonParser, function(req, res) {
 	var _id = mongoose.Types.ObjectId(req.params.id);
     Recipes.findOneAndUpdate({
       _id: _id
-    }, 
+    },
     {
       $set: {
         title: req.body.title,
@@ -56,7 +56,7 @@ router.put('/:id', jsonParser, function(req, res) {
     },
     {
       new: true
-    }, 
+    },
     function(err, recipe) {
         if (err || !recipe) {
             console.error("Could not update recipe", req.body.name);
