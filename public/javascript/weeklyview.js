@@ -1,15 +1,3 @@
-// // Add @media only screen and (max-width: 700px)
-// weeklyview.css:1205
-// #belownav {
-//     overflow: hidden;
-//     height: 100%;
-// }
-// weeklyview.css:129
-// #belownav {
-//     padding-top: 0px;
-//
-// 		to javascript
-// 
 
 
 
@@ -615,18 +603,22 @@ $(".recipeByDay").droppable({
 
 $('#myRecipeModal').on('dragstart', '.draggableItem', function(event) {
 	$('#myRecipeModal').addClass('js-scrollToggle');
+	$('.recipeByDay').addClass('targetShadow');
 })
 
 $('#myRecipeModal').on('mouseup', '.draggableItem', function(event) {
 	$('#myRecipeModal').removeClass('js-scrollToggle');
+	$('.recipeByDay').removeClass('targetShadow');
 })
 
 $('#yummlyApiRecipe').on('dragstart', '.draggableItem', function(event) {
 	$('#yummlyApiRecipe').addClass('js-scrollToggle');
+	$('.recipeByDay').addClass('targetShadow');
 })
 
 $('#yummlyApiRecipe').on('mouseup', '.draggableItem', function(event) {
 	$('#yummlyApiRecipe').removeClass('js-scrollToggle');
+	$('.recipeByDay').removeClass('targetShadow');
 })
 
 
