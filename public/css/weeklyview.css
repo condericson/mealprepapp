@@ -466,6 +466,7 @@ nav {
   border-color: black;
   width: 90%;
   font-family: ubuntu;
+  border-radius: 0px;
 }
 
 .entryingredients {
@@ -484,6 +485,7 @@ nav {
   outline: none;
   font-size: 16px;
   width: 50%;
+  border-radius: 0px;
 }
 
 .cookinginstructions {margin: 10px;font-size: 22px;color: white;font-weight: bold;text-shadow: 1px 1px 4px #48b0e2;}
@@ -521,6 +523,8 @@ outline: none;
 font-size: 16px;
 
 width: 50%;
+
+border-radius: 0px;
 }
 
 #js-recipe-submit {
@@ -964,23 +968,18 @@ ul {
     margin-bottom: 15px;
   }
 
-.ingredientDropDown {
+.ingredientDropDown, .instructionDropDown {
   display: none;
 }
 
-@media only screen and (max-width: 1000px) {
-  .draganddrop {
-    display: none;
-  }
-}
-
+/*Hides extra info on desktop view*/
 @media only screen and (min-width: 1000px) {
-  .fullscreeningredientlist, .recipeSource, .totalTime, .addToWeek {
+  .ingredientlist, .recipeInstructions, .recipeSource, .totalTime, .addToWeek, .recipeInstructions, .tabletingredientstitle, .tabletinstructionstitle {
     display: none;
   }
-
 }
 
+/*Tablet view*/
 @media only screen and (min-width: 501px) and (max-width: 1000px) {
   .inDayColumn > .recipecontainer > .totalTime {
     font-size: 19px;
@@ -994,8 +993,11 @@ ul {
 
 }
 
-
+/*Views below desktop*/
 @media only screen and (max-width: 1000px) {
+  .draganddrop {
+    display: none;
+  }
 
   .col {
   margin: 0%;
@@ -1006,7 +1008,6 @@ ul {
     height: auto;
     margin-top: 10px;
   }
-
 
   .inDayColumn {
     width: 100%;
@@ -1074,9 +1075,22 @@ ul {
     position: absolute;
   }
 
-  .fullscreeningredientlist {
+  .tabletingredientstitle {
+    margin: 10px 10px 10px 20px;
+    font-size: 20px;
+    color: #64cdff;
+    font-weight: bold;
+  }
+
+  .ingredientlist {
     display: inline-block;
-    margin-left: 13px;
+    margin-left: 30px;
+    margin-right: 80px;
+  }
+
+  .recipeInstructions {
+    display: inline-block;
+    margin-left: 30px;
     margin-right: 80px;
   }
 
@@ -1087,13 +1101,32 @@ ul {
   .recipeSource {
     text-align: center;
     box-sizing: border-box;
-    margin: 30px auto 30px 20px;
-    width: 155px;
+    margin: 20px auto 30px 20px;
+    width: 175px;
+    height: 30px;
     padding: 5px;
     border-radius: 5px;
     background-color: #f7793b;
-    color: white;
     box-shadow: 1px 1px 1px #f7cd91;
+  }
+
+  .recipeSource > a > p {
+    margin: 0;
+    color: white;
+  }
+
+  .tabletinstructionstitle {
+    margin: 20px 10px 10px 20px;
+    color: #f7793b;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .recipeInstructions {
+    display: block;
+    margin-left: 30px;
+    margin-right: 80px;
+    margin-bottom: 40px;
   }
 
   .inBinModal > .recipecontainer > .infobox {
@@ -1147,16 +1180,9 @@ ul {
   .weekoptions > ul:first-child {
     border-left: 0px;
   }
-
-
-
-
-
-
-
-
 }
 
+/*Managing picture sizes below desktop*/
 @media only screen and (max-width: 1000px) and (min-width: 700px) {
 
   .inDayColumn > .recipecontainer > .recipeImage{
@@ -1174,6 +1200,7 @@ ul {
 
 }
 
+/*Smaller tablets*/
 @media only screen and (max-width: 700px) {
 
   .inDayColumn > .recipecontainer > .recipeImage{
@@ -1227,12 +1254,14 @@ ul {
 
 }
 
-
+/*Phone and small tablet sizes*/
 @media only screen and (max-width: 500px) {
+  .tabletingredientstitle, .tabletinstructionstitle {
+    display: none;
+  }
 
   .ingredientDropDown {
     display: block;
-    border: 1px solid #64cdff;
     background-color: #64cdff;
     margin: 0px 0px 10px 20px;
     padding: 6px 6px 7px 36px;
@@ -1243,7 +1272,25 @@ ul {
     color: white;
   }
 
-  .dropdownarrow {
+  .instructionDropDown {
+    display: block;
+    background-color: #f7793b;
+    margin: 20px 0px 20px 20px;
+    padding: 6px 6px 7px 36px;
+    width: 150px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+  }
+
+  .dropdownarrow1 {
+    width: 0;
+    height: 0;
+    position: absolute;
+  }
+
+  .dropdownarrow2 {
     width: 0;
     height: 0;
     position: absolute;
@@ -1257,10 +1304,18 @@ ul {
     top: 7px;
   }
 
-  .arrowdown {
+  .arrowdownblue {
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-top: 8px solid #006696;
+    left: 10px;
+    top: 11px;
+  }
+
+  .arrowdownorange {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #8a2d00;
     left: 10px;
     top: 11px;
   }
@@ -1270,13 +1325,13 @@ ul {
     margin: 10px;
   }
 
-  .fullscreeningredientlist {
+  .ingredientlist, .recipeInstructions  {
     display: none;
   }
 
   .displayed {
     display: list-item;
-    margin-left: 28px;
+    margin-left: 30px;
   }
 
   .inDayColumn > .recipecontainer > .totalTime {

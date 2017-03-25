@@ -56,6 +56,7 @@ function fillWeeklyView() {
      		var user = $.cookie('meal-prep-app');
      	}
      	state.recipesInWeek = [];
+			console.log(data);
       data.forEach(function(element) {
        	if(user == element.userId && element.day.length > 0) {
        		state.recipesInWeek.push(element);
@@ -66,13 +67,20 @@ function fillWeeklyView() {
 	       	if(element.image) {
 						html += '<img class="recipeImage" src="' + element.image + '">';
 	        }
-	        html += '<div class="ingredientDropDown"><div class="dropdownarrow arrowup"></div>Ingredients</div>';
-	        html += '<ul class="fullscreeningredientlist">';
+	        html += '<div class="ingredientDropDown"><div class="dropdownarrow1 arrowup"></div>Ingredients</div>';
+	        html += '<p class="tabletingredientstitle">Ingredients:</p><ul class="ingredientlist">';
 	        element.ingredients.forEach(function(ingredient) {
 	        	html += '<li>' + ingredient + '</li>';
 	        });
 	        html += '</ul>';
-	        html += '<a href="' + element.sourceRecipeUrl + '" target="_blank" class="recipeSourceLink"><p class="recipeSource">Recipe instructions</p></a></div></li>';
+					if(element.sourceRecipeUrl.length > 0) {
+						html += '<div class="recipeSource"><a href="' + element.sourceRecipeUrl + '" target="_blank" class="recipeSourceLink"><p>Link to Recipe Source</p></a></div>';
+					}
+					if(element.instructions.length > 0) {
+						html += '<div class="instructionDropDown"><div class="dropdownarrow2 arrowup"></div>Cooking instructions</div>';
+						html += '<p class="tabletinstructionstitle">Cooking instructions:</p><div class="recipeInstructions"><p>' + element.instructions + '</p></a></div>';
+					}
+	       	html += '</li>'
 	        assignedColumn.append(html);
        	}
       });
@@ -847,9 +855,15 @@ function deleteRecipeFromDatabase(url) {
 }
 
 $('.recipeByDay').on('click', '.ingredientDropDown', function(event) {
-	$('.dropdownarrow').toggleClass('arrowup');
-	$('.dropdownarrow').toggleClass('arrowdown');
-	$('.fullscreeningredientlist').toggleClass('displayed');
+	$(this).children('.dropdownarrow1').toggleClass('arrowup');
+	$(this).children('.dropdownarrow1').toggleClass('arrowdownblue');
+	$(this).siblings('.ingredientlist').toggleClass('displayed');
+})
+
+$('.recipeByDay').on('click', '.instructionDropDown', function(event) {
+	$(this).children('.dropdownarrow2').toggleClass('arrowup');
+	$(this).children('.dropdownarrow2').toggleClass('arrowdownorange');
+	$(this).siblings('.recipeInstructions').toggleClass('displayed');
 })
 
 function hideDropDown() {
