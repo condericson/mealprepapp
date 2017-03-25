@@ -63,6 +63,7 @@ input {
 	border-color: #a2a2a2;
 	font-family: 'Nixie One', serif;
 	font-weight: bold;
+	border-radius: 0px;
 }
 
 ::-webkit-input-placeholder { /* Chrome */

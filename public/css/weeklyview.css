@@ -51,6 +51,7 @@ nav {
   left: 10px;
   top: 8px;
 }
+
 .settings:hover {
   cursor: pointer;
 }
@@ -68,12 +69,12 @@ nav {
     border: none;
     cursor: pointer;
     font-weight: bold;
-    width: 59px;
+    width: 58px;
     height: 54px;
 }
 
 .dropdown-button:hover, .dropdown-button:focus {
-    background-color: #7f3b19;
+    background-color: #025075;
 }
 
 .dropdown-menu a {
@@ -100,10 +101,7 @@ nav {
 }
 
 
-.settings {
-    position: relative;
-    display: inline-block;
-}
+
 
 .yummlylink {padding-left: 7px;}
 
@@ -1220,6 +1218,13 @@ ul {
     box-shadow: 0px 1px 20px 0px black;
   }
 
+  .settings {
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+
+
   #recipeEntryModal {
     left: 5%;
     right: 5%;
@@ -1234,15 +1239,16 @@ ul {
   }
 
   .dropdown-button {
-    height: 25px;
+    height: 40px;
     position: relative;
   }
 
   .fa-bars {
-    font-size: 16px !important;
+    font-size: 30px !important;
     position: absolute;
     top: 5px;
-    left: 22px;
+    left: 16px;
+    text-align: center;
   }
 
   .section {
