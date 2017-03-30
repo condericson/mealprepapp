@@ -1,5 +1,5 @@
 * {
-	font-family: ubuntu;
+	font-family: 'ubuntu', serif;
 }
 
 html {
@@ -181,12 +181,21 @@ video {
 
 #invalid {
 	color: red;
-	position: absolute;
-	bottom: 68px;
+	position: relative;
+	margin: 0;
 }
 
 .hidden {
 	display: none;
+}
+
+.fa {
+  display: block;
+}
+
+.fa-spinner {
+  color: #edf9ff;
+  width: 100px;
 }
 
 @media only screen and (max-width: 1220px) {

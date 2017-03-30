@@ -61,8 +61,7 @@ input {
 	margin-bottom: 10px;
 	text-shadow: 1px 1px 3px #b1b0b0;
 	border-color: #a2a2a2;
-	font-family: 'Nixie One', serif;
-	font-weight: bold;
+	font-family: 'ubuntu', serif;
 	border-radius: 0px;
 }
 
@@ -140,4 +139,13 @@ input {
 	position: absolute;
 	right: 20px;
 	top: 13px;
+}
+
+.fa {
+  display: block;
+}
+
+.fa-spinner {
+  color: #edf9ff;
+  width: 100px;
 }

@@ -222,7 +222,7 @@ function addRecipe(recipe) {
 //Yummly API code with search
 $('#js-yummly-search').submit(function(event) {
 	event.preventDefault();
-	$('#yummlyResults').html('<p class="looking">Looking for some awesome recipes!</p><i class="fa fa-spinner fa-pulse fa-4x" aria-hidden="true"></i>');
+	$('#yummlyResults').html('<p class="looking">Just a second!</p><i class="fa fa-spinner fa-pulse fa-4x" aria-hidden="true"></i>');
 	var searchTerm = $('#yummlysearch').val();
 	var url = "https://api.yummly.com/v1/api/recipes";
 	var yummlyApp = {

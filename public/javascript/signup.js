@@ -10,6 +10,7 @@ $('.login').on('click', function(event) {
 
 $('.signupform').on('submit', function(event) {
 	event.preventDefault();
+  $('#invalid').addClass('hidden');
   console.log("adding user");
   if($('#username').val().length < 1 || $('#password').val().length < 1 || $('#chefName').val().length < 1) {
     $('#invalid').removeClass('hidden');
@@ -20,11 +21,13 @@ $('.signupform').on('submit', function(event) {
 		"password": $('#password').val(),
 		"chefName": $('#chefName').val()
 	}
+  $('.entrybutton').html('<i class="fa fa-spinner fa-pulse fa-1x" aria-hidden="true"></i>');
 	addUser(user);
 });
 
 function addUser(user) {
   var url = '/users';
+  var usercredentials = user;
 	$.ajax({
     type: "POST",
     dataType: "json",
@@ -34,17 +37,18 @@ function addUser(user) {
     url: url,
     data: JSON.stringify(user),
     success: function(data){
-      console.log(data);
       var userInfo = {
         "username": data.username,
-        "password": data.password
+        "password": usercredentials.password
       }
-      logIn(userInfo)
+      logIn(userInfo);
     },
     error: function(data) {
-    	console.log('ajax broke');
+    	alert("Invalid user or user already taken.");
+      $('.entrybutton').html("Let's get preppin'!");
+      $('input').val('');
     }
-     });
+  });
 }
 
 function logIn(userInfo) {

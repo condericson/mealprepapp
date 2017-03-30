@@ -17,7 +17,8 @@ $('#js-login-form').submit(function(event) {
         return console.log("Invalid entry");
     }
     else {
-        logIn(userInfo);    
+      $('#js-login').html('<i class="fa fa-spinner fa-pulse fa-1x" aria-hidden="true"></i>');
+      //  logIn(userInfo);
     }
 
 
