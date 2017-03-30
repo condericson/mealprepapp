@@ -3,7 +3,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-
+const {User} = require('./models/userModel');
+const passport = require('passport');
+const BasicStrategy = require('passport-http');
 
 mongoose.Promise = global.Promise;
 
@@ -15,7 +17,6 @@ const {Recipes} = require('./models/recipeModel');
 app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(cookieParser());
-
 
 //routers
 const recipeRouter = require('./recipes');
