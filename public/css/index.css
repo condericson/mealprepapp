@@ -1,5 +1,6 @@
 * {
-	font-family: 'ubuntu', serif;
+	font-family: 'Raleway', serif;
+	box-sizing: border-box;
 }
 
 html {
@@ -7,7 +8,6 @@ html {
 }
 
 body {
-	background-color: #64cdff;
 	margin: 0;
 	width: 100%;
 	height: 100%;
@@ -16,8 +16,6 @@ body {
 nav {
 	height: 60px;
 	position: relative;
-	z-index: 5;
-	background-color: #64cdff;
 }
 
 .login {
@@ -27,11 +25,12 @@ nav {
     margin: 0;
     padding: 5px;
     font-size: 22px;
-    border: 2px solid #e0e0e0;
+    border: none;
     border-radius: 5px;
-    /* background-color: #64cdff; */
-    background: linear-gradient(to bottom, #64cdff, #3cafe6);
-    color: white;
+    /* background: linear-gradient(to bottom, rgba(117, 72, 7, 0.8), rgba(70, 41, 0, 0.8)); */
+    background: #FFF;
+    opacity: 0.6;
+    color: black;
     cursor: pointer;
     outline: none;
 }
@@ -42,53 +41,50 @@ nav {
 	background: linear-gradient(to top, #64cdff, #3cafe6);
 }
 
-
-
-
-#introvideo {
-	width: 100%;
-	height: 50%;
-	background-color: lightgrey;
-	position: relative;
-	overflow: hidden;
-	background-color: #64cdff;
-	z-index: 3;
+.section {
+	height: 93%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: 50%;
 }
 
-video {
-	display: block;
-	position: absolute;
-	top: -192px;
-	height: auto;
-	width: 110%;
-	min-width: 1513px;
+.section1 {
+	background-image: url(http://www.sosasha.com/wp-content/uploads/2014/12/Holiday-Spread.jpg);
+  text-align: center;
 }
 
 #titlediv {
 	position: absolute;
-	z-index: 4;
+	z-index: 5;
 	width: 100%;
-	height: 50%;
+	height: 30%;
+}
+
+.grey {
+	position: absolute;
+	bottom: 0px;
+	min-height: 102px;
+	width: 100%;
+	background-color: rgba(80, 80, 80, 0.8);
 }
 .title {
-	position: absolute;
+	position: relative;
 	font-size: 48px;
-	margin: 0;
+	width: 285px;
+	margin: 0px auto 10px 14%;
 	font-weight: bold;
-	top: 70%;
-	left: 18%;
 	color: white;
 	text-shadow: 1px 1px 8px black;
 }
 
 .description {
-	text-align: center;
-	margin: 0;
-	padding-top: 23px;
+	text-align: left;
+	margin: 0px auto 0px 14%;
+	line-height: 21px;
+	max-width: 497px;
 	font-size: 17px;
-	position: absolute;
-	top: 80%;
-	left: 18%;
+	position: relative;
 	color: white;
 	text-shadow: 1px 1px 8px black;
 }
@@ -156,14 +152,18 @@ video {
 	background: linear-gradient(to top, #64cdff, #3cafe6);
 }
 
-.relative {
-	position: relative;
-	z-index: 5;
+.section2 {
 	padding-top: 10px;
-	background-color: #64cdff;
-	height: 100%;
+	background-color: #ffffff;
+	height: 39%;
 }
 
+.section3 {
+	background-image: url(https://s-media-cache-ak0.pinimg.com/originals/98/ad/b3/98adb3fa4caa2b88d82c064822ba61b8.jpg);
+	padding-top: 10px;
+	background-color: #64cdff;
+	height: 39%;
+}
 
 
 .signuptitle {
@@ -198,6 +198,38 @@ video {
   width: 100px;
 }
 
+.footer {
+	bottom: 0px;
+	width: 100%;
+	height: 30px;
+	background-color: #706e6d;
+}
+
+.githublogo {
+	display: inline-block;
+}
+
+.poweredBy {
+	margin: 0;
+	padding-top: 5px;
+	text-align: center;
+	color: white;
+}
+
+.poweredBy > span {
+	width: 100%;
+}
+
+.yummlylink {
+	display: inline-block;
+}
+
+#yummlylogo {
+	display: inline-block;
+	width: 41px;
+	background-color: white;
+}
+
 @media only screen and (max-width: 1220px) {
 	video {
 		right: -10%;
@@ -217,6 +249,19 @@ video {
 		display: none;
 	}
 
+	.grey > p {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	#titlediv {
+		height: 15%;
+	}
+
+	.section1 {
+		height: 50%;
+	}
+
 	.altbackground {
 		display: block;
 		position: fixed;
@@ -225,29 +270,6 @@ video {
 		height: 79%;
 		transform: translate(-50%, -50%) rotate(90deg);
 		/* transform: rotate(45deg); */
-	}
-
-	.title {
-		position: absolute;
-		font-size: 48px;
-		margin: 0;
-		font-weight: bold;
-		top: 17px;
-		left: 37px;
-		color: white;
-		text-shadow: 1px 1px 8px black;
-	}
-
-	.description {
-		text-align: left;
-		margin: 0;
-		padding-top: 23px;
-		font-size: 17px;
-		position: absolute;
-		top: 70px;
-		left: 37px;
-		color: white;
-		text-shadow: 1px 1px 8px black;
 	}
 
 }

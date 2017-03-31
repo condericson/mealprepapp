@@ -7,25 +7,33 @@
 	<title>Prepper</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="./css/index.css">
-	<link href="https://fonts.googleapis.com/css?family=Sansita|Ubuntu|Mr+Dafoe|Pacifico|Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Sansita|Ubuntu|Mr+Dafoe|Pacifico|Roboto|Raleway" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+
+
+<div class="section section1">
 	<nav>
+		<button class="login">Sign up</button>
 		<button class="login">Log in</button>
 	</nav>
-
 	<div id="titlediv">
-		<p class="title">Prepper</p>
-		<p class="description">Organize your meals, search for good ones, and make your own.</p>
-	</div>
+		<div class="grey">
+			<p class="title">Dinner Plans</p>
+			<p class="description">Making your meal prep that much easier.</p>
+		</div>
 
-	<div id="introvideo" >
+	</div>
+</div>
+
+
+	<!-- <div id="introvideo" >
 		<img src="../images/indexpic.JPG" class="altbackground">
 		<video loop autoplay muted width="100%">
 			<source src="./images/video/foodprepvideo.mp4" type="video/mp4">
 		</video>
-	</div>
+	</div> -->
 
 
 
@@ -33,11 +41,24 @@
 
 
 
+<div class="section2 section">
+	<ul>
+		<li>
+			Organize dinners for your family each week, including making the grocery list.
+		</li>
+		<li>
+			Add your own famous recipes to any day.
+		</li>
+		<li>
+				Search for new recipes from an database powered by <a class="yummlylink" href="http://www.yummly.com" target="_blank"><img id="yummlylogo" src="./images/yummly_logo.png"></a>
+		</li>
+	</ul>
+
+</div>
 
 
 
-
-	<div class="relative">
+	<div class="section3 section">
 		<form class="signupform">
 			<p class="signuptitle">Sign up!</p>
 			<input class="entry" type="text" name="chefname" id="chefName" placeholder="Chef's Name" autocomplete="off">
@@ -49,13 +70,18 @@
 
 	</div>
 
+<div>
+
+</div>
 
 
 
 
 
 
-
+<div class="footer">
+	<span class="poweredBy">Built by Connor Ericson.</span><span><img class="githublogo" src="./images/githublogo.png"/></span>
+</div>
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script type="text/javascript" src="./javascript/signup.js"></script>
 </body>
