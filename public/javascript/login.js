@@ -18,7 +18,7 @@ $('#js-login-form').submit(function(event) {
     }
     else {
       $('#js-login').html('<i class="fa fa-spinner fa-pulse fa-1x" aria-hidden="true"></i>');
-      //  logIn(userInfo);
+      logIn(userInfo);
     }
 
 
