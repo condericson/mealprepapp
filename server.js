@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-const {User} = require('./models/userModel');
 const passport = require('passport');
 const BasicStrategy = require('passport-http');
 
@@ -13,6 +12,7 @@ const app = express();
 
 const {DATABASE_URL, PORT} = require('./config');
 const {Recipes} = require('./models/recipeModel');
+const {User} = require('./models/userModel');
 
 app.use(express.static('public'));
 app.use(morgan('common'));

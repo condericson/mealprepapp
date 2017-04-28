@@ -32,7 +32,6 @@ router.get('/', (req,res) => {
 
 router.get('/:id', (req, res) => {
   var _id = mongoose.Types.ObjectId(req.params.id);
-  console.log("ID HERE", _id);
   User.findOne({
     _id: _id
   }, function(err, user){
@@ -46,7 +45,7 @@ router.get('/:id', (req, res) => {
 
 
 
-router.get('/logout/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   res.clearCookie("meal-prep-app");
   res.status(201).json({"message":"logging out"})
 });
