@@ -35,14 +35,24 @@ nav {
     outline: none;
 }
 
-#f7cd91
-
-.login:active {
-	background: linear-gradient(to top, #64cdff, #3cafe6);
+.signup {
+    position: absolute;
+    right: 105px;
+    top: 10px;
+    margin: 0;
+    padding: 5px;
+    font-size: 22px;
+    border: none;
+    border-radius: 5px;
+    /* background: linear-gradient(to bottom, rgba(117, 72, 7, 0.8), rgba(70, 41, 0, 0.8)); */
+    background: #FFF;
+    opacity: 0.6;
+    color: black;
+    cursor: pointer;
+    outline: none;
 }
 
 .section {
-	height: 93%;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -50,9 +60,32 @@ nav {
 }
 
 .section1 {
-	background-image: url(http://www.sosasha.com/wp-content/uploads/2014/12/Holiday-Spread.jpg);
-  text-align: center;
+	background-image: url(http://i.imgur.com/6RVfLI7.png);
+	height: 91%;
 }
+
+.grey {
+	display: none;
+}
+
+@media only screen and (max-width: 950px) {
+	.section1 {
+		background-image: url(http://www.sosasha.com/wp-content/uploads/2014/12/Holiday-Spread.jpg);
+	}
+	.grey {
+		position: absolute;
+		bottom: 0px;
+		min-height: 70px;
+		width: 100%;
+		background-color: rgba(255, 188, 103, 0.8);
+		display:block;
+	}
+}
+
+
+
+
+
 
 #titlediv {
 	position: absolute;
@@ -61,42 +94,19 @@ nav {
 	height: 30%;
 }
 
-.grey {
-	position: absolute;
-	bottom: 0px;
-	min-height: 102px;
-	width: 100%;
-	background-color: rgba(80, 80, 80, 0.8);
-}
+
+
+
 .title {
 	position: relative;
-	font-size: 48px;
-	width: 285px;
-	margin: 0px auto 10px 14%;
+	margin: 0;
+	font-size: 60px;
 	font-weight: bold;
 	color: white;
-	text-shadow: 1px 1px 8px black;
-}
-
-.description {
-	text-align: left;
-	margin: 0px auto 0px 14%;
-	line-height: 21px;
-	max-width: 497px;
-	font-size: 17px;
-	position: relative;
-	color: white;
-	text-shadow: 1px 1px 8px black;
-}
-
-.signupform {
-	margin: 20px auto;
-	width: 270px;
+	text-shadow: 1px 1px 8px #9c6116;
+	font-family: 'Homemade Apple', cursive;
+	padding-left: 20px;
 	text-align: center;
-	padding: 15px;
-	border: 3px solid #e0e0e0;
-	border-radius: 5px;
-	background-color: #e4e4e4;
 }
 
 .entry {
@@ -105,7 +115,7 @@ nav {
 	text-align: center;
 	width: 90%;
 	font-size: 21px;
-	color: #f7793b;
+	color: #71190f;
 	outline: none;
 	padding-top: 10px;
 	margin-bottom: 10px;
@@ -139,40 +149,134 @@ nav {
   margin-top: 19px;
   padding: 5px;
   font-size: 21px;
-  border: 2px solid #e0e0e0;
+  border: none;
   border-radius: 5px;
-  background: linear-gradient(to bottom, #64cdff, #3cafe6);
+  background-color: #fdb14e;
   color: white;
   cursor: pointer;
   outline: none;
   width: 100%;
+  transition-duration: 0.5s;
 }
 
-.entrybutton:active {
-	background: linear-gradient(to top, #64cdff, #3cafe6);
+.entrybutton:hover {
+	background-color: #a25b00;
 }
 
 .section2 {
 	padding-top: 10px;
 	background-color: #ffffff;
-	height: 39%;
+	height: 93px;
+	box-shadow: 0px 0px 4px black;
 }
+
+.description {
+	text-align: center;
+	font-size: 38px;
+	position: relative;
+	color: black;
+	margin: 0;
+	padding-top: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+	.description {
+		font-size: 30px;
+	}
+}
+
+@media only screen and (max-width: 650px) {
+	.description {
+		font-size: 15px;
+		padding: 0px 10px;
+	}
+	.section2 {
+		height: 44px;
+	}
+
+}
+
+
 
 .section3 {
 	background-image: url(https://s-media-cache-ak0.pinimg.com/originals/98/ad/b3/98adb3fa4caa2b88d82c064822ba61b8.jpg);
 	padding-top: 10px;
 	background-color: #64cdff;
-	height: 39%;
+	min-height: 72%;
+	text-align: center;
+	padding-bottom: 50px;
 }
 
+.listOfFeatures {
+	display: inline-block;
+	vertical-align: top;
+	color: white;
+	background-color: rgba(37, 18, 8, 0.8);
+	padding: 10px;
+	position: relative;
+	top: 10%;
+	width: 500px;
+	margin: 50px;
+}
+
+.features {
+	list-style: none;
+	text-align: left;
+
+}
+
+.features > li {
+	margin-bottom: 20px;
+	font-size: 18px;
+}
+
+.featureHeader {
+	font-size: 25px;
+}
+
+.underlineOrange {
+	text-decoration: none;
+	border-bottom: 4px solid #ffbc67;
+	color: white;
+}
+
+@media only screen and (max-width: 650px) {
+	.listOfFeatures {
+		margin: 50px 0px;
+		width: 100%;
+	}
+	.features {
+		padding: 10px;
+	}
+	
+}
+
+.signupform {
+	margin: 50px;
+	width: 270px;
+	text-align: center;
+	padding: 15px;
+	border: 3px solid #e0e0e0;
+	border-radius: 5px;
+	background-color: #e4e4e4;
+	display: inline-block;
+}
 
 .signuptitle {
-	color: #3db0e6;
+	color: #8a4d00;
 	font-size: 24px;
 	padding-bottom: 6px;
 	margin: 0;
-	text-shadow: 1px 1px 2px rgb(165, 165, 165);
+	font-weight: bold;
+	/* text-shadow: 1px 1px 2px rgb(115, 96, 72); */
 	/* font-weight: bold; */
+}
+
+@media only screen and (max-width:900px) {
+	.signupform {
+		display: block;
+		margin: 10px auto;
+	}
 }
 
 .altbackground {
@@ -205,19 +309,38 @@ nav {
 	background-color: #706e6d;
 }
 
-.githublogo {
-	display: inline-block;
+.built {
+  text-align: center;
+  background-color: rgb(228, 168, 90);
+  height: 32px;
 }
 
-.poweredBy {
-	margin: 0;
-	padding-top: 5px;
-	text-align: center;
-	color: white;
+.by {
+  display: inline-block;
+  font-size: 18px;
+  position: relative;
+  bottom: 5px;
+  color: white;
+  text-shadow: 0px 0px 4px #774300;
 }
 
-.poweredBy > span {
-	width: 100%;
+.githubLogo {
+  display: inline;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  color: black;
+}
+
+.githubLogo:hover {
+  color: #02bf00;
+}
+
+.githubcontainer {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  margin: 0px 0px 0px 5px;
 }
 
 .yummlylink {
@@ -245,21 +368,15 @@ nav {
 }
 
 @media only screen and (max-width: 700px) {
-	video {
-		display: none;
-	}
-
-	.grey > p {
-		margin-left: 10px;
-		margin-right: 10px;
-	}
-
 	#titlediv {
 		height: 15%;
 	}
+	.title {
+		font-size: 40px;
+	}
 
 	.section1 {
-		height: 50%;
+		height: 90%;
 	}
 
 	.altbackground {

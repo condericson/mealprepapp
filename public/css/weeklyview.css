@@ -13,11 +13,27 @@ body {
   margin: 0;
 }
 
+.backgroundImageBlurred {
+  background-image: url('http://i.imgur.com/CZfJ8bU.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50%;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  filter: blur(5px);
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+}
+
 /* Nav styles */
 nav {
   width: 100%;
   height: 70px;
-  background-color: #f7cd91;
+  background-color: #ffffff;
   position: fixed;
   z-index: 4;
   box-shadow: 0px 0px 4px 0px black;
@@ -25,9 +41,9 @@ nav {
 
 .title {
   font-size: 50px;
-  color: #f7793b;
-  font-family: Lobster;
-  text-shadow: 1px 1px 2px #b38748;
+  color: #fdb14e;
+  font-family: 'Ubuntu';
+  text-shadow: 1px 1px 2px #a95f00;
   font-weight: bold;
   /* width: 60%; */
 }
@@ -1203,7 +1219,6 @@ ul {
   nav {
     width: 100%;
     height: 40px;
-    background-color: #f7cd91;
     position: fixed;
     z-index: 4;
     box-shadow: 0px 1px 20px 0px black;
@@ -1353,10 +1368,11 @@ ul {
   .title2 {
     display: inline-block;
     font-size: 30px;
-    font-family: ubuntu;
-    color: #f7793b;
+    font-family: 'homemade apple', cursive;
+    color: #fdb14e;
     font-weight: bold;
     margin-left: 10%;
+    line-height: 50px;
   }
 
   #groceryListModal {

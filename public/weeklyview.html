@@ -3,8 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="favicon" href="images/faviconP.ico">
 	<title>Weekly View</title>
-	<link href="https://fonts.googleapis.com/css?family=Sansita|Ubuntu|Mr+Dafoe|Pacifico|Roboto|Raleway|Lobster|Bree+Serif|Nixie+One|Crete+Round" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Sansita|Ubuntu|Mr+Dafoe|Pacifico|Roboto|Raleway|Lobster|Bree+Serif|Nixie+One|Crete+Round|Homemade+Apple" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./css/weeklyview.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
@@ -16,9 +17,10 @@
 	<script type="text/javascript" src="./javascript/weeklyview.js"></script>
 
 </head>
-<body background="./images/background.png">
+<body>
+	<div class="backgroundImageBlurred"></div>
 	<nav>
-		<div class="titlediv"><span class="title">Welcome, Chef <span id="usernameInTitle"></span>!</span><span class="title2">Prepper</span></div>
+		<div class="titlediv"><span class="title">Welcome, Chef <span id="usernameInTitle"></span>!</span><span class="title2">dinnerplans</span></div>
 
 		<div class="settings">
 			<button class="dropdown-button" id="dropdown-button"><i class="fa fa-bars" aria-hidden="true"></i></button>
@@ -38,37 +40,37 @@
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Sunday</h3>
 			<ul id="sunday" class="clearOnDrop"></ul>
-			<div class="addARecipeButton">+ Add recipe</div>
+			<div class="addARecipeButton">+</div>
 		</div>
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Monday</h3>
 			<ul id="monday" class="clearOnDrop"></ul>
-			<div class="addARecipeButton">+ Add recipe</div>
+			<div class="addARecipeButton">+</div>
 		</div>
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Tuesday</h3>
 			<ul id="tuesday" class="clearOnDrop"></ul>
-			<div class="addARecipeButton">+ Add recipe</div>
+			<div class="addARecipeButton">+</div>
 		</div>
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Wednesday</h3>
 			<ul id="wednesday" class="clearOnDrop"></ul>
-			<div class="addARecipeButton">+ Add recipe</div>
+			<div class="addARecipeButton">+</div>
 		</div>
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Thursday</h3>
 			<ul id="thursday" class="clearOnDrop"></ul>
-			<div class="addARecipeButton">+ Add recipe</div>
+			<div class="addARecipeButton">+</div>
 		</div>
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Friday</h3>
 			<ul id="friday" class="clearOnDrop"></ul>
-			<div class="addARecipeButton">+ Add recipe</div>
+			<div class="addARecipeButton">+</div>
 			</div>
 		<div class="col span_1_of_7 recipeByDay">
 			<h3 class="weekday">Saturday</h3>
 			<ul id="saturday" class="clearOnDrop"></ul>
-			<div class="addARecipeButton">+ Add recipe</div>
+			<div class="addARecipeButton">+</div>
 		</div>
 	</div>
 

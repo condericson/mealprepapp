@@ -7,26 +7,45 @@ html {
 }
 
 body {
-	background-color: #64cdff;
+	background-color: #e2e2e2;
 	margin: 0;
 	width: 100%;
 	height: 100%;
 }
 
+.backgroundImageBlurred {
+  background-image: url('http://i.imgur.com/61Jhb4C.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50%;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  z-index: -10;
+}
+
 nav {
-	background-color: white;
-	height: 66px;
+	background-color: #ffdfb6;
+	height: 80px;
 	position: relative;
+	z-index: 10;
 }
 
 .pagetitle {
-	color: #f7793b;
-	font-size: 45px;
+	color: #ffa836;
+	font-size: 50px;
 	position: absolute;
 	margin: 0;
 	top: 4px;
 	left: 22px;
 	font-weight: bold;
+	font-family: 'Homemade Apple', cursive;
 }
 
 
@@ -39,72 +58,55 @@ nav {
 	display: none;
 }
 
+.formWrapper {
+	z-index: 10;
+}
+
 #js-login-form {
- 		margin: 100px auto 20px;
-    width: 270px;
-    text-align: center;
-    padding: 15px;
-    border: 3px solid #e0e0e0;
-    border-radius: 5px;
-    background-color: #e4e4e4;
+	margin: 100px auto 20px;
+	width: 270px;
+	text-align: center;
+	padding: 50px 70px 70px 70px;
+	border-radius: 5px;
+	background-color: rgb(255, 255, 255);
 }
 
 input {
 	border-width: 0px 0px 2px 0px;
-	background-color: #e4e4e4;
 	text-align: center;
 	width: 90%;
 	font-size: 22px;
-	color: #f7793b;
+	color: #25b6fb;
 	outline: none;
 	padding-top: 10px;
 	margin-bottom: 10px;
-	text-shadow: 1px 1px 3px #b1b0b0;
-	border-color: #a2a2a2;
+	/* text-shadow: 1px 1px 3px #b1b0b0; */
+	border-color: #4c4c4c;
 	font-family: 'ubuntu', serif;
 	border-radius: 0px;
+	background: none;
 }
 
-::-webkit-input-placeholder { /* Chrome */
-  color: #a2a2a2;
-  text-shadow: none
-}
-:-ms-input-placeholder { /* IE 10+ */
-  color: #a2a2a2;
-  text-shadow: none:;
-}
-::-moz-placeholder { /* Firefox 19+ */
-  color: #a2a2a2;
-  opacity: 1;
-/*   text-shadow: 1px 1px 3px #6f6f6f */
-}
-:-moz-placeholder { /* Firefox 4 - 18 */
-  color: #a2a2a2;
-  opacity: 1;
-/*   text-shadow: 1px 1px 3px #6f6f6f */
-}
+
 
 #js-login {
   right: 20px;
   top: 10px;
   margin-top: 19px;
   padding: 5px;
-  font-size: 24px;
-  border: 2px solid #e0e0e0;
+  font-size: 21px;
+  border: none;
   border-radius: 5px;
-  background: linear-gradient(to bottom, #64cdff, #3cafe6);
+  background-color: #64cdff;
   color: white;
   cursor: pointer;
   outline: none;
   width: 100%;
+  transition-duration: 0.5s;
 }
 
-.#js-login:target {
-	background: linear-gradient(to top, #64cdff, #3cafe6);
-}
-
-.#signup:target {
-	background: linear-gradient(to top, #64cdff, #3cafe6);
+#js-login:hover {
+	background-color: #005075;
 }
 
 .relative {
@@ -114,31 +116,35 @@ input {
 
 
 .logintitle {
-	color: #3db0e6;
+	color: #64cdff;
 	font-size: 30px;
 	padding-bottom: 10px;
 	margin: 0;
-	text-shadow: 1px 1px 7px rgb(165, 165, 165);
+	/* text-shadow: 1px 1px 7px rgb(165, 165, 165); */
 	/* font-family: 'Bree Serif', serif; */
 	/* font-weight: bold; */
 }
 
 #signup {
 	text-align: center;
-	/* margin: 20px auto 0px; */
 	padding: 5px;
-	font-size: 20px;
-	border: 2px solid #e0e0e0;
-	border-radius: 5px;
-	background: linear-gradient(to bottom, #64cdff, #3cafe6);
-	color: white;
-	cursor: pointer;
-	outline: none;
 	width: 100px;
 	box-sizing: border-box;
 	position: absolute;
 	right: 20px;
-	top: 13px;
+	top: 21px;
+	font-size: 21px;
+	border: none;
+	border-radius: 5px;
+	background-color: #fdb14e;
+	color: white;
+	cursor: pointer;
+	outline: none;
+	transition-duration: 0.5s;
+}
+
+#signup:hover {
+	background-color: #a25b00;
 }
 
 .fa {

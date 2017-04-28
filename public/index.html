@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<link rel="icon" href="images/faviconP.ico">
-	<link rel="apple-touch-icon-precomposed" href="images/faviconP.ico">
-	<title>Prepper</title>
+	<link rel="icon" href="images/dinnerplansicon.ico">
+	<link rel="favicon" href="images/faviconP.ico">
+	<title>Dinner Plans</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="./css/index.css">
-	<link href="https://fonts.googleapis.com/css?family=Sansita|Ubuntu|Mr+Dafoe|Pacifico|Roboto|Raleway" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Sansita|Ubuntu|Mr+Dafoe|Pacifico|Roboto|Raleway|Homemade+Apple" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -15,50 +15,38 @@
 
 <div class="section section1">
 	<nav>
-		<button class="login">Sign up</button>
+		<button class="signup">Sign up</button>
 		<button class="login">Log in</button>
 	</nav>
 	<div id="titlediv">
 		<div class="grey">
-			<p class="title">Dinner Plans</p>
-			<p class="description">Making your meal prep that much easier.</p>
+			<p class="title">dinner plans</p>
 		</div>
 
 	</div>
 </div>
 
-
-	<!-- <div id="introvideo" >
-		<img src="../images/indexpic.JPG" class="altbackground">
-		<video loop autoplay muted width="100%">
-			<source src="./images/video/foodprepvideo.mp4" type="video/mp4">
-		</video>
-	</div> -->
-
-
-
-
-
-
-
 <div class="section2 section">
-	<ul>
-		<li>
-			Organize dinners for your family each week, including making the grocery list.
-		</li>
-		<li>
-			Add your own famous recipes to any day.
-		</li>
-		<li>
-				Search for new recipes from an database powered by <a class="yummlylink" href="http://www.yummly.com" target="_blank"><img id="yummlylogo" src="./images/yummly_logo.png"></a>
-		</li>
-	</ul>
-
+	<p class="description">Making your meal prep that much easier.</p>
 </div>
 
 
 
 	<div class="section3 section">
+		<div class="listOfFeatures">
+			<h1 class="featureHeader">Discover a new kind of tool:</h1>
+			<ul class="features">
+				<li>
+					Organize dinners for your family each week, including making the grocery list
+				</li>
+				<li>
+					Add your own famous recipes to any day
+				</li>
+				<li>
+					Search for new recipes from an database powered by <a href="https://www.yummly.com" class="underlineOrange">Yummly</a>
+				</li>
+			</ul>
+		</div>
 		<form class="signupform">
 			<p class="signuptitle">Sign up!</p>
 			<input class="entry" type="text" name="chefname" id="chefName" placeholder="Chef's Name" autocomplete="off">
@@ -78,10 +66,17 @@
 
 
 
-
 <div class="footer">
-	<span class="poweredBy">Built by Connor Ericson.</span><span><img class="githublogo" src="./images/githublogo.png"/></span>
+	<div class="built">
+	<span class="by">Built by Connor Ericson</span>
+		<div class="githubcontainer">
+			<a href="https://github.com/condericson/babysfirst" class="nostyle" rel="githublink" target="_blank">
+				<i class="fa fa-github fa-2x githubLogo" aria-hidden="true"></i>
+			</a>
+		</div>
+	</div>
 </div>
+
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script type="text/javascript" src="./javascript/signup.js"></script>
 </body>
