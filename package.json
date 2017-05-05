@@ -23,7 +23,7 @@
     "mocha": "^3.2.0"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "./node_modules/.bin/mocha test",
     "start": "nodemon server.js"
   },
   "repository": {
