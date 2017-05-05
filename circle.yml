@@ -1,0 +1,9 @@
+machine:
+  node:
+    version: 7.8.0
+
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: dinnerplans-condericson
