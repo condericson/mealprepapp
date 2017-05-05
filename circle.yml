@@ -7,3 +7,5 @@ deployment:
     branch: master
     heroku:
       appname: dinnerplans-condericson
+
+before_script: chmod 0777 ./node_modules/.bin/mocha
