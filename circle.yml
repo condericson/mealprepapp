@@ -1,15 +1,3 @@
 machine:
   node:
     version: 7.8.0
-
-deployment:
-  staging:
-    branch: master
-    heroku:
-      appname: dinnerplans-condericson
-
-test:
-  override:
-    mocha ./test/test.js
-
-before_script: chmod 0777 ./node_modules/.bin/mocha
