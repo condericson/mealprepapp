@@ -1,5 +1,10 @@
 language: node_js
-node_js:
-  "7"
-
-services: "mongodb"
+node_js: '7'
+services: mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: DTRJoUDyKsIWDf31iuLbZ3BHuOp1b3fhNE6DO0hwT9Xd3re4nlW7z3Z+/hHfJxYtLi2E69Rm8LG9qwuFQxfh1gq6cAJCPMhtvYSjim9SG91uckO0Zs0n2OVzkVvV2/fuWB9WwM6pe/xt+766e3CyDmk5dqNfcPARly7wOsRM6P3FahsRpK3g1fy6Yt8SIw0/42TC3+EBhf3SnL8CCmjSIjh2z55S1Ihaj77NnLW9x0FTsHdhZ+9Fb7Onv5N30BBsMJyd+ZfaQ7ps7LjqbHVytgD+prE8uVyIJJL5mPAJz1vWx9KmG63rd88Df9OczBEAuR03YrHrzhd2JjYWUOfIBZm1KFMthAQNVyAcVKEb+Z/pNINZH8qqyC25PjmBuJoNgG7gm/0dI0orBI5QvlYEsIkJkBbRJBBjRL31QgUQ7v05HCBYajCZ2FHwt9UVOjaJAhIa/LbeBtHmxEFUA3BwLaxqmspLH6G8dJET8CJ9HGk4vgrYU7327lrbLhhMHD7ZfbUoXkNQVxE2FsQqnd/eYvu8V2z0r0hTWUu1SO/peThMTCNvzgcW/9o36G2fVahLfRCeRCmB3Q2GXTbfWYQgvvMBZepfnOHT6UF1HmcAHABjIDbOraw0ROyFvN/vCZ9TA/KnEdOJOhGTmj7polTV1ksM6fbzgZ9wt1Y8S9cAWGY=
+  app: dinnerplans-condericson
+  on:
+    repo: condericson/mealprepapp
