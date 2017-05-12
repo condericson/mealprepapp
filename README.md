@@ -10,7 +10,7 @@
 
 ![mobile screenshots](https://github.com/condericson/mealprepapp/blob/master/readme_images/responsive.png "Mobile Screenshots")
 
-This application combines the use of the Javascript with jQuery on the front end with Node.js and MongoDB on the back end. 
+This application combines the use of the Javascript with jQuery on the front end with Node.js and MongoDB on the back end.
 
 ## Getting started
 ### `Install`
@@ -51,7 +51,7 @@ Then open [`localhost:3000`](http://localhost:3000) in a browser.
 ## Version 2.0 changes and added functionality:
 Applications can always improve upon themselves. Areas in which [Dinner Plans] can improve are:
 * Provide option for users to upload their own images to user created recipes.
-* Add checkboxes for grocery list modal.
+* Add check boxes for grocery list modal.
 * Create 404 page for navigating to a page that doesn't exist.
 * Provide more feedback for users for incorrect inputs (i.e. already existing usernames).
 * Provide responsive styling for landscape view on mobile device.
