@@ -43,46 +43,43 @@ fillWeeklyView();
 
 
 //Fill weekly view on log in
-function fillWeeklyView() {
+function fillWeeklyView() {	
+	var userId = $.cookie('meal-prep-app').slice(3,-1);
 	$.ajax({
      type: "GET",
      dataType: "json",
      crossdomain: true,
      headers: {"Access-Control-Allow-Origin": "*"},
      contentType: "application/json; charset=utf-8",
-     url: '/recipes',
+     url: `/recipes/${userId}`,
      success: function(data){
-     	if($.cookie('meal-prep-app')){
-     		var user = $.cookie('meal-prep-app');
-     	}
-     	state.recipesInWeek = [];
-			console.log(data);
-      data.forEach(function(element) {
-       	if(user == element.userId && element.day.length > 0) {
-       		state.recipesInWeek.push(element);
-       		var assignedColumn = $('#' + element.day.toLowerCase());
-	       	var html = '<li  class="inDayColumn"><div class="recipecontainer"><div class="infobox"><i class="fa fa-info-circle infoIconDBRecipe" aria-hidden="true"></i><i class="fa fa-trash recipedelete" aria-hidden="true"></i><div class="areyousure hidden"><p class="deletequestion">Remove from the week?</p><div class="remove">Remove</div><div class="no">No</div><div class="triangle"></div></div></div>';
-	       	html += '<p class="recipeName">' + element.title + '</p>';
-	       	html += '<p class="totalTime">' + element.totalTime + '</p>';
-	       	if(element.image) {
-						html += '<img class="recipeImage" src="' + element.image + '">';
-	        }
-	        html += '<div class="ingredientDropDown"><div class="dropdownarrow1 arrowup"></div>Ingredients</div>';
-	        html += '<p class="tabletingredientstitle">Ingredients:</p><ul class="ingredientlist">';
-	        element.ingredients.forEach(function(ingredient) {
-	        	html += '<li>' + ingredient + '</li>';
-	        });
-	        html += '</ul>';
-					if(element.sourceRecipeUrl.length > 0) {
-						html += '<div class="recipeSource"><a href="' + element.sourceRecipeUrl + '" target="_blank" class="recipeSourceLink"><p>Link to Recipe Source</p></a></div>';
-					}
-					if(element.instructions.length > 0) {
-						html += '<div class="instructionDropDown"><div class="dropdownarrow2 arrowup"></div>Cooking instructions</div>';
-						html += '<p class="tabletinstructionstitle">Cooking instructions:</p><div class="recipeInstructions"><p>' + element.instructions + '</p></a></div>';
-					}
-	       	html += '</li>'
-	        assignedColumn.append(html);
-       	}
+    	state.recipesInWeek = [];
+      	data.forEach(function(element) {
+			if(element.day.length > 0) {
+				state.recipesInWeek.push(element);
+				var assignedColumn = $('#' + element.day.toLowerCase());
+				var html = '<li  class="inDayColumn"><div class="recipecontainer"><div class="infobox"><i class="fa fa-info-circle infoIconDBRecipe" aria-hidden="true"></i><i class="fa fa-trash recipedelete" aria-hidden="true"></i><div class="areyousure hidden"><p class="deletequestion">Remove from the week?</p><div class="remove">Remove</div><div class="no">No</div><div class="triangle"></div></div></div>';
+				html += '<p class="recipeName">' + element.title + '</p>';
+				html += '<p class="totalTime">' + element.totalTime + '</p>';
+				if(element.image) {
+							html += '<img class="recipeImage" src="' + element.image + '">';
+				}
+				html += '<div class="ingredientDropDown"><div class="dropdownarrow1 arrowup"></div>Ingredients</div>';
+				html += '<p class="tabletingredientstitle">Ingredients:</p><ul class="ingredientlist">';
+				element.ingredients.forEach(function(ingredient) {
+					html += '<li>' + ingredient + '</li>';
+				});
+				html += '</ul>';
+						if(element.sourceRecipeUrl.length > 0) {
+							html += '<div class="recipeSource"><a href="' + element.sourceRecipeUrl + '" target="_blank" class="recipeSourceLink"><p>Link to Recipe Source</p></a></div>';
+						}
+						if(element.instructions.length > 0) {
+							html += '<div class="instructionDropDown"><div class="dropdownarrow2 arrowup"></div>Cooking instructions</div>';
+							html += '<p class="tabletinstructionstitle">Cooking instructions:</p><div class="recipeInstructions"><p>' + element.instructions + '</p></a></div>';
+						}
+				html += '</li>'
+				assignedColumn.append(html);
+			}
       });
      },
     error: function(data) {
@@ -171,13 +168,15 @@ $('#js-recipe-submit').click(function(event) {
 			ingredients.push(element.value);
 		}
 	});
+	var userId = $.cookie('meal-prep-app').slice(3,-1);
+	console.log("userId", userId);
 	var recipe = {
 		"title": $('#title').val(),
 		"ingredients": ingredients,
 		"instructions": $('#instructions').val(),
 		"day": $('#assignedDay').text(),
 		"image": "./public/images/platecover.png",
-		"userId": $.cookie('meal-prep-app'),
+		"userId": userId,
 		"totalTime": $('.preptimeinput').val()
 	};
 	addRecipe(recipe);
@@ -189,7 +188,8 @@ $('#addIngredient').click(function(event) {
 });
 
 function addRecipe(recipe) {
-	var url = '/recipes';
+	var userId = $.cookie('meal-prep-app').slice(3,-1);
+    var url = `/recipes/${userId}`;
 	$.ajax({
      type: "POST",
      dataType: "json",
@@ -324,13 +324,15 @@ $('#browseRecipesButton').on('click', function(event) {
 });
 
 function fillMyRecipes() {
+	var userId = $.cookie('meal-prep-app').slice(3,-1);
+    var url = `/recipes/${userId}`;
 	$.ajax({
     type: "GET",
     dataType: "json",
     crossdomain: true,
     headers: {"Access-Control-Allow-Origin": "*"},
     contentType: "application/json; charset=utf-8",
-    url: '/recipes',
+    url: url,
     success: function(data){
       $('#myRecipes').html("");
       if($.cookie('meal-prep-app')){
@@ -378,19 +380,21 @@ $('#myRecipeModal').on('click', '.infoIconDBRecipe', function(event) {
 	$('#groceryListModal').addClass('hidden');
 	//Get recipe title from p element
 	var recipeTitle = $(this).parent().siblings('.recipeName').text();
+	var userId = $.cookie('meal-prep-app').slice(3,-1);
+    var url = `/recipes/${userId}`;
 	$.ajax({
     type: "GET",
     dataType: "json",
     crossdomain: true,
     headers: {"Access-Control-Allow-Origin": "*"},
     contentType: "application/json; charset=utf-8",
-    url: '/recipes',
+    url: url,
     success: function(data){
      	console.log("Recipe GET successful");
 	    data.forEach(function(element) {
 	     	if(recipeTitle == element.title) {
 	     		recipeInfoModalFill(element);
-      	};
+      		};
      	})
     },
     error: function(data) {
@@ -654,13 +658,15 @@ function updateOnDrop(id, day) {
 }
 
 function addToDatabase(recipeObject) {
+	var userId = $.cookie('meal-prep-app').slice(3,-1);
+    var url = `/recipes/${userId}`;
 	$.ajax({
      type: "POST",
      dataType: "json",
      crossdomain: true,
      headers: {"Access-Control-Allow-Origin": "*"},
      contentType: "application/json; charset=utf-8",
-     url: "/recipes",
+     url: url,
      data: JSON.stringify(recipeObject),
      success: function(data){
       console.log('success');

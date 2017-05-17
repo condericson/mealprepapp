@@ -9,16 +9,30 @@ const {Recipes} = require('./models/recipeModel');
 const jsonParser = bodyParser.json();
 router.use(morgan('common'));
 
-router.get('/', (req,res) => {
-	Recipes.find(function(err, recipe) {
-		if(err) {
-			res.status(500).json({"message": "Error!"});
-		}
-		res.status(201).json(recipe);
-	})
+// router.get('/', (req,res) => {
+// 	Recipes.find(function(err, recipe) {
+// 		if(err) {
+// 			res.status(500).json({"message": "Error!"});
+// 		}
+// 		res.status(201).json(recipe);
+// 	})
+// });
+
+router.get('/:id', async (req, res) => {
+    var _id = mongoose.Types.ObjectId(req.params.id);
+    console.log("getting"); 
+  try {
+    const recipe = await Recipes.find({ _id: _id })
+    res.status(201).json(recipe);
+    console.log(recipe);
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+    console.log(e.message);
+  }
 });
 
 router.post('/', jsonParser, (req, res) => {
+    console.log("here is the req", req.body);
     Recipes.create({
 		'title': req.body.title,
 		'ingredients': req.body.ingredients,

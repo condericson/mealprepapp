@@ -1,5 +1,5 @@
 * {
-	font-family: ubuntu;
+	font-family: 'Raleway', serif;
 }
 
 html {
@@ -68,11 +68,11 @@ nav {
 	text-align: center;
 	padding: 50px 70px 70px 70px;
 	border-radius: 5px;
-	background-color: rgb(255, 255, 255);
+	background-color: rgba(100, 60, 32, 0.8)
 }
 
 input {
-	border-width: 0px 0px 2px 0px;
+	border-width: 0px 0px 1px 0px;
 	text-align: center;
 	width: 90%;
 	font-size: 22px;
@@ -81,8 +81,7 @@ input {
 	padding-top: 10px;
 	margin-bottom: 10px;
 	/* text-shadow: 1px 1px 3px #b1b0b0; */
-	border-color: #4c4c4c;
-	font-family: 'ubuntu', serif;
+	border-color: #e3a670;
 	border-radius: 0px;
 	background: none;
 }
@@ -97,7 +96,7 @@ input {
   font-size: 21px;
   border: none;
   border-radius: 5px;
-  background-color: #64cdff;
+  background-color: #ea9931;
   color: white;
   cursor: pointer;
   outline: none;
@@ -116,7 +115,7 @@ input {
 
 
 .logintitle {
-	color: #64cdff;
+	color: #fdb14e;
 	font-size: 30px;
 	padding-bottom: 10px;
 	margin: 0;

@@ -1,9 +1,14 @@
 $(document).ready(function() {
 
+$('.signup').click(function() {
+    $('html,body').animate({
+        scrollTop: $('.signupform').offset().top},
+        'slow');
+});
 
 $('.login').on('click', function(event) {
   window.location.href = "/login"
-})
+});
 
 
 
