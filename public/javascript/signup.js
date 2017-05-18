@@ -11,6 +11,7 @@ $('.login').on('click', function(event) {
 $('.signupform').on('submit', function(event) {
 	event.preventDefault();
   $('#invalid').addClass('hidden');
+  $('#alreadytaken').addClass('hidden');
   console.log("adding user");
   if($('#username').val().length < 1 || $('#password').val().length < 1 || $('#chefName').val().length < 1) {
     $('#invalid').removeClass('hidden');
@@ -44,7 +45,8 @@ function addUser(user) {
       logIn(userInfo);
     },
     error: function(data) {
-    	alert("Invalid user or user already taken.");
+    	console.log("Invalid user or user already taken.");
+      $('#alreadytaken').removeClass('hidden');
       $('.entrybutton').html("Let's get preppin'!");
       $('input').val('');
     }
@@ -73,5 +75,12 @@ function logIn(userInfo) {
      }
   });
 }
+
+
+$('.signup').click(function() {
+    $('html,body').animate({
+        scrollTop: $(".signupform").offset().top},
+        'slow');
+});
 
 });//document.ready end

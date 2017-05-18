@@ -43,6 +43,8 @@ function logIn(userInfo) {
      error: function(data) {
      	console.log('error', data);
         $('#invalid').removeClass('hidden');
+        $('#js-login').html('Start Planning!')
+        $('input').val('');
      }
 	});
 }

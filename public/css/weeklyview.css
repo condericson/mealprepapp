@@ -1,5 +1,10 @@
 /*  cursor: wait; */
 
+
+* {
+  font-family: 'Raleway', serif;
+}
+
 html, body {
   height: 100%;
 }
@@ -37,7 +42,7 @@ nav {
 .title {
   font-size: 50px;
   color: #fdb14e;
-  font-family: 'Ubuntu';
+  /*font-family: 'Ubuntu';*/
   text-shadow: 1px 1px 2px #a95f00;
   font-weight: bold;
   /* width: 60%; */
@@ -55,7 +60,7 @@ nav {
   text-align: center;
 }
 .settings {
-  font-family: Ubuntu;
+  /*font-family: Ubuntu;*/
   font-weight: bold;
   display: block;
   position: absolute;
@@ -148,13 +153,25 @@ nav {
   z-index: 30;
   box-shadow: 0px 0px 8px 0px #4e4e4e;
   border-radius: 5px;
-  font-family: ubuntu;
+  /*font-family: ubuntu;*/
   padding: 25px;
   left: 20%;
 }
 
-.fa-square-o {
+.groceryListCheckBox {
   padding: 0px 10px;
+  font-size: 24px !important;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+}
+
+.groceryIngredient {
+  display: inline;
 }
 
 .grocerylisttitle {
@@ -176,11 +193,11 @@ nav {
 #recipeInfo {
   position: fixed;
   top: 9%;
-  left: 20%;
-  right: 20%;
+  left: 7%;
+  right: 7%;
   bottom: 5em;
   background-color: white;
-  font-family: Ubuntu;
+  /*font-family: Ubuntu;*/
   /* border: 4px solid grey; */
   border-radius: 5px;
   padding: 25px;
@@ -190,8 +207,8 @@ nav {
 }
 
 #recipeInfo > img {
-  margin: 10px 0px 0px 10px;
   border-radius: 5px;
+  width: 100%;
 }
 
 #recipeInfo > .infoModalRecipeName {
@@ -222,7 +239,7 @@ nav {
   border-radius: 5px;
   box-sizing: border-box;
   background-color: #64cdff;
-  font-family: Ubuntu;
+  /*font-family: Ubuntu;*/
 }
 
 /* .col:hover {
@@ -369,7 +386,7 @@ nav {
   right: 12px;
   text-align: center;
   top: 10px;
-  width: 24px;
+  width: 25px;
   text-decoration: none;
   font-weight: bold;
   -webkit-border-radius: 12px;
@@ -422,7 +439,7 @@ nav {
   left: 20%;
   right: 20%;
   background-color: white;
-  font-family: Ubuntu;
+  /*font-family: Ubuntu;*/
   border-radius: 5px;
   padding: 25px;
   box-shadow: 0px 0px 8px 0px #4e4e4e;
@@ -474,7 +491,7 @@ nav {
   text-shadow: 1px 1px 2px #b1b0b0;
   border-color: black;
   width: 90%;
-  font-family: ubuntu;
+  /*font-family: ubuntu;*/
   border-radius: 0px;
 }
 
@@ -490,7 +507,7 @@ nav {
   border-width: 0px 0px 10px 0px;
   border-bottom: 1px solid black;
   margin-left: 15px;
-  font-family: ubuntu;
+  /*font-family: ubuntu;*/
   outline: none;
   font-size: 16px;
   width: 50%;
@@ -520,7 +537,7 @@ nav {
   border-width: 0px 0px 10px 0px;
   border-bottom: 1px solid black;
   margin-left: 15px;
-  font-family: ubuntu;
+  /*font-family: ubuntu;*/
   outline: none;
   font-size: 16px;
   width: 50%;
@@ -543,7 +560,7 @@ nav {
 .ingrediententry, #addIngredient {
   background-color: white;
   margin-left: 15px;
-  font-family: ubuntu;
+  /*font-family: ubuntu;*/
   outline: none;
   font-size: 16px;
   width: 28px;
@@ -634,7 +651,7 @@ nav {
   padding-top: 12px;
   margin: 0px 22px 10px 15px;
   text-align: left;
-  font-family: Ubuntu;
+  /*font-family: Ubuntu;*/
 }
 
 .inBinModal > .recipecontainer > .infobox {
@@ -648,7 +665,7 @@ nav {
 }
 
 .daymarker {
-  font-family: Ubuntu;
+  /*font-family: Ubuntu;*/
   text-align: right;
   margin-right: 10px;
   margin-bottom: 9px;
@@ -659,22 +676,17 @@ nav {
 }
 
 .infoIconBin {
-  color: black;
-  font-weight: bold;
-  font-size: 16px;
-  /* padding-top: 12px; */
-  /* margin: 4px 2px 10px 15px; */
   text-align: center;
-  font-family: Ubuntu;
   position: absolute;
   right: 5px;
   top: 5px;
   background: #6290fc;
   color: #FFFFFF;
   box-shadow: 1px 1px 3px #000;
-  border-radius: 10px;
-  width: 17px;
-  height: 17px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 24px !important;
 }
 
 .myRecipeBinModal-header {
@@ -802,7 +814,7 @@ nav {
 .findarecipe {
   box-sizing: border-box;
   margin: 10px 0px 20px 20px;
-  font-family: uBuntu;
+  /*font-family: uBuntu;*/
   font-size: 22px;
   color: white;
   text-shadow: 0px 1px 0.01em rgb(3, 100, 165);
@@ -824,7 +836,7 @@ ul {
 .yourRecipes {
   font-size: 26px;
   margin: 15px 0px 0px 20px;
-  font-family: ubuntu;
+  /*font-family: ubuntu;*/
   left: 0px;
   text-shadow: 0px 1px 0.01em rgb(3, 100, 165);
   color: white;
@@ -834,23 +846,25 @@ ul {
 
 
 #js-yummly-search {
- font-family: Ubuntu;
+ /*font-family: Ubuntu;*/
 }
 
 #js-yummly-search > input {
  border-radius: 5px;
  margin-left: 20px;
  width: 170px;
- height: 26px;
+ height: 22px;
  font-size: 18px;
  outline: none;
+ border: none;
+ padding: 5px;
 }
 
 .yummlysearchbutton {
   margin: 0px 0px 0px 10px;
   padding: 5px;
   font-size: 17px;
-  border: 1px solid #e0e0e0;
+  border: none;
   border-radius: 5px;
   /* background-color: #64cdff; */
   background: linear-gradient(to bottom, #64cdff, #3cafe6);
@@ -863,13 +877,11 @@ ul {
   margin: 15px 0px 10px 20px;
   color: white;
   font-weight: bold;
-  text-shadow: 0px 1px 0.01em rgb(3, 100, 165);
-  font-family: ubuntu;
+  text-shadow: 0px 0px 4px rgb(0, 139, 232);
+  /*font-family: ubuntu;*/
 }
 
-#yummlyResults {
-  padding: 0px 3%;
-}
+#yummlyResults {margin: 0 auto;text-align: center;}
 
 .yummlylink2 {
   position: absolute;
@@ -897,7 +909,7 @@ ul {
   height: 106px;
   border-radius: 4px;
   box-shadow: 3px 3px 2px 0px #5f5e5e;
-  font-family: ubuntu;
+  /*font-family: ubuntu;*/
 }
 
 .deletequestion > span {
@@ -962,7 +974,7 @@ ul {
 
 .poweredBy {
     width: 100%;
-    font-family: ubuntu;
+    /*font-family: ubuntu;*/
     font-size: 18px;
     text-align: center;
     margin-bottom: 15px;
@@ -1141,16 +1153,15 @@ ul {
 
   .addToWeek {
     display: block;
-    width: auto;
-    height: auto;
+    width: 30px;
+    height: 30px;
     position: absolute;
     bottom: 7px;
     left: 8px;
-    border: 1px solid #64cdff;
-    border-radius: 5px;
+    border: none;
+    border-radius: 50%;
     background-color: #64cdff;
     padding: 1px;
-    font-family: ubuntu;
     color: white;
     cursor: pointer;
     box-shadow: 1px 1px 2px 0px black;
@@ -1158,28 +1169,73 @@ ul {
 
   .addToWeek > p {
     margin: 0px;
+    font-size: 15px;
+    line-height: 30px;
+    font-weight: bold;
   }
 
-  .weekoptions {
+  .weekoptionlist {
     position: absolute;
+    bottom: 12px;
+    left: 7px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
     background-color: #64cdff;
-    top: -25px;
-    left: -5px;
-    width: 179px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 2px 0px black;
   }
 
-  .weekoptions > ul > li {
-    float: left;
-    padding: 0px 3.7px;
-    border-left: 1px solid #b5e3f9;
-    font-size: 19px;
+  .weekoptionli {
+    background-color: #1a8bc1;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    line-height: 36px;
+    font-weight: bold;
   }
 
-  .weekoptions > ul:first-child {
-    border-left: 0px;
+  .weekoptionSun {
+    right: 57px;
+    top: 4px;
   }
+
+  .weekoptionMon {
+    right: 19px;
+    top: 25px;
+  }
+
+  .weekoptionTues {
+    right: 10px;
+    top: 66px;
+  }
+
+  .weekoptionWed {
+    right: 36px;
+    bottom: 13px;
+  }
+
+  .weekoptionThurs {
+    left: 36px;
+    bottom: 13px;
+  }
+
+  .weekoptionFri {
+    left: 10px;
+    top: 66px;
+  }
+
+  .weekoptionSat {
+    left: 19px;
+    top: 25px;
+  }
+
+  .weekoptionliexit {
+    right: 57px;
+    top: 57px;
+    background-color: #ec4b4b;
+  }
+
+
 }
 
 /*Managing picture sizes below desktop*/
@@ -1213,7 +1269,7 @@ ul {
 
   nav {
     width: 100%;
-    height: 40px;
+    height: 45px;
     position: fixed;
     z-index: 4;
     box-shadow: 0px 1px 20px 0px black;
@@ -1240,15 +1296,15 @@ ul {
   }
 
   .dropdown-button {
-    height: 40px;
+    height: 45px;
     position: relative;
   }
 
   .fa-bars {
-    font-size: 30px !important;
+    font-size: 35px !important;
     position: absolute;
     top: 5px;
-    left: 16px;
+    left: 14px;
     text-align: center;
   }
 
@@ -1362,12 +1418,12 @@ ul {
 
   .title2 {
     display: inline-block;
-    font-size: 30px;
+    font-size: 32px;
     font-family: 'homemade apple', cursive;
     color: #fdb14e;
     font-weight: bold;
     margin-left: 10%;
-    line-height: 50px;
+    line-height: 59px;
   }
 
   #groceryListModal {
@@ -1379,7 +1435,7 @@ ul {
     z-index: 30;
     box-shadow: 0px 0px 8px 0px #4e4e4e;
     border-radius: 5px;
-    font-family: ubuntu;
+    /*font-family: ubuntu;*/
     padding: 25px;
     left: 1%;
   }
@@ -1410,4 +1466,8 @@ ul {
 
 .targetShadow {
   box-shadow: 0px 0px 8px #ff722c;
+}
+
+.strikethrough {
+  text-decoration: line-through;
 }

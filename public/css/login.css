@@ -1,5 +1,5 @@
 * {
-	font-family: ubuntu;
+	font-family: 'Raleway', serif;
 }
 
 html {
@@ -68,7 +68,7 @@ nav {
 	text-align: center;
 	padding: 50px 70px 70px 70px;
 	border-radius: 5px;
-	background-color: rgb(255, 255, 255);
+	background-color: rgba(193, 154, 110, 0.8);
 }
 
 input {
@@ -76,13 +76,12 @@ input {
 	text-align: center;
 	width: 90%;
 	font-size: 22px;
-	color: #25b6fb;
+	color: #6ed0ff;
 	outline: none;
 	padding-top: 10px;
 	margin-bottom: 10px;
 	/* text-shadow: 1px 1px 3px #b1b0b0; */
-	border-color: #4c4c4c;
-	font-family: 'ubuntu', serif;
+	border-color: #755330;
 	border-radius: 0px;
 	background: none;
 }
@@ -97,7 +96,7 @@ input {
   font-size: 21px;
   border: none;
   border-radius: 5px;
-  background-color: #64cdff;
+  background-color: #f7bd74;
   color: white;
   cursor: pointer;
   outline: none;
@@ -106,7 +105,7 @@ input {
 }
 
 #js-login:hover {
-	background-color: #005075;
+	background-color: #249fd8;
 }
 
 .relative {
@@ -116,7 +115,7 @@ input {
 
 
 .logintitle {
-	color: #64cdff;
+	color: #fdb14e;
 	font-size: 30px;
 	padding-bottom: 10px;
 	margin: 0;
