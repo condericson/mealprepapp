@@ -22,7 +22,7 @@ describe('creation, editing, and delete of recipe', function() {
   it('should add a recipe on POST', function() {
   const newRecipe = {
     title: "Test Lasagna",
-    userId: "j:\"58c712cb0a63582330158ceb\"",
+    userId: "58c712cb0a63582330158ceb",
     image: "./public/images/platecover.png",
     totalTime: "20 min",
     sourceRecipeUrl: "",
@@ -30,7 +30,7 @@ describe('creation, editing, and delete of recipe', function() {
     instructions: "Test this recipe",
     ingredients: [
       "pasta",
-      "tomatos",
+      "tomatoes",
       "love"
     ]
   };
@@ -42,7 +42,7 @@ describe('creation, editing, and delete of recipe', function() {
       res.should.be.json;
       res.body.should.be.a('object');
       res.body.should.include.keys(
-        "_id", 
+        "_id",
         "title",
         "userId",
         "image",
@@ -74,7 +74,7 @@ describe('creation, editing, and delete of recipe', function() {
       instructions: "Test this recipe again",
       ingredients: [
         "pasta",
-        "tomatos",
+        "tomatoes",
         "love",
         "more love"
       ]
