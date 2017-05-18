@@ -62,4 +62,4 @@ Photos from [Pexels](https://www.pexels.com/) and other graphics obtained under 
 Recipe information gathered from [Yummly](http://www.yummly.com/) API.
 
 
-[Dinner Plans]: <https://prepper-condericson.herokuapp.com>
+[Dinner Plans]: <https://dinnerplans-condericson.herokuapp.com>
