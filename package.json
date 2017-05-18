@@ -35,5 +35,8 @@
   "bugs": {
     "url": "https://github.com/condericson/mealprepapp/issues"
   },
-  "homepage": "https://github.com/condericson/mealprepapp#readme"
+  "homepage": "https://github.com/condericson/mealprepapp#readme",
+  "engines": {
+    "node": "7.8.0"
+  }
 }
