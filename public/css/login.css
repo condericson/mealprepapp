@@ -39,13 +39,14 @@ nav {
 
 .pagetitle {
 	color: #ffa836;
-	font-size: 50px;
+	font-size: 30px;
 	position: absolute;
 	margin: 0;
-	top: 4px;
+	bottom: 4px;
 	left: 22px;
 	font-weight: bold;
 	font-family: 'Homemade Apple', cursive;
+	display: inline-block;
 }
 
 
@@ -63,12 +64,12 @@ nav {
 }
 
 #js-login-form {
-	margin: 100px auto 20px;
-	width: 270px;
+	margin: 60px auto 20px;
+	max-width: 220px;
 	text-align: center;
 	padding: 50px 70px 70px 70px;
 	border-radius: 5px;
-	background-color: rgba(193, 154, 110, 0.8);
+	background-color: rgba(193, 154, 110, 0.9);
 }
 
 input {
@@ -153,4 +154,18 @@ input {
 .fa-spinner {
   color: #edf9ff;
   width: 100px;
+}
+
+.demoDiv {
+	max-width: 270px;
+	text-align: center;
+	margin: 0 auto;
+	background-color: rgba(193, 154, 110, 0.9);
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.demo {
+	margin: 0;
+	color: white;
 }
