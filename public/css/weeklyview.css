@@ -196,6 +196,7 @@ nav {
   left: 7%;
   right: 7%;
   bottom: 5em;
+  max-width: 870px;
   background-color: white;
   /*font-family: Ubuntu;*/
   /* border: 4px solid grey; */
@@ -209,7 +210,9 @@ nav {
 #recipeInfo > img {
   border-radius: 5px;
   width: 100%;
+  max-width: 530px;
 }
+
 
 #recipeInfo > .infoModalRecipeName {
   padding: 10px 0px 0px 10px;
