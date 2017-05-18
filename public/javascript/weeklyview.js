@@ -56,7 +56,6 @@ function fillWeeklyView() {
      		var user = $.cookie('meal-prep-app');
      	}
      	state.recipesInWeek = [];
-			console.log(data);
       data.forEach(function(element) {
        	if(user == element.userId && element.day.length > 0) {
        		state.recipesInWeek.push(element);
@@ -243,8 +242,7 @@ $('#js-yummly-search').submit(function(event) {
 				'<p class="recipeName">' + object.recipeName + '</p>' +
 				'<img class="recipeImage" src="' + object.smallImageUrls[0] + '">' +
 				'<p class="recipeId hidden">' + object.id + '</p>' +
-				'<div class="addToWeek"><p>Day</p><div class="weekoptions hidden"><ul><li class="weekoptionli">Su</li><li class="weekoptionli">M</li><li class="weekoptionli">T</li><li class="weekoptionli">W</li><li class="weekoptionli">Th</li><li class="weekoptionli">F</li><li class="weekoptionli">Sa</li></ul></div></div>' +
-				'</div>' +
+				'<div class="addToWeek"><p class="addToWeekButton">Day</p><div class="weekoptions hidden"><ul class="weekoptionlist"><li class="weekoptionli weekoptionSun">Su</li><li class="weekoptionli weekoptionMon">M</li><li class="weekoptionli weekoptionTues">T</li><li class="weekoptionli weekoptionWed">W</li><li class="weekoptionli weekoptionThurs">Th</li><li class="weekoptionli weekoptionFri">F</li><li class="weekoptionli weekoptionSat">Sa</li><li class="weekoptionli weekoptionliexit">X</li></ul></div></div>' +
 			'</li>';
 		});
 		$('#yummlyResults').html(html);
@@ -350,7 +348,7 @@ function fillMyRecipes() {
 	        	var Day = recipe.day.charAt(0).toUpperCase() + recipe.day.slice(1);
 						html += '<p class="daymarker">' + Day + '</p>';
 	        }
-	        html += '<div class="addToWeek"><p>Day</p><div class="weekoptions hidden"><ul><li class="weekoptionli">Su</li><li class="weekoptionli">M</li><li class="weekoptionli">T</li><li class="weekoptionli">W</li><li class="weekoptionli">Th</li><li class="weekoptionli">F</li><li class="weekoptionli">Sa</li></ul></div></div>';
+	        html += '<div class="addToWeek"><p class="addToWeekButton">Day</p><div class="weekoptions hidden"><ul class="weekoptionlist"><li class="weekoptionli weekoptionSun">Su</li><li class="weekoptionli weekoptionMon">M</li><li class="weekoptionli weekoptionTues">T</li><li class="weekoptionli weekoptionWed">W</li><li class="weekoptionli weekoptionThurs">Th</li><li class="weekoptionli weekoptionFri">F</li><li class="weekoptionli weekoptionSat">Sa</li><li class="weekoptionli weekoptionliexit">X</li></ul></div></div>';
 	        html += '</div></li>';
 	      	};
 	      });
@@ -475,22 +473,22 @@ $('#entryclose').on('click', function(event) {
 
 
 //add to week menu options
-$('#myRecipeModal').on('click', '.addToWeek', function(event) {
-	$(this).children('.weekoptions').removeClass('hidden');
+$('#myRecipeModal').on('click', '.addToWeekButton', function(event) {
+	$(this).siblings('.weekoptions').removeClass('hidden');
 });
 
-$('#yummlyApiRecipe').on('click', '.addToWeek', function(event) {
-	$(this).children('.weekoptions').removeClass('hidden');
+$('#yummlyApiRecipe').on('click', '.addToWeekButton', function(event) {
+	$(this).siblings('.weekoptions').removeClass('hidden');
 });
 
 $('#myRecipeModal').on('click', '.weekoptionli', function(event) {
 	clickToAddToDay($(this));
-	$(this).parent().addClass('hidden');
+	$(this).parent().parent().addClass('hidden');
 });
 
 $('#yummlyApiRecipe').on('click', '.weekoptionli', function(event) {
 	clickToAddToDay($(this));
-	$(this).parent().addClass('hidden');
+	$(this).parent().parent().addClass('hidden');
 });
 
 function clickToAddToDay(selectedDay) {
@@ -517,11 +515,17 @@ function clickToAddToDay(selectedDay) {
 		if(shortenedDay == 'sa') {
 			return 'saturday';
 		}
+		if(shortenedDay == 'x') {
+			return 'exit';
+		}
 	}) ();
 	var name = selectedDay.parent().parent().parent().siblings('.recipeName').text();
 	var parentli = selectedDay.parent().parent().parent().parent().parent();
   var id = "";
   var day = assignedDay;
+	if (day == 'exit') {
+		return;
+	}
   if(parentli.hasClass("yummlyresult")) {
   	state.recipesInSearchResults.forEach(function(element) {
 	  	if(name == element.recipeName) {
@@ -714,7 +718,8 @@ $('#groceryListButton').on('click', function(event) {
 			list = list.concat(element.ingredients);
 		})
 		list.forEach(function(ingredient) {
-			html += '<li><i class="fa fa-square-o" aria-hidden="true"></i> ' + ingredient + '</li>';
+			html += '<li><i class="groceryListCheckBox fa fa-square-o" aria-hidden="true"></i> ' +
+			'<p class="groceryIngredient">' + ingredient + '</p></li>';
 		});
 		$('#groceryList').html(html);
 		$('#groceryListModal').removeClass('hidden');
@@ -871,5 +876,12 @@ function hideDropDown() {
 }
 
 
+
+// For strike through on grocery list
+
+$('#groceryList').on('click', '.groceryListCheckBox', function(event) {
+	$(this).toggleClass('fa-square-o fa-check-square-o');
+	$(this).siblings().toggleClass('strikethrough');
+})
 
 });//document.ready end

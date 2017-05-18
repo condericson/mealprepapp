@@ -248,7 +248,7 @@ nav {
 	.features {
 		padding: 10px;
 	}
-	
+
 }
 
 .signupform {
@@ -283,10 +283,10 @@ nav {
 	display: none;
 }
 
-#invalid {
+#invalid, #alreadytaken {
 	color: red;
 	position: relative;
-	margin: 0;
+	margin: 5px 0px 0px 0px;
 }
 
 .hidden {

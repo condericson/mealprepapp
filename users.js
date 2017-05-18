@@ -83,24 +83,38 @@ router.post('/', jsonParser, (req, res) => {
 
 
 
-router.post('/login', jsonParser, (req, res) => {
-
+router.post('/login', jsonParser, async (req, res) => {
+  console.log(req.body);
   let enteredpassword = req.body.password;
-  User.findOne({
-     'username': req.body.username
-   }, function(err, user){
-     if(err) {
-     res.status(500).json({"message":"Invalid...."})
-       return;
-     }
-     if(!user){
+  try {
+    const user = await User.findOne({'username': req.body.username});
+    console.log("HERE IS USER", user);
+    if(!user){
       res.status(500).json({"message":"Incorrect username or password"});
      }
      if(bcryptjs.compareSync(enteredpassword, user.password)) {
          res.cookie(USER_COOKIE_NAME, user._id, {});
          res.status(201).json({"message":"Password accepted"})
      }
-   });
+  } catch (error) {
+    console.log("Error with login:", error);
+    return res.status(500).json({error})
+  }
+  // User.findOne({
+  //    'username': req.body.username
+  //  }, function(err, user){
+  //    if(err) {
+  //    res.status(500).json({"message":"Invalid...."})
+  //      return;
+  //    }
+  //    if(!user){
+  //     res.status(500).json({"message":"Incorrect username or password"});
+  //    }
+  //    if(bcryptjs.compareSync(enteredpassword, user.password)) {
+  //        res.cookie(USER_COOKIE_NAME, user._id, {});
+  //        res.status(201).json({"message":"Password accepted"})
+  //    }
+  //  });
 });
 
 
