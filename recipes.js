@@ -18,6 +18,16 @@ router.get('/', (req,res) => {
 	})
 });
 
+router.get('/:id', async (req, res) => {
+  console.log("Req.body", req.body);
+  try {
+    const recipes = await Recipes.find({ userId: req.params.id })
+    res.status(201).json(recipes);
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+});
+
 router.post('/', jsonParser, (req, res) => {
     Recipes.create({
 		'title': req.body.title,

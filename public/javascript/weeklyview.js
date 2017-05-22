@@ -16,19 +16,18 @@ var state = {
 $(document).ready(function() {
 
 var cookie = $.cookie('meal-prep-app');
-
 var correctedCookieId = cookie.substring(3, cookie.length - 1);
 getChefName(correctedCookieId);
 
 
-function getChefName(cookie){
+function getChefName(userId){
 	$.ajax({
 	type: "GET",
 	dataType: "json",
    	crossdomain: true,
    	headers: {"Access-Control-Allow-Origin": "*"},
    	contentType: "application/json; charset=utf-8",
-   	url: '/users/' + cookie,
+   	url: '/users/' + userId,
    	success: function(data){
 			var name = data.chefName;
 			$('#usernameInTitle').text(name);
@@ -44,20 +43,18 @@ fillWeeklyView();
 
 //Fill weekly view on log in
 function fillWeeklyView() {
+	var userId = correctedCookieId;
 	$.ajax({
      type: "GET",
      dataType: "json",
      crossdomain: true,
      headers: {"Access-Control-Allow-Origin": "*"},
      contentType: "application/json; charset=utf-8",
-     url: '/recipes',
+     url: `/recipes/${userId}`,
      success: function(data){
-     	if($.cookie('meal-prep-app')){
-     		var user = $.cookie('meal-prep-app');
-     	}
      	state.recipesInWeek = [];
       data.forEach(function(element) {
-       	if(user == element.userId && element.day.length > 0) {
+       	if(element.day.length > 0) {
        		state.recipesInWeek.push(element);
        		var assignedColumn = $('#' + element.day.toLowerCase());
 	       	var html = '<li  class="inDayColumn"><div class="recipecontainer"><div class="infobox"><i class="fa fa-info-circle infoIconDBRecipe" aria-hidden="true"></i><i class="fa fa-trash recipedelete" aria-hidden="true"></i><div class="areyousure hidden"><p class="deletequestion">Remove from the week?</p><div class="remove">Remove</div><div class="no">No</div><div class="triangle"></div></div></div>';
@@ -176,7 +173,7 @@ $('#js-recipe-submit').click(function(event) {
 		"instructions": $('#instructions').val(),
 		"day": $('#assignedDay').text(),
 		"image": "./public/images/platecover.png",
-		"userId": $.cookie('meal-prep-app'),
+		"userId": correctedCookieId,
 		"totalTime": $('.preptimeinput').val()
 	};
 	addRecipe(recipe);
@@ -322,13 +319,14 @@ $('#browseRecipesButton').on('click', function(event) {
 });
 
 function fillMyRecipes() {
+	var userId = correctedCookieId;
 	$.ajax({
     type: "GET",
     dataType: "json",
     crossdomain: true,
     headers: {"Access-Control-Allow-Origin": "*"},
     contentType: "application/json; charset=utf-8",
-    url: '/recipes',
+    url: `/recipes/${userId}`,
     success: function(data){
       $('#myRecipes').html("");
       if($.cookie('meal-prep-app')){
@@ -376,13 +374,14 @@ $('#myRecipeModal').on('click', '.infoIconDBRecipe', function(event) {
 	$('#groceryListModal').addClass('hidden');
 	//Get recipe title from p element
 	var recipeTitle = $(this).parent().siblings('.recipeName').text();
+	var userId = correctedCookieId;
 	$.ajax({
     type: "GET",
     dataType: "json",
     crossdomain: true,
     headers: {"Access-Control-Allow-Origin": "*"},
     contentType: "application/json; charset=utf-8",
-    url: '/recipes',
+    url: `/recipes/${userId}`,
     success: function(data){
      	console.log("Recipe GET successful");
 	    data.forEach(function(element) {
@@ -543,7 +542,7 @@ function clickToAddToDay(selectedDay) {
   			recipeObject = {
   				'title': element.title,
 					'ingredients': element.ingredients,
-					'userId': $.cookie('meal-prep-app'),
+					'userId': correctedCookieId,
 					'totalTime': element.totalTime,
 					'image': element.image,
 					'day': day,
@@ -600,7 +599,7 @@ $(".recipeByDay").droppable({
     			recipeObject = {
     				'title': element.title,
 						'ingredients': element.ingredients,
-						'userId': $.cookie('meal-prep-app'),
+						'userId': correctedCookieId,
 						'totalTime': element.totalTime,
 						'image': element.image,
 						'day': day,
@@ -646,7 +645,7 @@ function updateOnDrop(id, day) {
 		var recipeObject = {
 			'title': data.name,
 			'ingredients': data.ingredientLines,
-			'userId': $.cookie('meal-prep-app'),
+			'userId': correctedCookieId,
 			'totalTime': data.totalTime,
 			'image': data.images[0].hostedLargeUrl,
 			'day': day,
@@ -777,7 +776,7 @@ $('.recipeByDay').on('click', '.remove', function(event) {
 			recipeObject = {
 				'title': element.title,
 				'ingredients': element.ingredients,
-				'userId': $.cookie('meal-prep-app'),
+				'userId': correctedCookieId,
 				'totalTime': element.totalTime,
 				'image': element.image,
 				'day': "",
