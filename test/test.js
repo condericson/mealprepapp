@@ -63,6 +63,34 @@ describe('creation, editing, and delete of recipe', function() {
 
   });
 
+it('should find a recipe on GET using userId', function() {
+  const newRecipe = {
+    title: "Test Lasagna",
+    userId: "58c712cb0a63582330158ceb",
+    image: "./public/images/platecover.png",
+    totalTime: "20 min",
+    sourceRecipeUrl: "",
+    day: "monday",
+    instructions: "Test this recipe",
+    ingredients: [
+      "pasta",
+      "tomatoes",
+      "love"
+    ]
+  };
+  return chai.request(app)
+    .get(`/recipes/${newRecipe.userId}`)
+    .send()
+    .then(function(res) {
+      res.should.have.status(201);
+      res.should.be.json;
+      res.body.should.be.a('array');
+    })
+    .catch(function(err) {
+      console.log("RECIPE GET TEST ERR", err);
+    })
+  });
+
   it('should update recipes on PUT', function() {
     const updateData = {
       title: "Test Lasagna2",
@@ -120,7 +148,6 @@ describe('Users', function() {
       password: "test password",
       chefName: "Test McTester"
     }
-  console.log(newUser);
 
     return chai.request(app)
       .post('/users')
@@ -132,11 +159,10 @@ describe('Users', function() {
         res.body.should.have.all.keys(
             '_id', 'username', 'chefName', 'password', '__v');
         userId = res.body._id;
-        console.log("LOG OF ID", res.body._id)
       })
-      /*.catch(function(err) {
+      .catch(function(err) {
         console.log("CAUGHT ERR", err);
-      });*/
+      });
   });
   it('should return specific user on GET', function() {
     return chai.request(app)

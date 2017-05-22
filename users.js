@@ -55,7 +55,6 @@ router.get('/logout/logout', (req, res) => {
 
 
 router.post('/', jsonParser, (req, res) => {
-  console.log("REQ.BODY FROM USER.JS POST", req.body);
   let password = req.body.password;
   bcryptjs.genSalt(10, function(err, salt) {
     if(err) {
@@ -70,7 +69,6 @@ router.post('/', jsonParser, (req, res) => {
         'password': hash,
         'chefName': req.body.chefName
       }, function(err, user){
-        console.log("USER.JS POST ERR", err);
         if(err) {
           res.status(500).json({"message":"Error with user creation"})
         }
